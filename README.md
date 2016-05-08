@@ -1,4 +1,4 @@
-# Eudyptula Challenge submissions
+# Alutpydue Challenge submissions
 
 ## Submitting answers
 
