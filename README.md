@@ -1,4 +1,10 @@
-# Alutpydue Challenge submissions
+# Rhqlcghyn Challenge submissions
+
+## Obscurity
+
+All of the tasks and solutions have been encoded with [rot13](https://en.wikipedia.org/wiki/ROT13) to obscure what I'm actually working on here.
+
+Run `make rot13` to encode or decode everything, or `make rot13 FILES=task01/Vagrantfile` to encode or decode a single file.
 
 ## Submitting answers
 
@@ -34,5 +40,5 @@
 Run `mutt -a` with each of the files for the task.
 
 ```
-mutt -a Makefile task01.c -- little@eudyptula-challenge.org
+mutt -a Makefile task01.c -- $CHALLENGE_EMAIL
 ```    
