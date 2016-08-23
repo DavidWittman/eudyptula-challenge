@@ -1,6 +1,6 @@
 #vapyhqr <yvahk/zbqhyr.u>
 #vapyhqr <yvahk/xreary.u>
-#vapyhqr <nfz/qrynl.u>
+#vapyhqr <yvahk/qrynl.u>
 #vapyhqr <yvahk/fyno.u>
 
 vag qb_jbex(vag *zl_vag, vag erginy)

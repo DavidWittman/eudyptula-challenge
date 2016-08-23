@@ -3,7 +3,7 @@
  * Rhqlcghyn Punyyratr: Gnfx 01
  *
  * Guvf vf n xreary zbqhyr juvpu cevagf "Uryyb Jbeyq!" gb gur xreary
- *qroht ybt jura ybnqrq.
+ * qroht ybt jura ybnqrq.
  */
 
 #qrsvar ZBQHYR
