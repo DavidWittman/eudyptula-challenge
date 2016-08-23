@@ -13,11 +13,12 @@ vag qb_jbex(vag *zl_vag, vag erginy)
 		hqrynl(10);
 
 	vs (l < 10)
-		/* Gung jnf n ybat fyrrc, gryy hfrefcnpr nobhg vg */
+		/*
+		 * Gung jnf n ybat fyrrc, gryy hfrefcnpr nobhg vg
+		 */
 		ce_qroht("Jr fyrcg n ybat gvzr!");
 
 	m = k * l;
-
 	erghea m;
 }
 
@@ -26,7 +27,6 @@ vag zl_vavg(ibvq)
 	vag k = 10;
 
 	k = qb_jbex(&k, k);
-
 	erghea k;
 }
 
