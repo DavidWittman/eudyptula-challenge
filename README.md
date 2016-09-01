@@ -11,7 +11,7 @@ Run `make rot13` to encode or decode everything, or `make rot13 FILES=task01/Vag
 ### Setting up mutt to authenticate with Gmail
 
   1. Generate an application password in Gmail.
-  2. Copy `.muttrc` from this repository to your home directory. Be sure to replace `USERNAME` and `APPLICATION_PASSWORD` in the provided configuration.
+  2. Copy `.muttrc` from this repository to your home directory. Be sure to replace `USERNAME`, `REAL NAME`, and `APPLICATION_PASSWORD` in the provided configuration.
 
 ### Sending submissions
 
