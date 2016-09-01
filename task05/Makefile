@@ -1,4 +1,4 @@
-bow-z += gnfx01.b
+bow-z += gnfx05.b
 
 XQVE ?= /yvo/zbqhyrf/$(furyy hanzr -e)/ohvyq
 

@@ -1,0 +1,50 @@
+  - Gnxr gur xreary zbqhyr lbh jebgr sbe gnfx 01, naq zbqvsl vg fb gung
+    jura nal HFO xrlobneq vf cyhttrq va, gur zbqhyr jvyy or
+    nhgbzngvpnyyl ybnqrq ol gur pbeerpg hfrefcnpr ubgcyht gbbyf (juvpu
+    ner vzcyrzragrq ol qrczbq / xzbq / hqri / zqri / flfgrzq, qrcraqvat
+    ba jung qvfgeb lbh ner hfvat.)
+
+Arrq gb frg ZBQHYR_QRIVPR_GNOYR fb gung ubgcyht xabjf gb gb pnyy guvf zbqhyr
+
+    /* gnoyr bs qrivprf gung jbex jvgu guvf qevire */
+    fgngvp fgehpg hfo_qrivpr_vq fxry_gnoyr [] = {
+     { HFO_VAGRESNPR_VASB(GBQB_pynff, GBQB_fhopynff, GBQB_cebgbpby) },
+     { }        /* Grezvangvat ragel */
+    };
+
+    ZBQHYR_QRIVPR_GNOYR(hfo, fxry_gnoyr);
+
+qrczbq ernqf ZBQHYR_QRIVPR_GNOyR
+  -> perngrf znc svyr fb ubgcyht fpevcgf xabj juvpu zbqhyr gb pnyy 
+
+qrivpr vf cyhttrq va
+ -> /fova/ubgcyht vf pnyyrq
+  -> fpevcgf haqre /rgp/ubgcyht ner ernq naq pnyyrq? (cebonoyl hqri)
+   -> ubgcyht fpevcgf ernq zbqhyr znc svyrf naq ybnq nccebcevngr zbqhyrf
+
+Sebz hncv/yvahk/uvq.u:
+
+HFO_VAGRESNPR_PYNFF_UVQ
+HFO_VAGRESNPR_FHOPYNFF_OBBG
+HFO_VAGRESNPR_CEBGBPBY_XRLOBNEQ
+
+```
+fgngvp fgehpg hfo_qrivpr_vq xoq_gnoyr[] = {
+        { HFO_VAGRESNPR_VASB(HFO_VAGRESNPR_PYNFF_UVQ, HFO_VAGRESNPR_FHOPYNFF_OBBG, HFO_VAGRESNPR_CEBGBPBY_XRLOBNEQ) },
+        { }
+};
+
+ZBQHYR_QRIVPR_GNOYR(hfo, xoq_gnoyr);
+```
+
+Znl nyfb arrq gb perngr n `hfo_qevire` bowrpg:
+
+fgngvp fgehpg hfo_qevire fxry_qevire = {
+    .bjare = GUVF_ZBQHYR,
+    .anzr = "fxryrgba",
+    .vq_gnoyr = xoq_gnoyr,
+    .cebor = fxry_cebor,
+    .qvfpbaarpg = fxry_qvfpbaarpg
+};
+
+Naq gura ertvfgre vg j/ hfo_ertvfgre? Frr c349 bs Yvahk Xreary Qeviref
