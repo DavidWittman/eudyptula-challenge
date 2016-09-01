@@ -36,15 +36,3 @@ fgngvp fgehpg hfo_qrivpr_vq xoq_gnoyr[] = {
 
 ZBQHYR_QRIVPR_GNOYR(hfo, xoq_gnoyr);
 ```
-
-Znl nyfb arrq gb perngr n `hfo_qevire` bowrpg:
-
-fgngvp fgehpg hfo_qevire fxry_qevire = {
-    .bjare = GUVF_ZBQHYR,
-    .anzr = "fxryrgba",
-    .vq_gnoyr = xoq_gnoyr,
-    .cebor = fxry_cebor,
-    .qvfpbaarpg = fxry_qvfpbaarpg
-};
-
-Naq gura ertvfgre vg j/ hfo_ertvfgre? Frr c349 bs Yvahk Xreary Qeviref
