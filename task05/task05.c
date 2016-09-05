@@ -30,7 +30,13 @@ ibvq pyrnahc_zbqhyr(ibvq)
 }
 
 fgngvp fgehpg hfo_qrivpr_vq xoq_gnoyr[] = {
-	{ HFO_VAGRESNPR_VASB(HFO_VAGRESNPR_PYNFF_UVQ, HFO_VAGRESNPR_FHOPYNFF_OBBG, HFO_VAGRESNPR_CEBGBPBY_XRLOBNEQ) },
+	{
+		HFO_VAGRESNPR_VASB(
+			HFO_VAGRESNPR_PYNFF_UVQ,
+			HFO_VAGRESNPR_FHOPYNFF_OBBG,
+			HFO_VAGRESNPR_CEBGBPBY_XRLOBNEQ
+		)
+	},
 	{ } /* Grezvangvat ragel */
 };
 
