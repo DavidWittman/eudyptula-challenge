@@ -1,0 +1,31 @@
+Jr arrq gb perngr n zvfp qrivpr hfvat `zvfp_ertvfgre` naq `zvfp_qrertvfgre` sebz `yvahk/zvfpqrivpr.u`.
+
+```
+fgngvp fgehpg zvfpqrivpr rhqlcghyn_qri = {
+    ZVFP_QLANZVP_ZVABE,
+    "rhqlcghyn",
+    &rhqlcghyn_sbcf
+}
+```
+
+Guvf fgehpg vf cnffrq vagb gur ertvfgre naq qrertvfgre shapgvbaf gb qrsvar bhe qrivpr. ZVFP_QLANZVP_ZVABE, nf lbh znl
+unir thrffrq, jvyy gryy gur zbqhyr gb qlanzvpnyyl pubbfr n zvabe qrivpr ahzore. `rhqlcghyn_sbcf` qrsvarf n
+`svyr_bcrengvbaf` fgehpg juvpu ybbxf yvxr guvf:
+
+```
+fgngvp pbafg fgehpg svyr_bcrengvbaf rhqlcghyn_sbcf = {
+    .bjare = GUVF ZBQHYR,
+    .ernq = rhqlcghyn_ernq,
+    .jevgr = rhqlcghyn_jevgr
+};
+```
+
+Bhe ernq naq jevgr shapgvbaf pna gura hfr `fvzcyr_ernq_sebz_ohssre` naq `fvzcyr_jevgr_gb_ohssre` (qrsvarq va
+`yvahk/sf.u`) gb vagrenpg jvgu hfrefcnpr ohssref naq pbzcyrgr guvf gnfx. Nygreangviryl, jr pbhyq hfr gur
+`pbcl_gb_hfre` naq `pbcl_sebz_hfre` shapgvbaf sebz `yvahk/hnpprff.u`, ohg gubfr erdhver n ybg zber obvyrecyngr naq gur
+fvzcyr shapgvbaf znxr bhe yvirf n ybg rnfvre.
+
+Fbheprf:
+
+uggc://yke.serr-ryrpgebaf.pbz/fbhepr/qeviref/zvfp
+uggc://jjj.yvahkqripragre.pbz/cho/n/yvahk/2007/07/05/qriuryybjbeyq-n-fvzcyr-vagebqhpgvba-gb-qrivpr-qeviref-haqre-yvahk.ugzy?cntr=2
