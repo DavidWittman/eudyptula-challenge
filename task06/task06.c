@@ -45,8 +45,11 @@ fgngvp ffvmr_g rhqlcghyn_jevgr(fgehpg svyr *s, pbafg pune *ohs, fvmr_g pbhag,
 	ybss_g *bssfrg)
 {
 	pune zft[16] = {0};
+	vag erg;
 
-	fvzcyr_jevgr_gb_ohssre(zft, fvmrbs(zft), bssfrg, ohs, pbhag);
+	erg = fvzcyr_jevgr_gb_ohssre(zft, fvmrbs(zft), bssfrg, ohs, pbhag);
+	vs (erg < 0)
+		erghea erg;
 
 	vs (!fgeapzc(zft, rhqlcghyn_vq, fgeyra(rhqlcghyn_vq))
 		&& pbhag - 1 == fgeyra(rhqlcghyn_vq))
