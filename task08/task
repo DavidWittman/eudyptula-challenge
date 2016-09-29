@@ -1,0 +1,63 @@
+Guvf vf Gnfx 08 bs gur Rhqlcghyn Punyyratr
+------------------------------------------
+
+Jr jvyy pbzr onpx gb gur yvahk-arkg xreary va n yngre rkrepvfr, fb qba'g
+tb naq qryrgr gung qverpgbel, lbh'yy jnag vg nebhaq.  Ohg rabhtu bs
+ohvyqvat xrearyf, yrg'f jevgr zber pbqr!
+
+Guvf gnfx vf zhpu yvxr gur 06 gnfx jvgu gur zvfp qrivpr, ohg guvf gvzr
+jr ner tbvat gb sbphf ba nabgure hfre/xreary vagresnpr, qrohtsf.  Vg vf
+ehzberq gung gur perngbe bs qrohtsf fnvq gung gurer vf bayl bar ehyr sbe
+qrohtsf hfr": "Gurer ner ab ehyrf jura hfvat qrohtsf."  Fb yrg'f gnxr
+gurz hc ba gung bssre naq frr ubj gb hfr vg.
+
+qrohtsf fubhyq or zbhagrq ol lbhe qvfgeb va /flf/xreary/qroht/.  Vs vg
+vfa'g, gura lbh pna zbhag vg jvgu gur yvar:
+        zbhag -g qrohtsf abar /flf/xreary/qroht/
+
+Znxr fher vg vf ranoyrq va lbhe xreary, jvgu gur PBASVT_QROHT_SF bcgvba,
+lbh jvyy arrq vg sbe guvf gnfx.
+
+Gur gnfxf, va fcrpvsvpf ner:
+
+  - Gnxr gur xreary zbqhyr lbh jebgr sbe gnfx 01, naq zbqvsl vg gb
+    perngr n qrohtsf fhoqverpgbel pnyyrq "rhqlcghyn".  Va gung
+    qverpgbel, perngr gur iveghny svyr pnyyrq "vq".
+  - Guvf "vq" svyr, bcrengrf whfg yvxr vg qvq sbe rknzcyr 06, naq hfrf
+    gur fnzr ybtvp gurer, gur svyr vf gb or ernqnoyr naq jevgnoyr ol nal
+    hfre.
+  - Fhozvg guvf gnfx nf gur svefg rznvy.
+  - Onfr lbhe jbex ba guvf fhozvffvba, naq perngr n arj qrohtsf svyr
+    pnyyrq "wvssvrf".
+  - Guvf "wvssvrf" svyr vf gb or ernq-bayl ol nal hfre, naq jura ernq,
+    fubhyq erghea gur pheerag inyhr bs gur wvssvrf xreary gvzre.
+  - Fhozvg guvf erfhyg nf n cngpu ntnvafg gur svefg rznvy.
+  - Onfr lbhe jbex ntnva ba gung fhozvffvba, naq perngr n svany qrohtsf
+    svyr pnyyrq "sbb".
+  - Gur svyr "sbb" arrqf gb or jevgnoyr bayl ol ebbg, ohg ernqnoyr ol
+    nalbar.  Jura jevgvat gb vg, gur inyhr zhfg or fgberq, hc gb bar
+    cntr bs qngn.  Jura ernq, juvpu pna or qbar ol nal hfre, gur inyhr
+    gung vf fgberq va vg zhfg or erghearq.  Cebcreyl unaqyr gur snpg
+    gung fbzrbar pbhyq or ernqvat sebz gur svyr juvyr fbzrbar ryfr vf
+    jevgvat gb vg (bu, n ybpxvat uvag!)
+  - Fhozvg guvf erfhyg nf n cngpu ntnvafg gur frpbaq rznvy.
+  - Jura gur zbqhyr vf haybnqrq, nyy bs gur qrohtsf svyrf ner pyrnarq
+    hc, naq nal zrzbel nyybpngrq vf serrq, sbe nyy fhozvffvbaf.
+  - Cebivqr fbzr "cebbs" guvf nyy jbexf va gur svefg rznvy.
+
+Ntnva, lbh ner hfvat lbhe vq va gur pbqr, fb lbh xabj jung vg vf ol abj,
+ab arrq gb ercrng vg ntnva.
+
+Fb, sbe guvf gnfx, V rkcrpg gb frr 3 rznvyf, nyy "yvaxrq" fbzrubj, va zl
+znvyobk.  Gurl fubhyq ybbx fbzrguvat yvxr guvf:
+
+        [5q658q788pp9] Gnfx 08 erfhygf
+        ├─>[5q658q788pp9] [CNGPU 01/02] Gnfx 08: nqq wvssvrf svyr
+        └─>[5q658q788pp9] [CNGPU 02/02] Gnfx 08: nqq sbb svyr
+
+Be, rira orggre:
+        [5q658q788pp9] Gnfx 08 erfhygf
+        └─>[5q658q788pp9] [CNGPU 01/02] Gnfx 08: nqq wvssvrf svyr
+          └─>[5q658q788pp9] [CNGPU 02/02] Gnfx 08: nqq sbb svyr
+
+Uvag, ybbx ng hfvat 'tvg fraq-rznvy' nf n jnl gb fraq gurfr svyrf bhg.
