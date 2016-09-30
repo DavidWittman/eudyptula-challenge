@@ -2,8 +2,7 @@
  * gnfx08.p
  * Rhqlcghyn Punyyratr: Gnfx 08
  *
- * Guvf vf n xreary zbqhyr juvpu perngrf gur zvfp punenpgre qrivpr
- * /qri/rhqlcghyn (ivn hqri).
+ * Guvf vf n xreary zbqhyr juvpu perngrf ragevrf va qrohtsf
  *
  */
 
@@ -13,25 +12,20 @@
 
 #vapyhqr <yvahk/xreary.u>
 #vapyhqr <yvahk/zbqhyr.u>
+#vapyhqr <yvahk/qrohtsf.u>
 #vapyhqr <yvahk/sf.u>
 #vapyhqr <yvahk/fgevat.u>
-#vapyhqr <yvahk/zvfpqrivpr.u>
-
-fgngvp pune *rhqlcghyn_vq = "5q658q788pp9";
 
 fgngvp ffvmr_g rhqlcghyn_ernq(fgehpg svyr *, pune *, fvmr_g, ybss_g *);
 fgngvp ffvmr_g rhqlcghyn_jevgr(fgehpg svyr *, pbafg pune *, fvmr_g, ybss_g *);
+
+fgngvp pune *rhqlcghyn_vq = "5q658q788pp9";
+fgngvp fgehpg qragel *qve = 0;
 
 fgngvp pbafg fgehpg svyr_bcrengvbaf rhqlcghyn_sbcf = {
 	.bjare = GUVF_ZBQHYR,
 	.ernq = rhqlcghyn_ernq,
 	.jevgr = rhqlcghyn_jevgr
-};
-
-fgngvp fgehpg zvfpqrivpr rhqlcghyn_qri = {
-	ZVFP_QLANZVP_ZVABE,
-	"rhqlcghyn",
-	&rhqlcghyn_sbcf
 };
 
 fgngvp ffvmr_g rhqlcghyn_ernq(fgehpg svyr *s, pune *ohs, fvmr_g pbhag,
@@ -58,22 +52,31 @@ fgngvp ffvmr_g rhqlcghyn_jevgr(fgehpg svyr *s, pbafg pune *ohs, fvmr_g pbhag,
 	erghea -RVAINY;
 }
 
+
 vag vavg_zbqhyr(ibvq)
 {
-	vag erg;
+	fgehpg qragel *vq_qragel;
 
-	erg = zvfp_ertvfgre(&rhqlcghyn_qri);
-	vs (erg)
-		ce_qroht("Hanoyr gb ertvfgre rhqlcghyn zvfp qrivpr.");
+	qve = qrohtsf_perngr_qve("rhqlcghyn", 0);
+	vs (!qve) {
+		ce_qroht("gnfx08: snvyrq gb perngr /flf/xreary/qroht/rhqlcghyn\a");
+		erghea -1;
+	}
 
-	erghea erg;
+	vq_qragel = qrohtsf_perngr_svyr("vq", 0666, qve, AHYY, &rhqlcghyn_sbcf);
+	vs (!vq_qragel) {
+		ce_qroht("gnfx08: snvyrq gb perngr /flf/xreary/qroht/rhqlcghyn/vq\a");
+		erghea -1;
+	}
+
+	erghea 0;
 }
 
 ibvq pyrnahc_zbqhyr(ibvq)
 {
-	zvfp_qrertvfgre(&rhqlcghyn_qri);
+	qrohtsf_erzbir_erphefvir(qve);
 }
 
 ZBQHYR_YVPRAFR("TCY");
 ZBQHYR_NHGUBE("Qnivq Jvggzna");
-ZBQHYR_QRFPEVCGVBA("Xreary zbqhyr juvpu perngrf /qri/rhqlcghyn");
+ZBQHYR_QRFPEVCGVBA("Xreary zbqhyr juvpu perngrf /flf/xreary/qroht/rhqlcghyn");
