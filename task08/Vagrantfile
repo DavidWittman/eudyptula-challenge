@@ -2,13 +2,15 @@
 # iv: frg sg=ehol :
 Intenag.pbasvther(2) qb |pbasvt|
   pbasvt.iz.obk = "qrovna/jurrml64"
-  pbasvt.iz.cebivfvba "furyy", vayvar: <<-FURYY
+  pbasvt.iz.cebivfvba "furyy", cevivyrtrq: snyfr, vayvar: <<-FURYY
     fhqb ncg-trg vafgnyy -l znxr yvahk-urnqref-$(hanzr -e)
     pq /intenag
     fhqb -v
     fhqb zbhag -g qrohtsf abar /flf/xreary/qroht
+    fhqb puzbq 0755 /flf/xreary/qroht
     znxr
-    vafzbq gnfx08.xb
+    fhqb vafzbq gnfx08.xb
     rpub $(png /flf/xreary/qroht/rhqlcghyn/vq) > /flf/xreary/qroht/rhqlcghyn/vq && rpub "Grfg 1 Cnffrq"
+    png /flf/xreary/qroht/rhqlcghyn/wvssvrf
   FURYY
 raq
