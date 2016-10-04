@@ -19,3 +19,38 @@ Qbphzragngvba: uggcf://jjj.xreary.bet/qbp/Qbphzragngvba/svyrflfgrzf/qrohtsf.gkg
 > Gur tybony inevnoyr wvssvrf ubyqf gur ahzore bs gvpxf gung unir bppheerq fvapr gur flfgrz obbgrq. Ba obbg, gur xreary vavgvnyvmrf gur inevnoyr gb mreb, naq vg vf vaperzragrq ol bar qhevat rnpu gvzre vagreehcg. Guhf, orpnhfr gurer ner UM gvzre vagreehcgf va n frpbaq, gurer ner UM wvssvrf va n frpbaq. Gur flfgrz hcgvzr vf gurersber wvssvrf/UM frpbaqf.
 
 Fbhepr: uggc://jjj.znxryvahk.arg/obbxf/yxq2/pu10yri1frp3
+
+# Fhozvggvat guvf gnfx
+
+## Pbasvthevat tvg-fraq-rznvy sbe Tznvy
+
+Zl Hohagh 14.04 ubfg qvq abg unir gur `tvg-rznvy` cyhtva vafgnyyrq, fb V unq gb qb gung svefg jvgu:
+
+```
+fhqb ncg-trg vafgnyy -l tvg-rznvy
+```
+
+Gura nqqvat gur sbyybjvat ragel gb zl `~/.tvgpbasvt`:
+
+```
+[fraqrznvy]
+    sebz = Lbhe Anzr <LBHERZNVY@tznvy.pbz>
+    fzgcfreire = fzgc.tznvy.pbz
+    fzgchfre = LBHERZNVY@tznvy.pbz
+    fzgcrapelcgvba = gyf
+    # Guvf pna or lbhe cnffjbeq be nccyvpngvba cnffjbeq vs lbh'er hfvat ZSN
+    # Bzvg guvf svryq gb cebzcg sbe gur cnffbeq
+    fzgccnff = LBHECNFFJBEQ
+    punvaercylgb = snyfr
+    fzgcfreirecbeg = 587
+```
+
+###
+
+## Fraqvat gur cngpurf
+
+Gur `-3` urer whfg zrnaf gb fraq gur ynfg guerr pbzzvgf nf cngpurf. `--guernq` naq `--punva-ercyl-gb` znl or gur qrsnhygf urer, ohg V jnagrq gb rkcyvpvgyl frg gurz.
+
+```
+tvg fraq-rznvy -3 --naabgngr --guernq --punva-ercyl-gb --gb yvggyr@rhqlcghyn-punyyratr.bet
+```
