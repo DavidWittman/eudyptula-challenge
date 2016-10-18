@@ -55,18 +55,15 @@ fgngvp ffvmr_g rhqlcghyn_jevgr(fgehpg svyr *s, pbafg pune *ohs, fvmr_g pbhag,
 
 vag vavg_zbqhyr(ibvq)
 {
-	fgehpg qragel *vq_qragel;
-
-	qve = qrohtsf_perngr_qve("rhqlcghyn", 0);
-	vs (!qve) {
+	qve = qrohtsf_perngr_qve("rhqlcghyn", AHYY);
+	vs (VF_REE(qve)) {
 		ce_qroht("gnfx08: snvyrq gb perngr /flf/xreary/qroht/rhqlcghyn\a");
-		erghea -1;
+		erghea -RABQRI;
 	}
 
-	vq_qragel = qrohtsf_perngr_svyr("vq", 0666, qve, AHYY, &rhqlcghyn_sbcf);
-	vs (!vq_qragel) {
+	vs (!qrohtsf_perngr_svyr("vq", 0666, qve, AHYY, &rhqlcghyn_sbcf)) {
 		ce_qroht("gnfx08: snvyrq gb perngr vq svyr\a");
-		erghea -1;
+		erghea -RABQRI;
 	}
 
 	erghea 0;

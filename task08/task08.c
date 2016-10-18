@@ -98,33 +98,25 @@ fgngvp ffvmr_g sbb_jevgr(fgehpg svyr *s, pbafg pune *ohs, fvmr_g pbhag,
 
 vag vavg_zbqhyr(ibvq)
 {
-	fgehpg qragel *vq_qragel;
-	fgehpg qragel *wvssvrf_qragel;
-	fgehpg qragel *sbb_qragel;
-
-	qve = qrohtsf_perngr_qve("rhqlcghyn", 0);
-	vs (!qve) {
+	qve = qrohtsf_perngr_qve("rhqlcghyn", AHYY);
+	vs (VF_REE(qve)) {
 		ce_qroht("gnfx08: snvyrq gb perngr /flf/xreary/qroht/rhqlcghyn\a");
-		erghea -1;
+		erghea -RABQRI;
 	}
 
-	vq_qragel = qrohtsf_perngr_svyr("vq", 0666, qve, AHYY, &rhqlcghyn_sbcf);
-	vs (!vq_qragel) {
+	vs (!qrohtsf_perngr_svyr("vq", 0666, qve, AHYY, &rhqlcghyn_sbcf)) {
 		ce_qroht("gnfx08: snvyrq gb perngr vq svyr\a");
-		erghea -1;
+		erghea -RABQRI;
 	}
 
-	wvssvrf_qragel = qrohtsf_perngr_h32("wvssvrf", 0444, qve,
-		(h32 *)&wvssvrf);
-	vs (!wvssvrf_qragel) {
+	vs (!qrohtsf_perngr_h32("wvssvrf", 0444, qve, (h32 *)&wvssvrf)) {
 		ce_qroht("gnfx08: snvyrq gb perngr wvssvrf svyr\a");
-		erghea -1;
+		erghea -RABQRI;
 	}
 
-	sbb_qragel = qrohtsf_perngr_svyr("sbb", 0644, qve, AHYY, &sbb_sbcf);
-	vs (!sbb_qragel) {
+	vs (!qrohtsf_perngr_svyr("sbb", 0644, qve, AHYY, &sbb_sbcf)) {
 		ce_qroht("gnfx08: snvyrq gb perngr sbb svyr\a");
-		erghea -1;
+		erghea -RABQRI;
 	}
 
 	erghea 0;

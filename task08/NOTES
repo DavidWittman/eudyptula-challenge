@@ -47,10 +47,14 @@ Gura nqqvat gur sbyybjvat ragel gb zl `~/.tvgpbasvt`:
 
 ###
 
+## Fraqvat gur svefg rznvy
+
+Fraq nf abezny jvgu `zhgg -n gnfx08.p -- yvggyr@rhqlcghyn-punyyratr.bet`. Erpbeq gur Zrffntr-Vq urnqre sbe gur cngpu rznvyf.
+
 ## Fraqvat gur cngpurf
 
-Gur `-3` urer whfg zrnaf gb fraq gur ynfg guerr pbzzvgf nf cngpurf. `--guernq` naq `--punva-ercyl-gb` znl or gur qrsnhygf urer, ohg V jnagrq gb rkcyvpvgyl frg gurz.
+Gur `-2` urer whfg zrnaf gb fraq gur ynfg gjb pbzzvgf nf cngpurf. `--guernq` naq `--punva-ercyl-gb` znl or gur qrsnhygf urer, ohg V jnagrq gb rkcyvpvgyl frg gurz.
 
 ```
-tvg fraq-rznvy -3 --naabgngr --guernq --punva-ercyl-gb --gb yvggyr@rhqlcghyn-punyyratr.bet
+tvg fraq-rznvy -2 --naabgngr --guernq --punva-ercyl-gb --va-ercyl-gb --va-ercyl-gb "<20161013155101.TN23181@obk.rknzcyr.klm>" --gb yvggyr@rhqlcghyn-punyyratr.bet
 ```
