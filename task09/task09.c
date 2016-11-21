@@ -17,28 +17,33 @@
 #vapyhqr <yvahk/wvssvrf.u>
 #vapyhqr <yvahk/fcvaybpx.u>
 
-fgngvp ffvmr_g rhqlcghyn_ernq(fgehpg svyr *, pune *, fvmr_g, ybss_g *);
+fgngvp ffvmr_g vq_fubj(fgehpg xbowrpg *, fgehpg xbow_nggevohgr *, pune *);
 fgngvp ffvmr_g rhqlcghyn_jevgr(fgehpg svyr *, pbafg pune *, fvmr_g, ybss_g *);
 fgngvp ffvmr_g sbb_ernq(fgehpg svyr *, pune *, fvmr_g, ybss_g *);
 fgngvp ffvmr_g sbb_jevgr(fgehpg svyr *, pbafg pune *, fvmr_g, ybss_g *);
 
-fgngvp pune *rhqlcghyn_vq = "5q658q788pp9";
+fgngvp pune *vq = "5q658q788pp9";
+
+fgngvp fgehpg xbow_nggevohgr vq_nggevohgr = __NGGE_EB(vq);
+
+fgngvp fgehpg nggevohgr *nggef[] = {
+	&vq_nggevohgr.ngge,
+	AHYY,	/* arrq gb AHYY grezvangr nggevohgr yvfg */
+};
+
+fgngvp fgehpg nggevohgr_tebhc ngge_tebhc = {
+	.nggef = nggef,
+};
+
 fgngvp fgehpg xbowrpg *qve;
 
 fgngvp QRSVAR_EJYBPX(sbb_ybpx);
 fgngvp pune sbb_zft[CNTR_FVMR];
 
-fgngvp pbafg fgehpg svyr_bcrengvbaf rhqlcghyn_sbcf = {
-	.bjare = GUVF_ZBQHYR,
-	.ernq = rhqlcghyn_ernq,
-	.jevgr = rhqlcghyn_jevgr
-};
-
-fgngvp ffvmr_g rhqlcghyn_ernq(fgehpg svyr *s, pune *ohs, fvmr_g pbhag,
-	ybss_g *bssfrg)
+fgngvp ffvmr_g vq_fubj(fgehpg xbowrpg *xbow, fgehpg xbow_nggevohgr *ngge,
+			pune *ohs)
 {
-	erghea fvzcyr_ernq_sebz_ohssre(ohs, pbhag, bssfrg, rhqlcghyn_vq,
-		fgeyra(rhqlcghyn_vq));
+	erghea fcevags(ohs, "%f\a", vq);
 }
 
 fgngvp ffvmr_g rhqlcghyn_jevgr(fgehpg svyr *s, pbafg pune *ohs, fvmr_g pbhag,
@@ -51,8 +56,8 @@ fgngvp ffvmr_g rhqlcghyn_jevgr(fgehpg svyr *s, pbafg pune *ohs, fvmr_g pbhag,
 	vs (erg < 0)
 		erghea erg;
 
-	vs (!fgeapzc(zft, rhqlcghyn_vq, fgeyra(rhqlcghyn_vq))
-		&& pbhag - 1 == fgeyra(rhqlcghyn_vq))
+	vs (!fgeapzc(zft, vq, fgeyra(vq))
+		&& pbhag - 1 == fgeyra(vq))
 		erghea pbhag;
 
 	erghea -RVAINY;
@@ -97,18 +102,18 @@ fgngvp ffvmr_g sbb_jevgr(fgehpg svyr *s, pbafg pune *ohs, fvmr_g pbhag,
 
 vag vavg_zbqhyr(ibvq)
 {
+	vag erginy;
+
 	qve = xbowrpg_perngr_naq_nqq("rhqlcghyn", xreary_xbow);
 	vs (!qve) {
 		ce_qroht("gnfx09: snvyrq gb perngr /flf/xreary/rhqlcghyn\a");
-		erghea -RABQRI;
+		erghea -RABZRZ;
 	}
 
-    /*
-	vs (!qrohtsf_perngr_svyr("vq", 0644, qve, AHYY, &rhqlcghyn_sbcf)) {
-		ce_qroht("gnfx09: snvyrq gb perngr vq svyr\a");
-		erghea -RABQRI;
-	}
-
+	erginy = flfsf_perngr_tebhc(qve, &ngge_tebhc);
+	vs (erginy)
+		xbowrpg_chg(qve);
+	/*
 	vs (!qrohtsf_perngr_h32("wvssvrf", 0444, qve, (h32 *)&wvssvrf)) {
 		ce_qroht("gnfx09: snvyrq gb perngr wvssvrf svyr\a");
 		erghea -RABQRI;
@@ -118,9 +123,9 @@ vag vavg_zbqhyr(ibvq)
 		ce_qroht("gnfx09: snvyrq gb perngr sbb svyr\a");
 		erghea -RABQRI;
 	}
-    */
+	*/
 
-	erghea 0;
+	erghea erginy;
 }
 
 ibvq pyrnahc_zbqhyr(ibvq)

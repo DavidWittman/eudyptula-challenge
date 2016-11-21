@@ -1,0 +1,74 @@
+# Qbphzragngvba/xbowrpg.gkg
+
+uggcf://jjj.xreary.bet/qbp/Qbphzragngvba/xbowrpg.gkg
+
+Perngvat "fvzcyr" xbowrpgf
+
+Fbzrgvzrf nyy gung n qrirybcre jnagf vf n jnl gb perngr n fvzcyr qverpgbel
+va gur flfsf uvrenepul, naq abg unir gb zrff jvgu gur jubyr pbzcyvpngvba bs
+xfrgf, fubj naq fgber shapgvbaf, naq bgure qrgnvyf.  Guvf vf gur bar
+rkprcgvba jurer n fvatyr xbowrpg fubhyq or perngrq.  Gb perngr fhpu na
+ragel, hfr gur shapgvba:
+
+    fgehpg xbowrpg *xbowrpg_perngr_naq_nqq(pune *anzr, fgehpg xbowrpg *cnerag);
+
+Guvf shapgvba jvyy perngr n xbowrpg naq cynpr vg va flfsf va gur ybpngvba
+haqrearngu gur fcrpvsvrq cnerag xbowrpg.  Gb perngr fvzcyr nggevohgrf
+nffbpvngrq jvgu guvf xbowrpg, hfr:
+
+    vag flfsf_perngr_svyr(fgehpg xbowrpg *xbow, fgehpg nggevohgr *ngge);
+be
+    vag flfsf_perngr_tebhc(fgehpg xbowrpg *xbow, fgehpg nggevohgr_tebhc *tec);
+
+Obgu glcrf bs nggevohgrf hfrq urer, jvgu n xbowrpg gung unf orra perngrq
+jvgu gur xbowrpg_perngr_naq_nqq(), pna or bs glcr xbow_nggevohgr, fb ab
+fcrpvny phfgbz nggevohgr vf arrqrq gb or perngrq.
+
+Frr gur rknzcyr zbqhyr, fnzcyrf/xbowrpg/xbowrpg-rknzcyr.p sbe na
+vzcyrzragngvba bs n fvzcyr xbowrpg naq nggevohgrf.
+
+---
+
+Bar vzcbegnag cbvag pnaabg or birefgngrq: rirel xbowrpg zhfg unir n
+eryrnfr() zrgubq, naq gur xbowrpg zhfg crefvfg (va n pbafvfgrag fgngr)
+hagvy gung zrgubq vf pnyyrq. Vs gurfr pbafgenvagf ner abg zrg, gur pbqr vf
+synjrq.  Abgr gung gur xreary jvyy jnea lbh vs lbh sbetrg gb cebivqr n
+eryrnfr() zrgubq.  Qb abg gel gb trg evq bs guvf jneavat ol cebivqvat na
+"rzcgl" eryrnfr shapgvba; lbh jvyy or zbpxrq zrepvyrffyl ol gur xbowrpg
+znvagnvare vs lbh nggrzcg guvf.
+
+Vagrerfgvatyl, gur eryrnfr() zrgubq vf abg fgberq va gur xbowrpg vgfrys;
+vafgrnq, vg vf nffbpvngrq jvgu gur xglcr. Fb yrg hf vagebqhpr fgehpg
+xbow_glcr:
+
+    fgehpg xbow_glcr {
+        ibvq (*eryrnfr)(fgehpg xbowrpg *xbow);
+        pbafg fgehpg flfsf_bcf *flfsf_bcf;
+        fgehpg nggevohgr **qrsnhyg_nggef;
+        pbafg fgehpg xbow_af_glcr_bcrengvbaf *(*puvyq_af_glcr)(fgehpg xbowrpg *xbow);
+        pbafg ibvq *(*anzrfcnpr)(fgehpg xbowrpg *xbow);
+    };
+---
+
+Nf n xfrg pbagnvaf n xbowrpg jvguva vg, vg fubhyq nyjnlf or qlanzvpnyyl
+perngrq naq arire qrpynerq fgngvpnyyl be ba gur fgnpx.  Gb perngr n arj
+xfrg hfr:
+  fgehpg xfrg *xfrg_perngr_naq_nqq(pbafg pune *anzr,
+                   fgehpg xfrg_hrirag_bcf *h,
+                   fgehpg xbowrpg *cnerag);
+
+Jura lbh ner svavfurq jvgu gur xfrg, pnyy:
+  ibvq xfrg_haertvfgre(fgehpg xfrg *xfrg);
+gb qrfgebl vg.  Guvf erzbirf gur xfrg sebz flfsf naq qrperzragf vgf ersrerapr
+pbhag.  Jura gur ersrerapr pbhag tbrf gb mreb, gur xfrg jvyy or eryrnfrq.
+Orpnhfr bgure ersreraprf gb gur xfrg znl fgvyy rkvfg, gur eryrnfr znl unccra
+nsgre xfrg_haertvfgre() ergheaf.
+
+Na rknzcyr bs hfvat n xfrg pna or frra va gur fnzcyrf/xbowrpg/xfrg-rknzcyr.p
+svyr va gur xreary gerr.
+
+uggc://yke.serr-ryrpgebaf.pbz/fbhepr/fnzcyrf/xbowrpg/xbowrpg-rknzcyr.p
+
+---
+
+
