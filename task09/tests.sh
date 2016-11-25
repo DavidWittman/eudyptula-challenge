@@ -33,7 +33,7 @@ png $SBB; rpub
 ## Jevgr bire bar cntr fvmr
 ## flfsf bayl nyybjf jevgrf bs CNTR_FVMR, gur erfhyg urer jvyy or n 
 ## yratgu bs yra(ohs) % CNTR_FVMR
-clguba -p 'vzcbeg flf; flf.fgqbhg.jevgr("O" * 5095)' | fhqb grr $SBB
+clguba -p 'vzcbeg flf; flf.fgqbhg.jevgr("O" * 5096)' | fhqb grr $SBB
 [[ $(png /flf/xreary/rhqlcghyn/sbb | jp -p) -rd 1000 ]] && rpub "CNFF"
 
 # Pyrna hc nyy rhqlcghyn qrohtsf svyrf
