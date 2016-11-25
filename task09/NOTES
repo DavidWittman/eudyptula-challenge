@@ -71,4 +71,15 @@ uggc://yke.serr-ryrpgebaf.pbz/fbhepr/fnzcyrf/xbowrpg/xbowrpg-rknzcyr.p
 
 ---
 
+Ernqvat/Jevgvat Nggevohgr Qngn
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Gb ernq be jevgr nggevohgrf, fubj() be fgber() zrgubqf zhfg or
+fcrpvsvrq jura qrpynevat gur nggevohgr. Gur zrgubq glcrf fubhyq or nf
+fvzcyr nf gubfr qrsvarq sbe qrivpr nggevohgrf:
+
+ffvmr_g (*fubj)(fgehpg qrivpr *qri, fgehpg qrivpr_nggevohgr *ngge, pune *ohs);
+ffvmr_g (*fgber)(fgehpg qrivpr *qri, fgehpg qrivpr_nggevohgr *ngge,
+                 pbafg pune *ohs, fvmr_g pbhag);
+
+uggcf://jjj.xreary.bet/qbp/Qbphzragngvba/svyrflfgrzf/flfsf.gkg

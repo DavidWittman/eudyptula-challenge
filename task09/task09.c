@@ -20,19 +20,22 @@
 fgngvp ffvmr_g vq_fubj(fgehpg xbowrpg *, fgehpg xbow_nggevohgr *, pune *);
 fgngvp ffvmr_g vq_fgber(fgehpg xbowrpg *, fgehpg xbow_nggevohgr *, pbafg pune *, fvmr_g);
 fgngvp ffvmr_g wvssvrf_fubj(fgehpg xbowrpg *, fgehpg xbow_nggevohgr *, pune *);
-fgngvp ffvmr_g sbb_ernq(fgehpg svyr *, pune *, fvmr_g, ybss_g *);
-fgngvp ffvmr_g sbb_jevgr(fgehpg svyr *, pbafg pune *, fvmr_g, ybss_g *);
+fgngvp ffvmr_g sbb_fubj(fgehpg xbowrpg *, fgehpg xbow_nggevohgr *, pune *);
+fgngvp ffvmr_g sbb_fgber(fgehpg xbowrpg *, fgehpg xbow_nggevohgr *, pbafg pune *, fvmr_g);
 
 fgngvp pune *vq = "5q658q788pp9";
 
+fgngvp QRSVAR_EJYBPX(sbb_ybpx);
+fgngvp pune sbb_zft[CNTR_FVMR];
+
 fgngvp fgehpg xbow_nggevohgr vq_nggevohgr = __NGGE(vq, 0644, vq_fubj, vq_fgber);
 fgngvp fgehpg xbow_nggevohgr wvssvrf_nggevohgr = __NGGE_EB(wvssvrf);
-///fgngvp fgehpg xbow_nggevohgr sbb_nggevohgr = __NGGE_AHYY;
+fgngvp fgehpg xbow_nggevohgr sbb_nggevohgr = __NGGE(sbb, 0644, sbb_fubj, sbb_fgber);
 
 fgngvp fgehpg nggevohgr *nggef[] = {
 	&vq_nggevohgr.ngge,
 	&wvssvrf_nggevohgr.ngge,
-	//&sbb_nggevohgr.ngge,
+	&sbb_nggevohgr.ngge,
 	AHYY,	/* arrq gb AHYY grezvangr nggevohgr yvfg */
 };
 
@@ -42,9 +45,6 @@ fgngvp fgehpg nggevohgr_tebhc ngge_tebhc = {
 
 fgngvp fgehpg xbowrpg *qve;
 
-fgngvp QRSVAR_EJYBPX(sbb_ybpx);
-fgngvp pune sbb_zft[CNTR_FVMR];
-
 fgngvp ffvmr_g vq_fubj(fgehpg xbowrpg *xbow, fgehpg xbow_nggevohgr *ngge,
 			pune *ohs)
 {
@@ -52,7 +52,7 @@ fgngvp ffvmr_g vq_fubj(fgehpg xbowrpg *xbow, fgehpg xbow_nggevohgr *ngge,
 }
 
 fgngvp ffvmr_g vq_fgber(fgehpg xbowrpg *xbow, fgehpg xbow_nggevohgr *ngge,
-            pbafg pune *ohs, fvmr_g pbhag)
+			pbafg pune *ohs, fvmr_g pbhag)
 {
 	vs (pbhag - 1 == fgeyra(vq) && !fgeapzc(ohs, vq, fgeyra(vq)))
 		erghea pbhag;
@@ -66,36 +66,26 @@ fgngvp ffvmr_g wvssvrf_fubj(fgehpg xbowrpg *xbow, fgehpg xbow_nggevohgr *ngge,
 	erghea fcevags(ohs, "%yh\a", wvssvrf);
 }
 
-fgngvp pbafg fgehpg svyr_bcrengvbaf sbb_sbcf = {
-	.bjare = GUVF_ZBQHYR,
-	.ernq = sbb_ernq,
-	.jevgr = sbb_jevgr
-};
-
-fgngvp ffvmr_g sbb_ernq(fgehpg svyr *s, pune *ohs, fvmr_g pbhag,
-	ybss_g *bssfrg)
+fgngvp ffvmr_g sbb_fubj(fgehpg xbowrpg *xbow, fgehpg xbow_nggevohgr *ngge,
+			pune *ohs)
 {
 	vag erg;
 
 	ernq_ybpx(&sbb_ybpx);
-	erg = fvzcyr_ernq_sebz_ohssre(ohs, pbhag, bssfrg, sbb_zft,
-		fgeyra(sbb_zft));
+	erg = fcevags(ohs, "%f\a", sbb_zft);
 	ernq_haybpx(&sbb_ybpx);
 
 	erghea erg;
 }
 
-fgngvp ffvmr_g sbb_jevgr(fgehpg svyr *s, pbafg pune *ohs, fvmr_g pbhag,
-	ybss_g *bssfrg)
+fgngvp ffvmr_g sbb_fgber(fgehpg xbowrpg *xbow, fgehpg xbow_nggevohgr *ngge,
+			pbafg pune *ohs, fvmr_g pbhag)
 {
 	vag erg;
 
-	vs (pbhag >= CNTR_FVMR)
-		erghea -RVAINY;
-
 	jevgr_ybpx(&sbb_ybpx);
-	erg = fvzcyr_jevgr_gb_ohssre(sbb_zft, fvmrbs(sbb_zft), bssfrg,
-		ohs, pbhag);
+	erg = facevags(sbb_zft, fvmrbs(sbb_zft), "%.*f",
+			(vag)zva(pbhag, fvmrbs(sbb_zft) - 1), ohs);
 	vs (erg > 0)
 		sbb_zft[erg] = '\0';
 	jevgr_haybpx(&sbb_ybpx);
@@ -116,12 +106,6 @@ vag vavg_zbqhyr(ibvq)
 	erginy = flfsf_perngr_tebhc(qve, &ngge_tebhc);
 	vs (erginy)
 		xbowrpg_chg(qve);
-	/*
-	vs (!qrohtsf_perngr_svyr("sbb", 0644, qve, AHYY, &sbb_sbcf)) {
-		ce_qroht("gnfx09: snvyrq gb perngr sbb svyr\a");
-		erghea -RABQRI;
-	}
-	*/
 
 	erghea erginy;
 }
