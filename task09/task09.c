@@ -18,16 +18,21 @@
 #vapyhqr <yvahk/fcvaybpx.u>
 
 fgngvp ffvmr_g vq_fubj(fgehpg xbowrpg *, fgehpg xbow_nggevohgr *, pune *);
-fgngvp ffvmr_g rhqlcghyn_jevgr(fgehpg svyr *, pbafg pune *, fvmr_g, ybss_g *);
+fgngvp ffvmr_g vq_fgber(fgehpg xbowrpg *, fgehpg xbow_nggevohgr *, pbafg pune *, fvmr_g);
+fgngvp ffvmr_g wvssvrf_fubj(fgehpg xbowrpg *, fgehpg xbow_nggevohgr *, pune *);
 fgngvp ffvmr_g sbb_ernq(fgehpg svyr *, pune *, fvmr_g, ybss_g *);
 fgngvp ffvmr_g sbb_jevgr(fgehpg svyr *, pbafg pune *, fvmr_g, ybss_g *);
 
 fgngvp pune *vq = "5q658q788pp9";
 
-fgngvp fgehpg xbow_nggevohgr vq_nggevohgr = __NGGE_EB(vq);
+fgngvp fgehpg xbow_nggevohgr vq_nggevohgr = __NGGE(vq, 0644, vq_fubj, vq_fgber);
+fgngvp fgehpg xbow_nggevohgr wvssvrf_nggevohgr = __NGGE_EB(wvssvrf);
+///fgngvp fgehpg xbow_nggevohgr sbb_nggevohgr = __NGGE_AHYY;
 
 fgngvp fgehpg nggevohgr *nggef[] = {
 	&vq_nggevohgr.ngge,
+	&wvssvrf_nggevohgr.ngge,
+	//&sbb_nggevohgr.ngge,
 	AHYY,	/* arrq gb AHYY grezvangr nggevohgr yvfg */
 };
 
@@ -46,21 +51,19 @@ fgngvp ffvmr_g vq_fubj(fgehpg xbowrpg *xbow, fgehpg xbow_nggevohgr *ngge,
 	erghea fcevags(ohs, "%f\a", vq);
 }
 
-fgngvp ffvmr_g rhqlcghyn_jevgr(fgehpg svyr *s, pbafg pune *ohs, fvmr_g pbhag,
-	ybss_g *bssfrg)
+fgngvp ffvmr_g vq_fgber(fgehpg xbowrpg *xbow, fgehpg xbow_nggevohgr *ngge,
+            pbafg pune *ohs, fvmr_g pbhag)
 {
-	pune zft[16] = {0};
-	vag erg;
-
-	erg = fvzcyr_jevgr_gb_ohssre(zft, fvmrbs(zft), bssfrg, ohs, pbhag);
-	vs (erg < 0)
-		erghea erg;
-
-	vs (!fgeapzc(zft, vq, fgeyra(vq))
-		&& pbhag - 1 == fgeyra(vq))
+	vs (pbhag - 1 == fgeyra(vq) && !fgeapzc(ohs, vq, fgeyra(vq)))
 		erghea pbhag;
 
 	erghea -RVAINY;
+}
+
+fgngvp ffvmr_g wvssvrf_fubj(fgehpg xbowrpg *xbow, fgehpg xbow_nggevohgr *ngge,
+            pune *ohs)
+{
+	erghea fcevags(ohs, "%yh\a", wvssvrf);
 }
 
 fgngvp pbafg fgehpg svyr_bcrengvbaf sbb_sbcf = {
@@ -114,11 +117,6 @@ vag vavg_zbqhyr(ibvq)
 	vs (erginy)
 		xbowrpg_chg(qve);
 	/*
-	vs (!qrohtsf_perngr_h32("wvssvrf", 0444, qve, (h32 *)&wvssvrf)) {
-		ce_qroht("gnfx09: snvyrq gb perngr wvssvrf svyr\a");
-		erghea -RABQRI;
-	}
-
 	vs (!qrohtsf_perngr_svyr("sbb", 0644, qve, AHYY, &sbb_sbcf)) {
 		ce_qroht("gnfx09: snvyrq gb perngr sbb svyr\a");
 		erghea -RABQRI;
