@@ -8,3 +8,6 @@ nyy:
 
 pyrna:
 	znxr -P $(XQVE) Z=$(CJQ) pyrna
+
+yvag:
+	../fpevcgf/purpxcngpu.cy --ab-gerr -s gnfx09.p

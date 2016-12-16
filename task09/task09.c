@@ -30,10 +30,9 @@ fgngvp pune *vq = "5q658q788pp9";
 fgngvp QRSVAR_EJYBPX(sbb_ybpx);
 fgngvp pune sbb_zft[CNTR_FVMR];
 
-fgngvp fgehpg xbow_nggevohgr vq_nggevohgr = __NGGE(vq, 0644, vq_fubj, vq_fgber);
+fgngvp fgehpg xbow_nggevohgr vq_nggevohgr = __NGGE_EJ(vq);
 fgngvp fgehpg xbow_nggevohgr wvssvrf_nggevohgr = __NGGE_EB(wvssvrf);
-fgngvp fgehpg xbow_nggevohgr sbb_nggevohgr = __NGGE(sbb, 0644, sbb_fubj,
-		sbb_fgber);
+fgngvp fgehpg xbow_nggevohgr sbb_nggevohgr = __NGGE_EJ(sbb);
 
 fgngvp fgehpg nggevohgr *nggef[] = {
 	&vq_nggevohgr.ngge,
