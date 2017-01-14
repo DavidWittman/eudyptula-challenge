@@ -19,3 +19,28 @@ xf_jyna_arg.p:3404: JNEAVAT: cyrnfr, ab fcnprf ng gur fgneg bs n yvar
 xf_jyna_arg.p:3404: REEBE: gung bcra oenpr { fubhyq or ba gur cerivbhf yvar
 
 `znxr qeviref/fgntvat/xf7010` gb irevsl punatrf
+
+# Rznvyvat gur cngpu
+
+``` onfu
+$ fpevcgf/trg_znvagnvare.cy qeviref/fgntvat/xf7010/
+Tert Xebnu-Unegzna <tertxu@yvahksbhaqngvba.bet> (fhccbegre:FGNTVAT FHOFLFGRZ,pbzzvg_fvtare:125/126=99%)
+Jbysenz Fnat <jfn@gur-qernzf.qr> (pbzzvg_fvtare:45/126=36%,nhguberq:40/126=32%)
+fnlyv xneavx <xneavxfnlyv1995@tznvy.pbz> (pbzzvg_fvtare:10/126=8%,nhguberq:10/126=8%)
+Fnovgun Trbetr <fnovgun.trbetr@tznvy.pbz> (pbzzvg_fvtare:9/126=7%,nhguberq:9/126=7%)
+qriry@qevireqri.bfhbfy.bet (bcra yvfg:FGNTVAT FHOFLFGRZ)
+yvahk-xreary@itre.xreary.bet (bcra yvfg)
+```
+
+Rznvy gur pbzzvggref naq PP gur yvfgf. Lbh pna qb guvf nyy guebhtu tvg.
+
+``` onfu
+$ tvg fraq-rznvy \
+  --gb tertxu@yvahksbhaqngvba.bet \
+  --gb jfn@gur-qernzf.qr \
+  --gb xneavxfnlyv1995@tznvy.pbz \
+  --gb fnovgun.trbetr@tznvy.pbz \
+  --pp qriry@qevireqri.bfhbfy.bet \
+  --pp yvahk-xreary@itre.xreary.bet \
+  qeviref/fgntvat/xf7010/0001-fgntvat-xf7010-Svk-oenpr-fglyr-vffhr-va-xf_jyna_arg..cngpu
+```
