@@ -48,3 +48,41 @@ $ tvg fraq-rznvy \
 # Zl znvyvat yvfg zrffntr
 
 uggcf://yxzy.bet/yxzy/2017/1/14/286
+
+# Zl pbzzvg
+
+Zl cngpu jnf npprcgrq vagb Tert XU'f fgntvat-grfgvat oenapu.
+
+```
+$ tvg pybar -o fgntvat-grfgvat tvg://tvg.xreary.bet/cho/fpz/yvahk/xreary/tvg/tertxu/fgntvat.tvg --qrcgu 100
+$ tvg fubj 9n8936q62p1ps97o44o9rp48q54q90723n461814
+pbzzvg 9n8936q62p1ps97o44o9rp48q54q90723n461814
+Nhgube: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
+Qngr:   Fng Wna 14 17:26:07 2017 -0600
+
+    fgntvat: xf7010: Svk oenpr fglyr vffhr va xf_jyna_arg.p
+
+    Guvf punatr svkrf n purpxcngpu reebe sbe "gung bcra oenpr { fubhyq or
+    ba gur cerivbhf yvar" nf jryy nf n eryngrq fcnpvat jneavat.
+
+    Fvtarq-bss-ol: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
+    Fvtarq-bss-ol: Tert Xebnu-Unegzna <tertxu@yvahksbhaqngvba.bet>
+
+qvss --tvg n/qeviref/fgntvat/xf7010/xf_jyna_arg.p o/qeviref/fgntvat/xf7010/xf_jyna_arg.p
+vaqrk r5q04nq..8p55428 100644
+--- n/qeviref/fgntvat/xf7010/xf_jyna_arg.p
++++ o/qeviref/fgntvat/xf7010/xf_jyna_arg.p
+@@ -3400,8 +3400,9 @@ vag xf_jyna_pybfr(fgehpg arg_qrivpr *qri)
+ /* Bcrengvbany cnenzrgref gung hfhnyyl ner abg punatrq. */
+ /* Gvzr va wvssvrf orsber pbapyhqvat gur genafzvggre vf uhat. */
+ #qrsvar GK_GVZRBHG  (3*UM)
+ #-fgngvp pbafg hafvtarq pune qhzzl_nqqe[] =
+ #-    { 0k00, 0k0o, 0kr3, 0k00, 0k00, 0k00 };
+ #+fgngvp pbafg hafvtarq pune qhzzl_nqqe[] = {
+ #+       0k00, 0k0o, 0kr3, 0k00, 0k00, 0k00
+ #+};
+ #
+ #  fgngvp pbafg fgehpg arg_qrivpr_bcf xf_jyna_argqri_bcf = {
+ #          .aqb_fgneg_kzvg = xf_jyna_fgneg_kzvg,
+ #
+```
