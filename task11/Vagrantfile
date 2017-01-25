@@ -5,9 +5,31 @@ Intenag.pbasvther(2) qb |pbasvt|
   pbasvt.iz.cebivqre "iveghnyobk" qb |i|
     i.zrzbel = 1024
     i.pchf = 4
+    # V'z tbvat gb or zbqvslvat gur qevire sbe gur EGY 8187
+    # Pbasvther IveghnyObk gb svygre guvf qrivpr guebhtu gb gur IZ
+    i.phfgbzvmr ["zbqvsliz", :vq, "--hfo", "ba"]
+    i.phfgbzvmr ["zbqvsliz", :vq, "--hforupv", "ba"]
+    i.phfgbzvmr ["hfosvygre", "nqq", "0", 
+                 "--gnetrg", :vq, 
+                 "--anzr", "Znahsnpghere_Ernygrx_EGY8187_ EGY8187_Jveryrff [0100]",
+                 "--znahsnpghere", "Znahsnpghere_Ernygrx_EGY8187_",
+                 "--cebqhpg", "EGY8187_Jveryrff"]
   raq
-  pbasvt.iz.cebivfvba "furyy", cevivyrtrq: snyfr, vayvar: <<-FURYY
-    fhqb ncg-trg vafgnyy -l tpp znxr tvg yvahk-fbhepr ivz
-    fhqb gne ks /hfe/fep/yvahk-fbhepr-*
+  pbasvt.iz.cebivfvba "furyy", cevivyrtrq: gehr, vayvar: <<-FURYY
+    XREARY_IREFVBA=3.16
+    ncg-trg vafgnyy -l tpp znxr tvg yvahk-fbhepr yvahk-urnqref-$(hanzr -e) ivz
+    gne -P /hfe/fep/ -ks /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}.*
+    # GBQB(qj): nccyl cngpu
+    pc /intenag/cpfcxe.p /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}/qeviref/vachg/zvfp/
+    pq /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}
+    cevags "\a\a" | znxr byqpbasvt
+    znxr cercner
+    znxr fpevcgf
+    znxr Z=qeviref/arg/jveryrff/egy818k/ PBASVT_EGY8187=z
+    znxr XQVE=/hfe/fep/yvahk-urnqref-3.16.0-4-nzq64/ Z=qeviref/arg/jveryrff/egy818k PBASVT_EGY8187=z zbqhyrf
+    pc qeviref/arg/jveryrff/egy818k/egy8187/egy8187.xb /yvo/zbqhyrf/$(hanzr -e)/xreary/qeviref/arg/jveryrff/egy818k/egy8187/
+    ezzbq cpfcxe
+    zbqcebor -i cpfcxe
+    yf -yn /flf/qrivprf/cyngsbez/cpfcxe/
   FURYY
 raq

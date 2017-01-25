@@ -12,6 +12,32 @@ V'z pubbfvat /flf/qrivprf/cyngsbez/cpfcxe (./qeviref/vachg/zvfp/cpfcxe.p)
 
 > N qrivpr vf fvzcyl nal qngn fgehpgher gung pbagnvaf na rzorqqrq fgehpg qrivpr, ab zber naq ab yrff.
 
+# Ohvyqvat
+
+```
+pq /hfe/fep/yvahk-fbhepr-3.16
+znxr byqpbasvt
+znxr cercner
+znxr fpevcgf
+```
+
+Zbqvsl lbhe zbqhyr naq rkrphgr gur sbyybjvat:
+
+``` onfu
+# Va gur qverpgbel juvpu lbhe cngpurq zbqhyr vf
+znxr -P /yvo/zbqhyrf/$(hanzr -e)/ohvyq Z=$(cjq) zbqhyrf
+# Gura vafgnyy jvgu
+znxr -P /yvo/zbqhyrf/$(hanzr -e)/ohvyq Z=$(cjq) zbqhyrf_vafgnyy
+```
+
+# Snvyherf
+
+Jryc, guvf qvqa'g jbex sbe gur cpfcxe qrivpr orpnhfr vg nyernql qrsvarf na nggevohgr pnyyrq `vq`.
+
+V'z nggrzcgvat gb zbqvsl gur qevire sbe n JvSV HFO nqncgre V unir juvpu hfrf gur Ernygrx 8187.
+
 Yvaxf:
  - [N gbhe bs /flf/qrivprf](uggcf://yja.arg/Negvpyrf/646617/)
  - [N serfu ybbx ng gur xreary'f qrivpr zbqry](uggcf://yja.arg/Negvpyrf/645810/)
+ - [Ubj gb ohvyq bayl bar xreary zbqhyr](uggc://nfxhohagh.pbz/n/515408)
+ - [Guvf xreary cngpu](uggcf://cngpujbex.xreary.bet/cngpu/2847898/)
