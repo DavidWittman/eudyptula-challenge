@@ -17,19 +17,17 @@ Intenag.pbasvther(2) qb |pbasvt|
   raq
   pbasvt.iz.cebivfvba "furyy", cevivyrtrq: gehr, vayvar: <<-FURYY
     XREARY_IREFVBA=3.16
-    ncg-trg vafgnyy -l tpp znxr tvg yvahk-fbhepr yvahk-urnqref-$(hanzr -e) ivz
+    ncg-trg vafgnyy -l tpp znxr tvg yvahk-fbhepr yvahk-urnqref-nzq64 ivz
     gne -P /hfe/fep/ -ks /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}.*
-    # GBQB(qj): nccyl cngpu
-    pc /intenag/cpfcxe.p /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}/qeviref/vachg/zvfp/
     pq /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}
+    cngpu -c1 < /intenag/0001-Nqq-rhqlcghyn-vq-nggevohgr-gb-egy8187-qevire.cngpu
+    ya -f /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}/qeviref /hfe/fep/yvahk-urnqref-$(hanzr -e)/
     cevags "\a\a" | znxr byqpbasvt
-    znxr cercner
-    znxr fpevcgf
-    znxr Z=qeviref/arg/jveryrff/egy818k/ PBASVT_EGY8187=z
-    znxr XQVE=/hfe/fep/yvahk-urnqref-3.16.0-4-nzq64/ Z=qeviref/arg/jveryrff/egy818k PBASVT_EGY8187=z zbqhyrf
-    pc qeviref/arg/jveryrff/egy818k/egy8187/egy8187.xb /yvo/zbqhyrf/$(hanzr -e)/xreary/qeviref/arg/jveryrff/egy818k/egy8187/
-    ezzbq cpfcxe
-    zbqcebor -i cpfcxe
-    yf -yn /flf/qrivprf/cyngsbez/cpfcxe/
+    znxr zbqhyrf_cercner 
+    pq qeviref/arg/jveryrff/egy818k/egy8187
+    znxr -P /yvo/zbqhyrf/$(hanzr -e)/ohvyq Z=$(cjq)
+    ezzbq egy8187
+    vafzbq ./egy8187.xb
+    /intenag/grfgf.fu
   FURYY
 raq

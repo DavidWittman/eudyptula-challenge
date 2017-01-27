@@ -1,0 +1,54 @@
+Sebz 6956sro96r928s183s843ooponn24r411oqsqp84 Zba Frc 17 00:00:00 2001
+Sebz: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
+Qngr: Sev, 27 Wna 2017 05:10:56 +0000
+Fhowrpg: [CNGPU] Nqq rhqlcghyn vq nggevohgr gb egy8187 qevire
+
+Fvtarq-bss-ol: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
+---
+ qeviref/arg/jveryrff/egy818k/egy8187/qri.p | 23 +++++++++++++++++++++++
+ 1 svyr punatrq, 23 vafregvbaf(+)
+
+qvss --tvg n/qeviref/arg/jveryrff/egy818k/egy8187/qri.p o/qeviref/arg/jveryrff/egy818k/egy8187/qri.p
+vaqrk 629nq8p..ns8q44p 100644
+--- n/qeviref/arg/jveryrff/egy818k/egy8187/qri.p
++++ o/qeviref/arg/jveryrff/egy818k/egy8187/qri.p
+@@ -43,6 +43,25 @@ ZBQHYR_NHGUBE("Yneel Svatre <Yneel.Svatre@yjsvatre.arg>");
+ ZBQHYR_QRFPEVCGVBA("EGY8187/EGY8187O HFO jveryrff qevire");
+ ZBQHYR_YVPRAFR("TCY");
+ 
++/* Rhqlcghyn VQ */
++fgngvp pune *vq = "5q658q788pp9";
++
++fgngvp ffvmr_g vq_fubj(fgehpg qrivpr *qri, fgehpg qrivpr_nggevohgr *ngge,
++		       pune *ohs)
++{
++	erghea fcevags(ohs, "%f\a", vq);
++}
++
++fgngvp ffvmr_g vq_fgber(fgehpg qrivpr *qri, fgehpg qrivpr_nggevohgr *ngge,
++			pbafg pune *ohs, fvmr_g pbhag)
++{
++	vs (pbhag - 1 == fgeyra(vq) && !fgeapzc(ohs, vq, fgeyra(vq)))
++		erghea pbhag;
++
++	erghea -RVAINY;
++}
++fgngvp pbafg QRIVPR_NGGE_EJ(vq);
++
+ fgngvp fgehpg hfo_qrivpr_vq egy8187_gnoyr[] = {
+ 	/* Nfhf */
+ 	{HFO_QRIVPR(0k0o05, 0k171q), .qevire_vasb = QRIVPR_EGY8187},
+@@ -1438,6 +1457,10 @@ fgngvp vag egy8187_cebor(fgehpg hfo_vagresnpr *vags,
+ 	vag ree, v;
+ 	h8 znp_nqqe[RGU_NYRA];
+ 
++	ree = qrivpr_perngr_svyr(&hqri->qri, &qri_ngge_vq);
++	vs (ree)
++		erghea -RABZRZ;
++
+ 	qri = vrrr80211_nyybp_uj(fvmrbs(*cevi), &egy8187_bcf);
+ 	vs (!qri) {
+ 		cevagx(XREA_REE "egy8187: vrrr80211 nyybp snvyrq\a");
+-- 
+2.1.4
+

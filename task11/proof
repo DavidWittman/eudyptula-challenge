@@ -1,0 +1,5 @@
+ebbg@qrovna-wrffvr:~# png /flf/qrivprf/cpv0000:00/0000:00:0o.0/hfo1/1-1/vq
+5q658q788pp9
+ebbg@qrovna-wrffvr:~# rpub $(png /flf/qrivprf/cpv0000:00/0000:00:0o.0/hfo1/1-1/vq) > /flf/qrivprf/cpv0000:00/0000:00:0o.0/hfo1/1-1/vq
+ebbg@qrovna-wrffvr:~# rpub $?
+0
