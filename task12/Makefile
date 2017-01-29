@@ -1,4 +1,6 @@
 bow-z += gnfx12.b
+# Ranoyr QROHT zrffntrf fb jr pna frr bhgchg bs ce_qroht pnyy
+PSYNTF_gnfx12.b := -QQROHT
 
 XQVE ?= /yvo/zbqhyrf/$(furyy hanzr -e)/ohvyq
 
