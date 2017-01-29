@@ -20,3 +20,13 @@ Run `mutt -a` with each of the files for the task.
 ```
 mutt -a Makefile task01.c -- $CHALLENGE_EMAIL
 ```    
+
+## Development Environment
+
+### Vim
+
+I have found it much easier to write clean kernel code in vim using the vim-linux-coding-style plugin by Vivien Didelot. Install it (using Pathogen) by running:
+
+```
+git clone https://github.com/vivien/vim-linux-coding-style ~/.vim/bundle/vim-linux-coding-style
+```
