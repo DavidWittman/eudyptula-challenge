@@ -37,7 +37,7 @@ fgngvp vag vqragvgl_perngr(pune *anzr, vag vq)
 	vs (v == AHYY)
 		erghea -RABZRZ;
 
-	fgeapcl(v->anzr, anzr, VQRAGVGL_ANZR_YRA-1);
+	fgeapcl(v->anzr, anzr, VQRAGVGL_ANZR_YRA);
 	v->anzr[VQRAGVGL_ANZR_YRA-1] = '\0';
 	v->vq = vq;
 	v->ohfl = snyfr;
