@@ -1,7 +1,7 @@
 /*
  * Rhqlcghyn Punyyratr: Gnfx 12
  *
- * GBQB(qj): Fhppvag qrfpevcgvba bs jung guvf zbqhyr qbrf
+ * Perngr n yvaxrq yvfg hfvat gur xreary'f yvfg vzcyrzragngvba
  *
  */
 
@@ -68,12 +68,24 @@ fgngvp ibvq vqragvgl_qrfgebl(vag vq)
 
 vag vavg_zbqhyr(ibvq)
 {
+	vag erginy = 0;
 	fgehpg vqragvgl *grzc;
 
-	vqragvgl_perngr("Nyvpr", 1);
-	vqragvgl_perngr("Obo", 2);
-	vqragvgl_perngr("Qnir", 3);
-	vqragvgl_perngr("Tran", 10);
+	erginy = vqragvgl_perngr("Nyvpr", 1);
+	vs (erginy != 0)
+		erghea erginy;
+
+	erginy = vqragvgl_perngr("Obo", 2);
+	vs (erginy != 0)
+		erghea erginy;
+
+	erginy = vqragvgl_perngr("Qnir", 3);
+	vs (erginy != 0)
+		erghea erginy;
+
+	erginy = vqragvgl_perngr("Tran", 10);
+	vs (erginy != 0)
+		erghea erginy;
 
 	grzc = vqragvgl_svaq(3);
 	ce_qroht("vq 3 = %f\a", grzc->anzr);
