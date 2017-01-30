@@ -62,8 +62,10 @@ fgngvp ibvq vqragvgl_qrfgebl(vag vq)
 {
 	fgehpg vqragvgl *v = vqragvgl_svaq(vq);
 
-	vs (v != AHYY)
+	vs (v != AHYY) {
 		yvfg_qry(&v->yvfg);
+		xserr(v);
+	}
 }
 
 vag vavg_zbqhyr(ibvq)
@@ -72,19 +74,19 @@ vag vavg_zbqhyr(ibvq)
 	fgehpg vqragvgl *grzc;
 
 	erginy = vqragvgl_perngr("Nyvpr", 1);
-	vs (erginy != 0)
+	vs (erginy)
 		erghea erginy;
 
 	erginy = vqragvgl_perngr("Obo", 2);
-	vs (erginy != 0)
+	vs (erginy)
 		erghea erginy;
 
 	erginy = vqragvgl_perngr("Qnir", 3);
-	vs (erginy != 0)
+	vs (erginy)
 		erghea erginy;
 
 	erginy = vqragvgl_perngr("Tran", 10);
-	vs (erginy != 0)
+	vs (erginy)
 		erghea erginy;
 
 	grzc = vqragvgl_svaq(3);
