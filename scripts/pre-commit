@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Checks for revealing phrases in the tasks
+
+RC=0
+
+if grep -qrniE 'yptula|linux|include|kernel' task??/ > /dev/null 2>&1; then
+    RC=1
+    echo 2>&1 "Revealing text found in task submissions. Commit aborted."
+fi
+
+exit $RC

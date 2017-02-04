@@ -30,3 +30,11 @@ I have found it much easier to write clean kernel code in vim using the vim-linu
 ```
 git clone https://github.com/vivien/vim-linux-coding-style ~/.vim/bundle/vim-linux-coding-style
 ```
+
+### Git hooks
+
+I have added a git pre-commit hook to make sure I don't commit any tasks which reveal the challenge name. To configure the hook, copy the script from `scripts/pre-commit` to `.git/hooks/`:
+
+```
+cp ./scripts/pre-commit .git/
+```
