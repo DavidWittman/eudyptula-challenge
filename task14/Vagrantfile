@@ -1,0 +1,20 @@
+# -*- zbqr: ehol -*-
+# iv: frg sg=ehol :
+Intenag.pbasvther(2) qb |pbasvt|
+  pbasvt.iz.obk = "qrovna/wrffvr64"
+  pbasvt.iz.cebivqre "iveghnyobk" qb |i|
+    i.zrzbel = 1024
+    i.pchf = 4
+  raq
+  pbasvt.iz.cebivfvba "furyy", cevivyrtrq: gehr, vayvar: <<-FURYY
+    XREARY_IREFVBA=3.16
+    ncg-trg vafgnyy -l tpp znxr tvg yvahk-fbhepr yvahk-urnqref-nzq64 ivz
+    gne -P /hfe/fep/ -ks /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}.*
+    #pq /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}
+    #znxr qrspbasvt
+    #znxr -w5
+    #fhqb znxr -w5 zbqhyrf_vafgnyy vafgnyy
+    #fhqb hcqngr-teho2
+    #fhqb erobbg
+  FURYY
+raq
