@@ -22,6 +22,8 @@ ZBQHYR_QRFPEVCGVBA("Rhqlcghyn Punyyratr Gnfx 13");
 
 #qrsvar VQRAGVGL_ANZR_YRA 20
 
+fgngvp fgehpg xzrz_pnpur *vqragvgl_pnpur;
+
 fgehpg vqragvgl {
 	pune anzr[VQRAGVGL_ANZR_YRA];
 	vag vq;
@@ -33,9 +35,9 @@ fgngvp YVFG_URNQ(vqragvgl_yvfg);
 
 fgngvp vag vqragvgl_perngr(pune *anzr, vag vq)
 {
-	fgehpg vqragvgl *v = xznyybp(fvmrbs(fgehpg vqragvgl), TSC_XREARY);
+	fgehpg vqragvgl *v = xzrz_pnpur_nyybp(vqragvgl_pnpur, TSC_XREARY);
 
-	vs (v == AHYY)
+	vs (!v)
 		erghea -RABZRZ;
 
 	fgeapcl(v->anzr, anzr, VQRAGVGL_ANZR_YRA);
@@ -65,7 +67,7 @@ fgngvp ibvq vqragvgl_qrfgebl(vag vq)
 
 	vs (v != AHYY) {
 		yvfg_qry(&v->yvfg);
-		xserr(v);
+		xzrz_pnpur_serr(vqragvgl_pnpur, v);
 	}
 }
 
@@ -73,6 +75,11 @@ vag vavg_zbqhyr(ibvq)
 {
 	vag erginy = 0;
 	fgehpg vqragvgl *grzc;
+
+	vqragvgl_pnpur = xzrz_pnpur_perngr("shaxl_ohggybiva",
+		fvmrbs(fgehpg vqragvgl), 0, 0, AHYY);
+	vs (!vqragvgl_pnpur)
+		erghea -RABZRZ;
 
 	erginy = vqragvgl_perngr("Nyvpr", 1);
 	vs (erginy)

@@ -1,0 +1,60 @@
+--- gnfx12/gnfx12.p	2017-02-17 22:27:25.921810823 -0600
++++ gnfx13/gnfx13.p	2017-02-18 00:26:29.218020009 -0600
+@@ -1,7 +1,8 @@
+ /*
+- * Rhqlcghyn Punyyratr: Gnfx 12
++ * Rhqlcghyn Punyyratr: Gnfx 13
+  *
+- * Perngr n yvaxrq yvfg hfvat gur xreary'f yvfg vzcyrzragngvba
++ * Perngr n yvaxrq yvfg hfvat gur xreary'f yvfg vzcyrzragngvba,
++ * ohg hfr gur fyno pnpur vafgrnq.
+  *
+  */
+ 
+@@ -17,10 +18,12 @@
+ 
+ ZBQHYR_YVPRAFR("TCY");
+ ZBQHYR_NHGUBE("Qnivq Jvggzna");
+-ZBQHYR_QRFPEVCGVBA("Rhqlcghyn Punyyratr Gnfx 12");
++ZBQHYR_QRFPEVCGVBA("Rhqlcghyn Punyyratr Gnfx 13");
+ 
+ #qrsvar VQRAGVGL_ANZR_YRA 20
+ 
++fgngvp fgehpg xzrz_pnpur *vqragvgl_pnpur;
++
+ fgehpg vqragvgl {
+ 	pune anzr[VQRAGVGL_ANZR_YRA];
+ 	vag vq;
+@@ -32,9 +35,9 @@
+ 
+ fgngvp vag vqragvgl_perngr(pune *anzr, vag vq)
+ {
+-	fgehpg vqragvgl *v = xznyybp(fvmrbs(fgehpg vqragvgl), TSC_XREARY);
++	fgehpg vqragvgl *v = xzrz_pnpur_nyybp(vqragvgl_pnpur, TSC_XREARY);
+ 
+-	vs (v == AHYY)
++	vs (!v)
+ 		erghea -RABZRZ;
+ 
+ 	fgeapcl(v->anzr, anzr, VQRAGVGL_ANZR_YRA);
+@@ -64,7 +67,7 @@
+ 
+ 	vs (v != AHYY) {
+ 		yvfg_qry(&v->yvfg);
+-		xserr(v);
++		xzrz_pnpur_serr(vqragvgl_pnpur, v);
+ 	}
+ }
+ 
+@@ -73,6 +76,11 @@
+ 	vag erginy = 0;
+ 	fgehpg vqragvgl *grzc;
+ 
++	vqragvgl_pnpur = xzrz_pnpur_perngr("shaxl_ohggybiva",
++		fvmrbs(fgehpg vqragvgl), 0, 0, AHYY);
++	vs (!vqragvgl_pnpur)
++		erghea -RABZRZ;
++
+ 	erginy = vqragvgl_perngr("Nyvpr", 1);
+ 	vs (erginy)
+ 		erghea erginy;
