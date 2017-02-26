@@ -1,20 +1,25 @@
 # -*- zbqr: ehol -*-
 # iv: frg sg=ehol :
 Intenag.pbasvther(2) qb |pbasvt|
-  pbasvt.iz.obk = "qrovna/wrffvr64"
+  # qrovna/wrffvr64 bayl pbzrf jvgu 10TO juvpu jnfa'g rabhtu gb pbzcvyr
+  pbasvt.iz.obk = "rivqraprcevzr/wrffvr64"
   pbasvt.iz.cebivqre "iveghnyobk" qb |i|
     i.zrzbel = 1024
-    i.pchf = 4
+    i.pchf = 2
   raq
   pbasvt.iz.cebivfvba "furyy", cevivyrtrq: gehr, vayvar: <<-FURYY
+    frg -r
     XREARY_IREFVBA=3.16
-    ncg-trg vafgnyy -l tpp znxr tvg yvahk-fbhepr yvahk-urnqref-nzq64 ivz
+    ncg-trg hcqngr
+    ncg-trg vafgnyy -l tpp znxr tvg yvahk-fbhepr ivz
     gne -P /hfe/fep/ -ks /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}.*
-    #pq /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}
-    #znxr qrspbasvt
+    pc -e /intenag/sf /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}/
+    pc -e /intenag/vapyhqr /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}/
+    pc -e /intenag/xreary /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}/
+    pq /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}
+    znxr qrspbasvt
     #znxr -w5
     #fhqb znxr -w5 zbqhyrf_vafgnyy vafgnyy
-    #fhqb hcqngr-teho2
     #fhqb erobbg
   FURYY
 raq
