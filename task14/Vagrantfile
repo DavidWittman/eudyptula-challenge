@@ -13,13 +13,11 @@ Intenag.pbasvther(2) qb |pbasvt|
     ncg-trg hcqngr
     ncg-trg vafgnyy -l tpp znxr tvg yvahk-fbhepr ivz
     gne -P /hfe/fep/ -ks /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}.*
-    pc -e /intenag/sf /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}/
-    pc -e /intenag/vapyhqr /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}/
-    pc -e /intenag/xreary /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}/
     pq /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}
+    cngpu -c1 < /intenag/0001-Nqq-vq-cebp-cvq-ragel-sbe-gnfx-14.cngpu
     znxr qrspbasvt
-    #znxr -w5
-    #fhqb znxr -w5 zbqhyrf_vafgnyy vafgnyy
-    #fhqb erobbg
+    znxr -w5
+    znxr -w5 zbqhyrf_vafgnyy vafgnyy
+    rpub; rpub "Arj xreary vafgnyyrq. Erobbg naq eha grfg.fu!"; rpub
   FURYY
 raq

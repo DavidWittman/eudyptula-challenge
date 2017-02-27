@@ -1,0 +1,74 @@
+Sebz po86nn1q65np48118ssn05p4rnr9o36r40835ns6 Zba Frc 17 00:00:00 2001
+Sebz: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
+Qngr: Fha, 26 Sro 2017 23:51:28 +0000
+Fhowrpg: [CNGPU] Nqq `vq` /cebp/cvq ragel sbe gnfx 14
+
+---
+ sf/cebp/onfr.p        | 9 +++++++++
+ vapyhqr/yvahk/fpurq.u | 2 ++
+ xreary/sbex.p         | 2 ++
+ 3 svyrf punatrq, 13 vafregvbaf(+)
+
+qvss --tvg n/sf/cebp/onfr.p o/sf/cebp/onfr.p
+vaqrk 944p6or..1444522 100644
+--- n/sf/cebp/onfr.p
++++ o/sf/cebp/onfr.p
+@@ -2588,6 +2588,13 @@ fgngvp vag cebp_cvq_crefbanyvgl(fgehpg frd_svyr *z, fgehpg cvq_anzrfcnpr *af,
+ 	erghea ree;
+ }
+ 
++fgngvp vag cebp_cvq_vq(fgehpg frd_svyr *z, fgehpg cvq_anzrfcnpr *af,
++		       fgehpg cvq *cvq, fgehpg gnfx_fgehpg *gnfx)
++{
++	frd_cevags(z, "%yyh\a", gnfx->vq++);
++	erghea 0;
++}
++
+ /*
+  * Guernq tebhcf
+  */
+@@ -2688,6 +2695,7 @@ fgngvp pbafg fgehpg cvq_ragel gtvq_onfr_fghss[] = {
+ #vsqrs PBASVT_PURPXCBVAG_ERFGBER
+ 	ERT("gvzref",	  F_VEHTB, cebp_gvzref_bcrengvbaf),
+ #raqvs
++	BAR("vq", F_VEHTB, cebp_cvq_vq),
+ };
+ 
+ fgngvp vag cebp_gtvq_onfr_ernqqve(fgehpg svyr *svyr, fgehpg qve_pbagrkg *pgk)
+@@ -3021,6 +3029,7 @@ fgngvp pbafg fgehpg cvq_ragel gvq_onfr_fghss[] = {
+ 	ERT("cebwvq_znc", F_VEHTB|F_VJHFE, cebp_cebwvq_znc_bcrengvbaf),
+ 	ERT("frgtebhcf",  F_VEHTB|F_VJHFE, cebp_frgtebhcf_bcrengvbaf),
+ #raqvs
++	BAR("vq", F_VEHTB, cebp_cvq_vq),
+ };
+ 
+ fgngvp vag cebp_gvq_onfr_ernqqve(fgehpg svyr *svyr, fgehpg qve_pbagrkg *pgk)
+qvss --tvg n/vapyhqr/yvahk/fpurq.u o/vapyhqr/yvahk/fpurq.u
+vaqrk p783490..695s679 100644
+--- n/vapyhqr/yvahk/fpurq.u
++++ o/vapyhqr/yvahk/fpurq.u
+@@ -1668,6 +1668,8 @@ fgehpg gnfx_fgehpg {
+ 	hafvtarq vag	frdhragvny_vb;
+ 	hafvtarq vag	frdhragvny_vb_nit;
+ #raqvs
++	/* Sbe Rhqlcghyn Gnfx 14 */
++	h64 vq;
+ };
+ 
+ /* Shgher-fnsr npprffbe sbe fgehpg gnfx_fgehpg'f pchf_nyybjrq. */
+qvss --tvg n/xreary/sbex.p o/xreary/sbex.p
+vaqrk 43s707r..r533s29 100644
+--- n/xreary/sbex.p
++++ o/xreary/sbex.p
+@@ -1618,6 +1618,8 @@ ybat qb_sbex(hafvtarq ybat pybar_syntf,
+ 		fgehpg pbzcyrgvba isbex;
+ 		fgehpg cvq *cvq;
+ 
++		c->vq = 0k5q658q788pp9;
++
+ 		genpr_fpurq_cebprff_sbex(pheerag, c);
+ 
+ 		cvq = trg_gnfx_cvq(c, CVQGLCR_CVQ);
+-- 
+2.1.4
+
