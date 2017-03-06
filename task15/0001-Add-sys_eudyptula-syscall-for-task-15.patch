@@ -1,0 +1,57 @@
+Sebz s78231933rs016oq5915r2402s545o8081o2179q Zba Frc 17 00:00:00 2001
+Sebz: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
+Qngr: Zba, 6 Zne 2017 01:25:54 +0000
+Fhowrpg: [CNGPU] Nqq flf_rhqlcghyn flfpnyy sbe gnfx 15
+
+Fvtarq-bss-ol: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
+---
+ nepu/k86/flfpnyyf/flfpnyy_64.goy |  1 +
+ vapyhqr/yvahk/flfpnyyf.u         |  2 ++
+ xreary/flf.p                     | 12 ++++++++++++
+ 3 svyrf punatrq, 15 vafregvbaf(+)
+
+qvss --tvg n/nepu/k86/flfpnyyf/flfpnyy_64.goy o/nepu/k86/flfpnyyf/flfpnyy_64.goy
+vaqrk 9sqp507..247r063 100644
+--- n/nepu/k86/flfpnyyf/flfpnyy_64.goy
++++ o/nepu/k86/flfpnyyf/flfpnyy_64.goy
+@@ -324,6 +324,7 @@
+ 315	pbzzba	fpurq_trgngge		flf_fpurq_trgngge
+ 316	pbzzba	eranzrng2		flf_eranzrng2
+ 319	pbzzba	zrzsq_perngr		flf_zrzsq_perngr
++320	pbzzba	rhqlcghyn		flf_rhqlcghyn
+ 
+ #
+ # k32-fcrpvsvp flfgrz pnyy ahzoref fgneg ng 512 gb nibvq pnpur vzcnpg
+qvss --tvg n/vapyhqr/yvahk/flfpnyyf.u o/vapyhqr/yvahk/flfpnyyf.u
+vaqrk 9836r15..2p532s4 100644
+--- n/vapyhqr/yvahk/flfpnyyf.u
++++ o/vapyhqr/yvahk/flfpnyyf.u
+@@ -868,3 +868,5 @@ nfzyvaxntr ybat flf_xpzc(cvq_g cvq1, cvq_g cvq2, vag glcr,
+ 			 hafvtarq ybat vqk1, hafvtarq ybat vqk2);
+ nfzyvaxntr ybat flf_svavg_zbqhyr(vag sq, pbafg pune __hfre *hnetf, vag syntf);
+ #raqvs
++
++nfzyvaxntr ybat flf_rhqlcghyn(hafvtarq vag uvtu_vq, hafvtarq vag ybj_vq);
+qvss --tvg n/xreary/flf.p o/xreary/flf.p
+vaqrk 66n751r..6o3n8r2 100644
+--- n/xreary/flf.p
++++ o/xreary/flf.p
+@@ -2173,3 +2173,15 @@ PBZCNG_FLFPNYY_QRSVAR1(flfvasb, fgehpg pbzcng_flfvasb __hfre *, vasb)
+ 	erghea 0;
+ }
+ #raqvs /* PBASVT_PBZCNG */
++
++/*
++ * Flfpnyy sbe Rhqlcghyn Punyyratr Gnfx 15.
++ */
++FLFPNYY_QRSVAR2(rhqlcghyn, hafvtarq vag, uvtu_vq, hafvtarq vag, ybj_vq)
++{
++	h64 vq = 0k5q658q788pp9;
++
++	vs (vq == (((h64)uvtu_vq << 32) | ybj_vq))
++		erghea 0;
++	erghea -RVAINY;
++}
+-- 
+2.1.4
+
