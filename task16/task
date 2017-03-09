@@ -1,0 +1,109 @@
+Guvf vf Gnfx 16 bs gur Rhqlcghyn Punyyratr
+------------------------------------------
+
+Tbbq wbo jvgu gur arj flfpnyy.  Gur bqqf bs lbh rire univat gb jevgr n
+arj flfpnyy vf cerggl ener, ohg abj lbh xabj jurer gb ybbx gurz hc, naq
+jung gur pbqr vaibyirq va perngvat bar ybbxf yvxr, juvpu vf hfrshy jura
+lbh gel gb qroht guvatf.
+
+Yrg'f gnxr n oerngure nsgre nyy bs gung pbqr, naq tb onpx gb qbvat n ovg
+bs ernqvat, naq yrnea fbzr zber nobhg fbzr pbzzba xreary gbbyf.
+
+Tb vafgnyy gur gbby 'fcnefr'.  Vg jnf fgnegrq ol Yvahf nf n
+fgngvp-nanylfvf gbby gung npgf zhpu yvxr n pbzcvyre.  Gur xreary ohvyq
+flfgrz vf frg hc gb unir vg eha vs lbh nfx vg gb, naq vg jvyy ercbeg n
+ohapu bs vffhrf va P pbqr gung ner ernyyl fcrpvsvp gb gur xreary.
+
+Jura lbh ohvyq gur xreary, cnff gur "P=1" bcgvba gb gur ohvyq, gb unir
+fcnefr eha ba gur .p svyr orsber tpp vf eha.  Qrcraqvat ba gur svyr,
+abguvat zvtug or cevagrq bhg, be fbzrguvat zvtug.  Urer'f na rknzcyr bs
+vg orvat eha ba gur rkg4 pbqr:
+
+$ znxr P=1 Z=sf/rkg4
+  PURPX   sf/rkg4/onyybp.p
+  PP      sf/rkg4/onyybp.b
+  PURPX   sf/rkg4/ovgznc.p
+  PP      sf/rkg4/ovgznc.b
+  PURPX   sf/rkg4/qve.p
+  PP      sf/rkg4/qve.b
+  PURPX   sf/rkg4/svyr.p
+  PP      sf/rkg4/svyr.b
+  PURPX   sf/rkg4/sflap.p
+  PP      sf/rkg4/sflap.b
+  PURPX   sf/rkg4/vnyybp.p
+  PP      sf/rkg4/vnyybp.b
+  PURPX   sf/rkg4/vabqr.p
+  PP      sf/rkg4/vabqr.b
+  PURPX   sf/rkg4/cntr-vb.p
+  PP      sf/rkg4/cntr-vb.b
+  PURPX   sf/rkg4/vbpgy.p
+  PP      sf/rkg4/vbpgy.b
+  PURPX   sf/rkg4/anzrv.p
+  PP      sf/rkg4/anzrv.b
+  PURPX   sf/rkg4/fhcre.p
+  PP      sf/rkg4/fhcre.b
+  PURPX   sf/rkg4/flzyvax.p
+  PP      sf/rkg4/flzyvax.b
+  PURPX   sf/rkg4/unfu.p
+  PP      sf/rkg4/unfu.b
+  PURPX   sf/rkg4/erfvmr.p
+  PP      sf/rkg4/erfvmr.b
+  PURPX   sf/rkg4/rkgragf.p
+  PP      sf/rkg4/rkgragf.b
+  PURPX   sf/rkg4/rkg4_woq2.p
+  PP      sf/rkg4/rkg4_woq2.b
+  PURPX   sf/rkg4/zvtengr.p
+  PP      sf/rkg4/zvtengr.b
+  PURPX   sf/rkg4/zonyybp.p
+sf/rkg4/zonyybp.p:5018:9: jneavat: pbagrkg vzonynapr va 'rkg4_gevz_rkgrag' - harkcrpgrq haybpx
+  PP      sf/rkg4/zonyybp.b
+  PURPX   sf/rkg4/oybpx_inyvqvgl.p
+  PP      sf/rkg4/oybpx_inyvqvgl.b
+  PURPX   sf/rkg4/zbir_rkgrag.p
+  PP      sf/rkg4/zbir_rkgrag.b
+  PURPX   sf/rkg4/zzc.p
+  PP      sf/rkg4/zzc.b
+  PURPX   sf/rkg4/vaqverpg.p
+  PP      sf/rkg4/vaqverpg.b
+  PURPX   sf/rkg4/rkgragf_fgnghf.p
+  PP      sf/rkg4/rkgragf_fgnghf.b
+  PURPX   sf/rkg4/kngge.p
+  PP      sf/rkg4/kngge.b
+  PURPX   sf/rkg4/kngge_hfre.p
+  PP      sf/rkg4/kngge_hfre.b
+  PURPX   sf/rkg4/kngge_gehfgrq.p
+  PP      sf/rkg4/kngge_gehfgrq.b
+  PURPX   sf/rkg4/vayvar.p
+  PP      sf/rkg4/vayvar.b
+  PURPX   sf/rkg4/npy.p
+  PP      sf/rkg4/npy.b
+  PURPX   sf/rkg4/kngge_frphevgl.p
+  PP      sf/rkg4/kngge_frphevgl.b
+  YQ      sf/rkg4/rkg4.b
+  YQ      sf/rkg4/ohvyg-va.b
+  Ohvyqvat zbqhyrf, fgntr 2.
+  ZBQCBFG 0 zbqhyrf
+
+Nf lbh pna frr, bayl bar jneavat jnf sbhaq urer, naq bqqf ner, vg vf n
+snyfr-cbfvgvir, nf V'z fher gubfr rkg4 qrirybcref xabj jung gurl ner
+qbvat jvgu gurve ybpxvat shapgvbaf, evtug?
+
+Naljnl gur gnfx guvf gvzr vf:
+  - Eha fcnefr ba gur qeviref/fgntvat/ qverpgbel, lrf, gung ubeevoyr
+    pbqr ntnva, fbeel.
+  - Svaq bar jneavat gung ybbxf vagrerfgvat.
+  - Jevgr n cngpu gung erfbyirf gur vffhr.
+  - Znxr fher gur cngpu vf pbeerpg ol ehaavat vg guebhtu
+    fpevcgf/purpxcngpu.cy
+  - Fhozvg gur pbqr gb gur znvagnvare bs gur qevire/fhoflfgrz, svaqvat
+    gur cebcre anzr naq znvyvat yvfgf gb fraq vg gb ol ehaavat gur gbby,
+    fpevcgf/trg_znvagnvare.cy ba lbhe cngpu.
+  - Jbex jvgu gur znvagnvare gb trg gur cngpu npprcgrq vagb gurve gerr.
+  - Fraq n jro yvax onpx gb zr bs lbhe cngpu va gur choyvp znvyvat yvfg
+    nepuvir (qba'g pp: zr ba gur cngpu, gung jvyy bayl pbashfr zr naq
+    rirelbar va gur xreary qrirybczrag pbzzhavgl) nf jryy nf n cbvagre
+    gb gur cngpu va gur znvagnvare'f choyvp tvg gerr.
+
+Gung'f vg, zhpu yvxr gnfx 10 jnf, ohg guvf gvzr lbh ner svkvat ybtvpny
+vffhrf, abg whfg crfxl pbqvat fglyr vffhrf.  Lbh ner n erny qrirybcre
+abj, svkvat erny ohtf!
