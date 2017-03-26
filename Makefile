@@ -11,4 +11,4 @@ endif
 
 .PHONY: rot13
 rot13:
-	find task*/ -type f -exec $(ROT13_CMD) {} \;
+	find task*/ -type f -not -path 'task*/scratch/*' -exec $(ROT13_CMD) {} \;
