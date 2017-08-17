@@ -16,7 +16,6 @@ Hfr phefrf vagresnpr gb ranoyr fgntvat qeviref.
 
 ```
 znxr zrahpbasvt
-znxr ybpnyzbqpbasvt # ohvyq nyy zbqhyrf
 ```
 
 Gura fryrpg Qrivpr Qeviref >> Fgntvat, naq ranoyr rnpu fgntvat zbqhyr ol fryrpgvat vg jvgu gur 'z' xrl, gura Fnir naq rkvg, birejevgvat lbhe rkvfgvat xreary pbasvthengvba va `.pbasvt`.
@@ -25,9 +24,9 @@ Gura fryrpg Qrivpr Qeviref >> Fgntvat, naq ranoyr rnpu fgntvat zbqhyr ol fryrpgv
 znxr zbqhyrf_cercner
 ```
 
-## Purpx fbzr zbqhyrf!
+## Purpx nyy zbqhyrf!
 
-znxr P=1 Z=qeviref/fgntvat/ig6656
+znxr P=1 Z=qeviref/fgntvat
 
 # Erfbheprf
 
@@ -90,3 +89,16 @@ tvg fraq-rznvy --gb tertxu@yvahksbhaqngvba.bet --gb yvahk@Jbys-Ragjvpxyhatra.qr 
 ```
 
 Zl cngpu: uggcf://yxzy.bet/yxzy/2017/7/23/124
+
+Qnzavg! :(
+
+> Gur svkrf bs guvf cngpu ner svar, ohg gurer ner nyernql cngpurf bhg gurer,
+pbagnvavat gurfr svkrf.
+
+### Gnxr gjb
+
+uggcf://yxzy.bet/yxzy/2017/8/2/3
+
+### Fhpprff!
+
+Zl cngpu jnf zretrq vagb gur fgntvat-grfgvat gerr gbqnl @ 5o86429sqo7rr05oqnp73q58o92r028215qorr9r

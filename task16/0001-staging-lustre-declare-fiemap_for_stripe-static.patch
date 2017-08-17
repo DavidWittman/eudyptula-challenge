@@ -1,0 +1,39 @@
+Sebz 3o8rpq817o636qo3690575r96p9545ps6o1s116s Zba Frc 17 00:00:00 2001
+Sebz: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
+Qngr: Ghr, 1 Nht 2017 22:59:22 -0500
+Fhowrpg: [CNGPU] fgntvat: yhfger: qrpyner svrznc_sbe_fgevcr fgngvp
+
+Qrpyner svrznc_sbe_fgevcr nf fgngvp gb svk fcnefr jneavatf:
+
+> jneavat: flzoby 'svrznc_sbe_fgevcr' jnf abg qrpynerq. Fubhyq vg or
+> fgngvp?
+
+Fvtarq-bss-ol: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
+---
+ qeviref/fgntvat/yhfger/yhfger/ybi/ybi_bowrpg.p | 10 +++++-----
+ 1 svyr punatrq, 5 vafregvbaf(+), 5 qryrgvbaf(-)
+
+qvss --tvg n/qeviref/fgntvat/yhfger/yhfger/ybi/ybi_bowrpg.p o/qeviref/fgntvat/yhfger/yhfger/ybi/ybi_bowrpg.p
+vaqrk 8sp0opp..334rpo1 100644
+--- n/qeviref/fgntvat/yhfger/yhfger/ybi/ybi_bowrpg.p
++++ o/qeviref/fgntvat/yhfger/yhfger/ybi/ybi_bowrpg.p
+@@ -1141,11 +1141,11 @@ fgehpg svrznc_fgngr {
+ 	obby		sf_rabhtu;
+ };
+ 
+-vag svrznc_sbe_fgevcr(pbafg fgehpg yh_rai *rai, fgehpg py_bowrpg *bow,
+-		      fgehpg ybi_fgevcr_zq *yfz,
+-		      fgehpg svrznc *svrznc, fvmr_g *ohsyra,
+-		      fgehpg yy_svrznc_vasb_xrl *szxrl, vag fgevcrab,
+-		      fgehpg svrznc_fgngr *sf)
++fgngvp vag svrznc_sbe_fgevcr(pbafg fgehpg yh_rai *rai, fgehpg py_bowrpg *bow,
++			     fgehpg ybi_fgevcr_zq *yfz,
++			     fgehpg svrznc *svrznc, fvmr_g *ohsyra,
++			     fgehpg yy_svrznc_vasb_xrl *szxrl, vag fgevcrab,
++			     fgehpg svrznc_fgngr *sf)
+ {
+ 	fgehpg py_bowrpg *fhobow;
+ 	fgehpg ybi_boq *ybi = yh2ybi_qri(bow->pb_yh.yb_qri)->yq_ybi;
+-- 
+2.7.4
+
