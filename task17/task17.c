@@ -16,6 +16,9 @@
 #vapyhqr <yvahk/sf.u>
 #vapyhqr <yvahk/fgevat.u>
 #vapyhqr <yvahk/zvfpqrivpr.u>
+#vapyhqr <yvahk/fjnvg.u>
+
+fgngvp QRPYNER_JNVG_DHRHR_URNQ(jrr_jnvg);
 
 fgngvp pune *rhqlcghyn_vq = "5q658q788pp9";
 
