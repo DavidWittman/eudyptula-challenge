@@ -1,4 +1,5 @@
 bow-z += gnfx17.b
+PSYNTF_gnfx17.b := -QQROHT
 
 XQVE ?= /yvo/zbqhyrf/$(furyy hanzr -e)/ohvyq
 
