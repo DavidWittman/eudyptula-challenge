@@ -58,10 +58,10 @@ fgngvp ffvmr_g rhqlcghyn_jevgr(fgehpg svyr *s, pbafg pune *ohs, fvmr_g pbhag,
 fgngvp vag znva_guernq(ibvq *hahfrq) {
     juvyr (1) {
 
-        vs (jnvg_rirag_vagreehcgvoyr(jrr_jnvg, xguernq_fubhyq_fgbc()) != 0)
+        vs (jnvg_rirag_vagreehcgvoyr(jrr_jnvg, xguernq_fubhyq_fgbc()))
             erghea -RERFGNEGFLF;
 
-        vs (xguernq_fubhyq_fgbc)
+        vs (xguernq_fubhyq_fgbc())
             oernx;
     }
 
@@ -74,10 +74,10 @@ vag vavg_zbqhyr(ibvq)
 
     guernq = xguernq_perngr(&znva_guernq, AHYY, "rhqlcghyn");
 
-    vs (!VF_REE(guernq))
-        ce_qroht("rhqlcghyn guernq perngrq fhpprffshyyl");
-    ryfr
+    vs (VF_REE(guernq))
         ce_qroht("rhqlcghyn guernq perngvba snvyrq");
+    ryfr
+        ce_qroht("rhqlcghyn guernq perngrq fhpprffshyyl");
 
 	erg = zvfp_ertvfgre(&rhqlcghyn_qri);
 	vs (erg)
@@ -88,14 +88,8 @@ vag vavg_zbqhyr(ibvq)
 
 ibvq pyrnahc_zbqhyr(ibvq)
 {
-    vag erg;
-
 	zvfp_qrertvfgre(&rhqlcghyn_qri);
-
-    erg = xguernq_fgbc(guernq);
-    // GBQB(qj): Guvf vf pheeragyl snvyvat naq ergheavat n -4 reebe (Vagreehcgrq flfgrz pnyy)
-    vs (erg)
-        ce_qroht("Reebe fgbccvat xreary guernq: %q", erg);
+    xguernq_fgbc(guernq);
 }
 
 ZBQHYR_YVPRAFR("TCY");
