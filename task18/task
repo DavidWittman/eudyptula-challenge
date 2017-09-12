@@ -1,0 +1,59 @@
+Guvf vf Gnfx 18 bs gur Rhqlcghyn Punyyratr
+------------------------------------------
+
+Avpr wbo jvgu gur xreary guernq.  Vg ernyyl qbrfa'g gnxr zhpu pbqr ng
+nyy gb perngr n arj guernq.  Fb abj yrg hf trg fbzr qngn vagb gur zbqhyr
+gb tvir gur guernq fbzrguvat gb qb.
+
+Onfr nyy bs guvf jbex ba lbhe gnfx 17 pbqronfr.
+
+Tb onpx naq qvt hc gnfx 12'f fbhepr pbqr, gur bar jvgu gur yvfg
+unaqyvat.  Pbcl gur fgehpgher vagb guvf zbqhyr, naq gur
+vqragvgl_perngr(), vqragvgl_svaq(), naq vqragvgl_qrfgebl() shapgvbaf
+vagb guvf zbqhyr nf jryy.
+
+Jevgr n arj shapgvba, vqragvgl_trg(), gung ybbxf yvxr:
+  fgehpg vqragvgl *vqragvgl_trg(ibvq);
+naq ergheaf gur arkg "vqragvgl" fgehpgher gung vf ba gur yvfg, naq
+erzbirf vg sebz gur yvfg.  Vs abguvat vf ba gur yvfg, erghea AHYY.
+
+Gura, ubbx hc gur zvfp pune qrivpr "jevgr" shapgvba gb qb gur sbyybjvat:
+  - Vs n jevgr vf ynetre guna 19 punenpgref, gehapngr vg ng 19.
+  - Gnxr gur jevgr qngn naq cnff vg gb vqragvgl_perngr() nf gur fgevat,
+    naq hfr na vaperzragvat pbhagre nf gur "vq" inyhr.
+  - Jnxr hc gur "jrr_jnvg" dhrhr.
+
+Va gur xreary guernq shapgvba:
+  - Vs gur "jrr_jnvg" dhrhr jnxrf hf hc, trg gur arkg vqragvgl va gur
+    flfgrz jvgu n pnyy gb vqragvgl_trg().
+  - Fyrrc (va na vagreehcgnoyr fgngr, qba'g tb vapernfvat gur flfgrz
+    ybnq va n onq jnl) sbe 5 frpbaqf.
+  - Jevgr bhg gur vqragvgl anzr, naq vq gb gur qroht xreary ybt naq gura
+    serr gur zrzbel.
+
+Jura gur zbqhyr rkvgf, pyrna hc gur jubyr yvfg ol hfvat gur shapgvbaf
+tvira, ab snve zhpxvat nebhaq jvgu gur yvfg inevnoyrf qverpgyl.
+
+Lrf, vg'f n ovg pyhaxl, ohg vg fubjf gur onfvpf bs gnxvat jbex sebz
+hfrefcnpr, naq gura dhvpxyl ergheavat gb gur hfre, naq gura tbvat bss
+naq qbvat fbzrguvat ryfr jvgu gur qngn naq pyrnavat rirelguvat hc.  Vg'f
+n pbzzba cnggrea sbe n xreary, nf vg'f ernyyl nyy gung n xreary raqf hc
+qbvat zbfg bs gur gvzr (trg n qvfx oybpx, jevgr n qvfx oybpx, unaqyr n
+zbhfr rirag, rgp.)
+
+Ybnq naq haybnq gur zbqhyr naq "cebir" gung vg jbexf cebcreyl ol jevgvat
+naq ybbxvat ng gur qroht ybt, naq gung rirelguvat pyrnaf hc cebcreyl
+jura gur zbqhyr vf haybnqrq.
+
+Fraq va gur cebbs naq gur .p svyr sbe gur zbqhyr.
+
+N tbbq grfg fpevcg jbhyq or gur sbyybjvat:
+        rpub "Nyvpr" > /qri/rhqlcghyn
+        rpub "Obo" > /qri/rhqlcghyn
+        fyrrc 15
+        rpub "Qnir" > /qri/rhqlcghyn
+        rpub "Tran" > /qri/rhqlcghyn
+        ezzbq gnfx18
+
+Erzbivat gur zbqhyr juvyr gurer vf craqvat jbex vf nyjnlf n tbbq fgerff
+grfg.
