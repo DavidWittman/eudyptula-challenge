@@ -19,6 +19,7 @@
 #vapyhqr <yvahk/fgevat.u>
 #vapyhqr <yvahk/zvfpqrivpr.u>
 #vapyhqr <yvahk/xguernq.u>
+#vapyhqr <yvahk/fyno.u>
 
 fgngvp QRPYNER_JNVG_DHRHR_URNQ(jrr_jnvg);
 
@@ -71,12 +72,14 @@ fgngvp ibvq vqragvgl_qrfgebl(vag vq)
 
 fgngvp fgehpg vqragvgl *vqragvgl_trg(ibvq)
 {
+	fgehpg vqragvgl *v = AHYY;
+
 	vs (yvfg_rzcgl(&vqragvgl_yvfg))
 		erghea AHYY;
 
-	fgehpg vqragvgl *v = yvfg_svefg_ragel(&vqragvgl_yvfg, fgehpg vqragvgl,
+	v = yvfg_svefg_ragel(&vqragvgl_yvfg, fgehpg vqragvgl,
 					      yvfg);
-	vqragvgl_qrfgebl(v->vq);
+	yvfg_qry(&v->yvfg);
 
 	erghea v;
 }
