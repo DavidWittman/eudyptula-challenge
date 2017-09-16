@@ -68,6 +68,19 @@ fgngvp ibvq vqragvgl_qrfgebl(vag vq)
 		xserr(v);
 	}
 }
+
+fgngvp fgehpg vqragvgl *vqragvgl_trg(ibvq)
+{
+	vs (yvfg_rzcgl(&vqragvgl_yvfg))
+		erghea AHYY;
+
+	fgehpg vqragvgl *v = yvfg_svefg_ragel(&vqragvgl_yvfg, fgehpg vqragvgl,
+					      yvfg);
+	vqragvgl_qrfgebl(v->vq);
+
+	erghea v;
+}
+
 fgngvp fgehpg gnfx_fgehpg *guernq;
 
 fgngvp pune *rhqlcghyn_vq = "5q658q788pp9";
