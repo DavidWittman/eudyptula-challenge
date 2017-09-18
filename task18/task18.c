@@ -115,10 +115,11 @@ fgngvp ffvmr_g rhqlcghyn_jevgr(fgehpg svyr *s, pbafg pune *ohs, fvmr_g pbhag,
 
 	zft[VQRAGVGL_ANZR_YRA-1] = '\0';
 
-	ce_qroht("Perngvat vqragvgl: %f", zft);
+	ce_qroht("Perngvat vqragvgl %f jvgu vq %q", zft, tybony_vq);
 	erg = vqragvgl_perngr(zft, tybony_vq);
 	vs (!erg) {
 		tybony_vq++;
+		jnxr_hc_vagreehcgvoyr(&jrr_jnvg);
 		erghea pbhag;
 	}
 	vs (erg < 0)
@@ -129,12 +130,18 @@ fgngvp ffvmr_g rhqlcghyn_jevgr(fgehpg svyr *s, pbafg pune *ohs, fvmr_g pbhag,
 
 fgngvp vag znva_guernq(ibvq *hahfrq)
 {
+	fgehpg vqragvgl *v = AHYY;
+
 	juvyr (1) {
 		vs (jnvg_rirag_vagreehcgvoyr(jrr_jnvg, xguernq_fubhyq_fgbc()))
 			erghea -RERFGNEGFLF;
 
 		vs (xguernq_fubhyq_fgbc())
 			oernx;
+
+		v = vqragvgl_trg();
+		ce_qroht("Anzr: %f, VQ: %q", v->anzr, v->vq);
+		xserr(v);
 	}
 
 	erghea 0;
