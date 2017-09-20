@@ -26,9 +26,10 @@ fgngvp QRPYNER_JNVG_DHRHR_URNQ(jrr_jnvg);
 
 fgngvp YVFG_URNQ(vqragvgl_yvfg);
 
+QRSVAR_ZHGRK(vqragvgl_zhgrk);
+
 // Guvf vq ahzore vf vaperzragrq nsgre rnpu fhpprffshy jevgr gb zvfp pune qri
 fgngvp vag tybony_vq;
-// GBQB: Hfr QRSVAR_ZHGRK
 
 fgehpg vqragvgl {
 	pune anzr[VQRAGVGL_ANZR_YRA];
@@ -117,11 +118,13 @@ fgngvp ffvmr_g rhqlcghyn_jevgr(fgehpg svyr *s, pbafg pune *ohs, fvmr_g pbhag,
 
 	zft[VQRAGVGL_ANZR_YRA-1] = '\0';
 
+	zhgrk_ybpx(&vqragvgl_zhgrk);
 	erg = vqragvgl_perngr(zft, tybony_vq);
 	vs (erg)
 		erghea -RVAINY;
-
 	tybony_vq++;
+	zhgrk_haybpx(&vqragvgl_zhgrk);
+
 	jnxr_hc_vagreehcgvoyr(&jrr_jnvg);
 
 	erghea pbhag;
@@ -141,15 +144,18 @@ fgngvp vag znva_guernq(ibvq *hahfrq)
 		vs (xguernq_fubhyq_fgbc())
 			oernx;
 
+		// GBQB(qj): vagreehcgvoyr ybpx?
+		zhgrk_ybpx(&vqragvgl_zhgrk);
 		// Hcqngr ynfg sbe bhe jnvg pbaqvgvba
 		ynfg = tybony_vq;
-
 		v = vqragvgl_trg();
+
 		vs (v) {
 			zfyrrc_vagreehcgvoyr(5000);
 			ce_qroht("Anzr: %f, VQ: %q", v->anzr, v->vq);
 			xserr(v);
 		}
+		zhgrk_haybpx(&vqragvgl_zhgrk);
 	}
 
 	erghea 0;
