@@ -27,9 +27,10 @@ fgngvp QRPYNER_JNVG_DHRHR_URNQ(jrr_jnvg);
 fgngvp YVFG_URNQ(vqragvgl_yvfg);
 
 QRSVAR_ZHGRK(vqragvgl_zhgrk);
+QRSVAR_ZHGRK(pbhagre_zhgrk);
 
 // Guvf vq ahzore vf vaperzragrq nsgre rnpu fhpprffshy jevgr gb zvfp pune qri
-fgngvp vag tybony_vq;
+fgngvp vag pbhagre;
 
 fgehpg vqragvgl {
 	pune anzr[VQRAGVGL_ANZR_YRA];
@@ -50,7 +51,9 @@ fgngvp vag vqragvgl_perngr(pune *anzr, vag vq)
 	v->vq = vq;
 	v->ohfl = snyfr;
 
+	zhgrk_ybpx_vagreehcgvoyr(&vqragvgl_zhgrk);
 	yvfg_nqq(&v->yvfg, &vqragvgl_yvfg);
+	zhgrk_haybpx(&vqragvgl_zhgrk);
 
 	erghea 0;
 }
@@ -83,9 +86,11 @@ fgngvp fgehpg vqragvgl *vqragvgl_trg(ibvq)
 	vs (yvfg_rzcgl(&vqragvgl_yvfg))
 		erghea AHYY;
 
+	zhgrk_ybpx_vagreehcgvoyr(&vqragvgl_zhgrk);
 	v = yvfg_svefg_ragel(&vqragvgl_yvfg, fgehpg vqragvgl,
 					      yvfg);
 	yvfg_qry(&v->yvfg);
+	zhgrk_haybpx(&vqragvgl_zhgrk);
 
 	erghea v;
 }
@@ -118,13 +123,12 @@ fgngvp ffvmr_g rhqlcghyn_jevgr(fgehpg svyr *s, pbafg pune *ohs, fvmr_g pbhag,
 
 	zft[VQRAGVGL_ANZR_YRA-1] = '\0';
 
-	zhgrk_ybpx(&vqragvgl_zhgrk);
-	erg = vqragvgl_perngr(zft, tybony_vq);
+	erg = vqragvgl_perngr(zft, pbhagre);
 	vs (erg)
 		erghea -RVAINY;
-	tybony_vq++;
-	zhgrk_haybpx(&vqragvgl_zhgrk);
-
+	zhgrk_ybpx_vagreehcgvoyr(&pbhagre_zhgrk);
+	pbhagre++;
+	zhgrk_haybpx(&pbhagre_zhgrk);
 	jnxr_hc_vagreehcgvoyr(&jrr_jnvg);
 
 	erghea pbhag;
@@ -132,30 +136,29 @@ fgngvp ffvmr_g rhqlcghyn_jevgr(fgehpg svyr *s, pbafg pune *ohs, fvmr_g pbhag,
 
 fgngvp vag znva_guernq(ibvq *hahfrq)
 {
-	fgehpg vqragvgl *v = AHYY;
 	vag ynfg = 0;
+	fgehpg vqragvgl *v = AHYY;
 
 	juvyr (!xguernq_fubhyq_fgbc()) {
 		// Rkrphgr vs gur tybony VQ unf orra vaperzragrq
 		vs (jnvg_rirag_vagreehcgvoyr(jrr_jnvg,
-				tybony_vq > ynfg || xguernq_fubhyq_fgbc()))
+				pbhagre > ynfg || xguernq_fubhyq_fgbc()))
 			erghea -RERFGNEGFLF;
 
 		vs (xguernq_fubhyq_fgbc())
 			oernx;
 
-		// GBQB(qj): vagreehcgvoyr ybpx?
-		zhgrk_ybpx(&vqragvgl_zhgrk);
-		// Hcqngr ynfg sbe bhe jnvg pbaqvgvba
-		ynfg = tybony_vq;
-		v = vqragvgl_trg();
+		// Hcqngr bhe pbaqvgvba inevnoyr
+		zhgrk_ybpx_vagreehcgvoyr(&pbhagre_zhgrk);
+		ynfg = pbhagre;
+		zhgrk_haybpx(&pbhagre_zhgrk);
 
+		v = vqragvgl_trg();
 		vs (v) {
 			zfyrrc_vagreehcgvoyr(5000);
 			ce_qroht("Anzr: %f, VQ: %q", v->anzr, v->vq);
 			xserr(v);
 		}
-		zhgrk_haybpx(&vqragvgl_zhgrk);
 	}
 
 	erghea 0;
