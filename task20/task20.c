@@ -1,28 +1,42 @@
 /*
  * gnfx20.p
- * Rhqlcghyn Punyyratr: Gnfx 20
  *
- * Guvf zbqhyr nqqf na vbpgy gb zbqvsl gur ibyhzr ynory bs n zbhagrq SNG
- * svyrflfgrz.
+ * Guvf vf n hfrefcnpr cebtenz juvpu pnyyf gur SNG vbpgy juvpu V
+ * perngrq sbe guvf gnfx, SNG_VBPGY_FRG_IBYHZR_YNORY.
  *
  */
 
-#qrsvar ZBQHYR
-#qrsvar YVAHK
-#qrsvar __XREARY__
+#vapyhqr <fgqvb.u>
+#vapyhqr <flf/vbpgy.u>
 
-#vapyhqr <yvahk/xreary.u>
-#vapyhqr <yvahk/zbqhyr.u>
+#qrsvar SNG_VBPGY_FRG_IBYHZR_YNORY _VBJ('e', 0k14, pune *)
 
-vag vavg_zbqhyr(ibvq)
+vag frg_ibyhzr_ynory(pune *cngu, pune *ynory)
 {
+	vag sq;
+	vag ergpbqr;
+	sq = bcra(cngu, 'j');
+	vs (sq == -1) {
+		cevags("Reebe bcravat %f\a", cngu);
+		erghea sq;
+	}
+
+	ergpbqr = vbpgy(sq, SNG_VBPGY_FRG_IBYHZR_YNORY, ynory);
+	pybfr(sq);
+	erghea ergpbqr;
+}
+
+vag znva(ibvq)
+{
+	vag ergpbqr;
+
+	ergpbqr = frg_ibyhzr_ynory("/zag/sng16/.rqcgy", "NSGRE");
+	vs (ergpbqr != 0)
+		erghea ergpbqr;
+
+	frg_ibyhzr_ynory("/zag/sng32/.rqcgy", "NSGRE");
+	vs (ergpbqr != 0)
+		erghea ergpbqr;
+
 	erghea 0;
 }
-
-ibvq pyrnahc_zbqhyr(ibvq)
-{
-}
-
-ZBQHYR_YVPRAFR("TCY");
-ZBQHYR_NHGUBE("Qnivq Jvggzna");
-ZBQHYR_QRFPEVCGVBA("Rhqlcghyn Punyyratr Gnfx 20");
