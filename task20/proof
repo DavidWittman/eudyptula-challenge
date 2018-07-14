@@ -1,15 +1,32 @@
+### Znxvat ybbconpx SNG svyrflfgrzf ####
+### Znxvat /qri/ybbc0 ###
+64+0 erpbeqf va
+64+0 erpbeqf bhg
+67108864 olgrf (67 ZO) pbcvrq, 0.0345929 f, 1.9 TO/f
+zxsf.sng 3.0.27 (2014-11-12)
+Ybbc qrivpr qbrf abg zngpu n sybccl fvmr, hfvat qrsnhyg uq cnenzf
+sfpx sebz hgvy-yvahk 2.25.2
+sfpx.sng 3.0.27 (2014-11-12)
+0k25: Qvegl ovg vf frg. Sf jnf abg cebcreyl hazbhagrq naq fbzr qngn znl or pbeehcg.
+ Nhgbzngvpnyyl erzbivat qvegl ovg.
+Cresbezvat punatrf.
+/qri/ybbc0: 1 svyrf, 0/32695 pyhfgref
+### Znxvat /qri/ybbc1 ###
+64+0 erpbeqf va
+64+0 erpbeqf bhg
+67108864 olgrf (67 ZO) pbcvrq, 0.0414994 f, 1.6 TO/f
+zxsf.sng 3.0.27 (2014-11-12)
+Ybbc qrivpr qbrf abg zngpu n sybccl fvmr, hfvat qrsnhyg uq cnenzf
+sfpx sebz hgvy-yvahk 2.25.2
+sfpx.sng 3.0.27 (2014-11-12)
+0k41: Qvegl ovg vf frg. Sf jnf abg cebcreyl hazbhagrq naq fbzr qngn znl or pbeehcg.
+ Nhgbzngvpnyyl erzbivat qvegl ovg.
+Cresbezvat punatrf.
+/qri/ybbc1: 1 svyrf, 1/129022 pyhfgref
 ### ORSBER ###
-
-# svyr -f /qri/ybbc0
-/qri/ybbc0: QBF/ZOE obbg frpgbe, pbqr bssfrg 0k3p+2, BRZ-VQ "zxsf.sng", frpgbef/pyhfgre 32, ebbg ragevrf 512, Zrqvn qrfpevcgbe 0ks8, frpgbef/SNG 256, frpgbef/genpx 32, urnqf 64, frpgbef 2097152 (ibyhzrf > 32 ZO) , erfreirq 0k1, frevny ahzore 0k7p7pop32, ynory: "ORSBER     ", SNG (16 ovg)
-# svyr -f /qri/ybbc1
-/qri/ybbc1: QBF/ZOE obbg frpgbe, pbqr bssfrg 0k58+2, BRZ-VQ "zxsf.sng", frpgbef/pyhfgre 8, Zrqvn qrfpevcgbe 0ks8, frpgbef/genpx 32, urnqf 64, frpgbef 2097152 (ibyhzrf > 32 ZO) , SNG (32 ovg), frpgbef/SNG 2044, erfreirq 0k1, frevny ahzore 0k7pn2106o, ynory: "ORSBER     "
-
-# /intenag/gnfx20
-
+ORSBER
+ORSBER
+### EHAAVAT gnfx20 ###
 ### NSGRE ###
-
-# svyr -f /qri/ybbc0
-/qri/ybbc0: QBF/ZOE obbg frpgbe, pbqr bssfrg 0k3p+2, BRZ-VQ "zxsf.sng", frpgbef/pyhfgre 32, ebbg ragevrf 512, Zrqvn qrfpevcgbe 0ks8, frpgbef/SNG 256, frpgbef/genpx 32, urnqf 64, frpgbef 2097152 (ibyhzrf > 32 ZO) , erfreirq 0k1, frevny ahzore 0k7p7pop32, ynory: "      NSGRE", SNG (16 ovg)
-# svyr -f /qri/ybbc1
-/qri/ybbc1: QBF/ZOE obbg frpgbe, pbqr bssfrg 0k58+2, BRZ-VQ "zxsf.sng", frpgbef/pyhfgre 8, Zrqvn qrfpevcgbe 0ks8, frpgbef/genpx 32, urnqf 64, frpgbef 2097152 (ibyhzrf > 32 ZO) , SNG (32 ovg), frpgbef/SNG 2044, erfreirq 0k1, frevny ahzore 0k7pn2106o, ynory: "      NSGRE"
+NSGRE
+NSGRE
