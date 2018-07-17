@@ -1,4 +1,4 @@
-# Rhqlcghyn Challenge submissions
+# Eudyptula Challenge submissions
 
 ## Submitting answers
 
