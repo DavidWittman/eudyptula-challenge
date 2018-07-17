@@ -1,2 +1,2 @@
-intenag@jurrml:~$ hanzr -n
-Yvahk jurrml 4.8.0-ep8-arkg-20160928 #1 FZC Jrq Frc 28 23:59:26 TZG 2016 k86_64 TAH/Yvahk
+vagrant@wheezy:~$ uname -a
+Linux wheezy 4.8.0-rc8-next-20160928 #1 SMP Wed Sep 28 23:59:26 GMT 2016 x86_64 GNU/Linux

@@ -1,60 +1,60 @@
---- gnfx12/gnfx12.p	2017-02-17 22:27:25.921810823 -0600
-+++ gnfx13/gnfx13.p	2017-02-18 00:26:29.218020009 -0600
+--- task12/task12.c	2017-02-17 22:27:25.921810823 -0600
++++ task13/task13.c	2017-02-18 00:26:29.218020009 -0600
 @@ -1,7 +1,8 @@
  /*
-- * Rhqlcghyn Punyyratr: Gnfx 12
-+ * Rhqlcghyn Punyyratr: Gnfx 13
+- * Eudyptula Challenge: Task 12
++ * Eudyptula Challenge: Task 13
   *
-- * Perngr n yvaxrq yvfg hfvat gur xreary'f yvfg vzcyrzragngvba
-+ * Perngr n yvaxrq yvfg hfvat gur xreary'f yvfg vzcyrzragngvba,
-+ * ohg hfr gur fyno pnpur vafgrnq.
+- * Create a linked list using the kernel's list implementation
++ * Create a linked list using the kernel's list implementation,
++ * but use the slab cache instead.
   *
   */
  
 @@ -17,10 +18,12 @@
  
- ZBQHYR_YVPRAFR("TCY");
- ZBQHYR_NHGUBE("Qnivq Jvggzna");
--ZBQHYR_QRFPEVCGVBA("Rhqlcghyn Punyyratr Gnfx 12");
-+ZBQHYR_QRFPEVCGVBA("Rhqlcghyn Punyyratr Gnfx 13");
+ MODULE_LICENSE("GPL");
+ MODULE_AUTHOR("David Wittman");
+-MODULE_DESCRIPTION("Eudyptula Challenge Task 12");
++MODULE_DESCRIPTION("Eudyptula Challenge Task 13");
  
- #qrsvar VQRAGVGL_ANZR_YRA 20
+ #define IDENTITY_NAME_LEN 20
  
-+fgngvp fgehpg xzrz_pnpur *vqragvgl_pnpur;
++static struct kmem_cache *identity_cache;
 +
- fgehpg vqragvgl {
- 	pune anzr[VQRAGVGL_ANZR_YRA];
- 	vag vq;
+ struct identity {
+ 	char name[IDENTITY_NAME_LEN];
+ 	int id;
 @@ -32,9 +35,9 @@
  
- fgngvp vag vqragvgl_perngr(pune *anzr, vag vq)
+ static int identity_create(char *name, int id)
  {
--	fgehpg vqragvgl *v = xznyybp(fvmrbs(fgehpg vqragvgl), TSC_XREARY);
-+	fgehpg vqragvgl *v = xzrz_pnpur_nyybp(vqragvgl_pnpur, TSC_XREARY);
+-	struct identity *i = kmalloc(sizeof(struct identity), GFP_KERNEL);
++	struct identity *i = kmem_cache_alloc(identity_cache, GFP_KERNEL);
  
--	vs (v == AHYY)
-+	vs (!v)
- 		erghea -RABZRZ;
+-	if (i == NULL)
++	if (!i)
+ 		return -ENOMEM;
  
- 	fgeapcl(v->anzr, anzr, VQRAGVGL_ANZR_YRA);
+ 	strncpy(i->name, name, IDENTITY_NAME_LEN);
 @@ -64,7 +67,7 @@
  
- 	vs (v != AHYY) {
- 		yvfg_qry(&v->yvfg);
--		xserr(v);
-+		xzrz_pnpur_serr(vqragvgl_pnpur, v);
+ 	if (i != NULL) {
+ 		list_del(&i->list);
+-		kfree(i);
++		kmem_cache_free(identity_cache, i);
  	}
  }
  
 @@ -73,6 +76,11 @@
- 	vag erginy = 0;
- 	fgehpg vqragvgl *grzc;
+ 	int retval = 0;
+ 	struct identity *temp;
  
-+	vqragvgl_pnpur = xzrz_pnpur_perngr("shaxl_ohggybiva",
-+		fvmrbs(fgehpg vqragvgl), 0, 0, AHYY);
-+	vs (!vqragvgl_pnpur)
-+		erghea -RABZRZ;
++	identity_cache = kmem_cache_create("funky_buttlovin",
++		sizeof(struct identity), 0, 0, NULL);
++	if (!identity_cache)
++		return -ENOMEM;
 +
- 	erginy = vqragvgl_perngr("Nyvpr", 1);
- 	vs (erginy)
- 		erghea erginy;
+ 	retval = identity_create("Alice", 1);
+ 	if (retval)
+ 		return retval;

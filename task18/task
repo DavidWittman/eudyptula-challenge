@@ -1,59 +1,59 @@
-Guvf vf Gnfx 18 bs gur Rhqlcghyn Punyyratr
+This is Task 18 of the Eudyptula Challenge
 ------------------------------------------
 
-Avpr wbo jvgu gur xreary guernq.  Vg ernyyl qbrfa'g gnxr zhpu pbqr ng
-nyy gb perngr n arj guernq.  Fb abj yrg hf trg fbzr qngn vagb gur zbqhyr
-gb tvir gur guernq fbzrguvat gb qb.
+Nice job with the kernel thread.  It really doesn't take much code at
+all to create a new thread.  So now let us get some data into the module
+to give the thread something to do.
 
-Onfr nyy bs guvf jbex ba lbhe gnfx 17 pbqronfr.
+Base all of this work on your task 17 codebase.
 
-Tb onpx naq qvt hc gnfx 12'f fbhepr pbqr, gur bar jvgu gur yvfg
-unaqyvat.  Pbcl gur fgehpgher vagb guvf zbqhyr, naq gur
-vqragvgl_perngr(), vqragvgl_svaq(), naq vqragvgl_qrfgebl() shapgvbaf
-vagb guvf zbqhyr nf jryy.
+Go back and dig up task 12's source code, the one with the list
+handling.  Copy the structure into this module, and the
+identity_create(), identity_find(), and identity_destroy() functions
+into this module as well.
 
-Jevgr n arj shapgvba, vqragvgl_trg(), gung ybbxf yvxr:
-  fgehpg vqragvgl *vqragvgl_trg(ibvq);
-naq ergheaf gur arkg "vqragvgl" fgehpgher gung vf ba gur yvfg, naq
-erzbirf vg sebz gur yvfg.  Vs abguvat vf ba gur yvfg, erghea AHYY.
+Write a new function, identity_get(), that looks like:
+  struct identity *identity_get(void);
+and returns the next "identity" structure that is on the list, and
+removes it from the list.  If nothing is on the list, return NULL.
 
-Gura, ubbx hc gur zvfp pune qrivpr "jevgr" shapgvba gb qb gur sbyybjvat:
-  - Vs n jevgr vf ynetre guna 19 punenpgref, gehapngr vg ng 19.
-  - Gnxr gur jevgr qngn naq cnff vg gb vqragvgl_perngr() nf gur fgevat,
-    naq hfr na vaperzragvat pbhagre nf gur "vq" inyhr.
-  - Jnxr hc gur "jrr_jnvg" dhrhr.
+Then, hook up the misc char device "write" function to do the following:
+  - If a write is larger than 19 characters, truncate it at 19.
+  - Take the write data and pass it to identity_create() as the string,
+    and use an incrementing counter as the "id" value.
+  - Wake up the "wee_wait" queue.
 
-Va gur xreary guernq shapgvba:
-  - Vs gur "jrr_jnvg" dhrhr jnxrf hf hc, trg gur arkg vqragvgl va gur
-    flfgrz jvgu n pnyy gb vqragvgl_trg().
-  - Fyrrc (va na vagreehcgnoyr fgngr, qba'g tb vapernfvat gur flfgrz
-    ybnq va n onq jnl) sbe 5 frpbaqf.
-  - Jevgr bhg gur vqragvgl anzr, naq vq gb gur qroht xreary ybt naq gura
-    serr gur zrzbel.
+In the kernel thread function:
+  - If the "wee_wait" queue wakes us up, get the next identity in the
+    system with a call to identity_get().
+  - Sleep (in an interruptable state, don't go increasing the system
+    load in a bad way) for 5 seconds.
+  - Write out the identity name, and id to the debug kernel log and then
+    free the memory.
 
-Jura gur zbqhyr rkvgf, pyrna hc gur jubyr yvfg ol hfvat gur shapgvbaf
-tvira, ab snve zhpxvat nebhaq jvgu gur yvfg inevnoyrf qverpgyl.
+When the module exits, clean up the whole list by using the functions
+given, no fair mucking around with the list variables directly.
 
-Lrf, vg'f n ovg pyhaxl, ohg vg fubjf gur onfvpf bs gnxvat jbex sebz
-hfrefcnpr, naq gura dhvpxyl ergheavat gb gur hfre, naq gura tbvat bss
-naq qbvat fbzrguvat ryfr jvgu gur qngn naq pyrnavat rirelguvat hc.  Vg'f
-n pbzzba cnggrea sbe n xreary, nf vg'f ernyyl nyy gung n xreary raqf hc
-qbvat zbfg bs gur gvzr (trg n qvfx oybpx, jevgr n qvfx oybpx, unaqyr n
-zbhfr rirag, rgp.)
+Yes, it's a bit clunky, but it shows the basics of taking work from
+userspace, and then quickly returning to the user, and then going off
+and doing something else with the data and cleaning everything up.  It's
+a common pattern for a kernel, as it's really all that a kernel ends up
+doing most of the time (get a disk block, write a disk block, handle a
+mouse event, etc.)
 
-Ybnq naq haybnq gur zbqhyr naq "cebir" gung vg jbexf cebcreyl ol jevgvat
-naq ybbxvat ng gur qroht ybt, naq gung rirelguvat pyrnaf hc cebcreyl
-jura gur zbqhyr vf haybnqrq.
+Load and unload the module and "prove" that it works properly by writing
+and looking at the debug log, and that everything cleans up properly
+when the module is unloaded.
 
-Fraq va gur cebbs naq gur .p svyr sbe gur zbqhyr.
+Send in the proof and the .c file for the module.
 
-N tbbq grfg fpevcg jbhyq or gur sbyybjvat:
-        rpub "Nyvpr" > /qri/rhqlcghyn
-        rpub "Obo" > /qri/rhqlcghyn
-        fyrrc 15
-        rpub "Qnir" > /qri/rhqlcghyn
-        rpub "Tran" > /qri/rhqlcghyn
-        ezzbq gnfx18
+A good test script would be the following:
+        echo "Alice" > /dev/eudyptula
+        echo "Bob" > /dev/eudyptula
+        sleep 15
+        echo "Dave" > /dev/eudyptula
+        echo "Gena" > /dev/eudyptula
+        rmmod task18
 
-Erzbivat gur zbqhyr juvyr gurer vf craqvat jbex vf nyjnlf n tbbq fgerff
-grfg.
+Removing the module while there is pending work is always a good stress
+test.

@@ -1,16 +1,16 @@
-# -*- zbqr: ehol -*-
-# iv: frg sg=ehol :
-Intenag.pbasvther(2) qb |pbasvt|
-  pbasvt.iz.obk = "qrovna/jurrml64"
-  pbasvt.iz.cebivqre :iveghnyobk qb |i|
-    i.phfgbzvmr ["zbqvsliz", :vq, "--hfo", "ba"]
-  raq
-  pbasvt.iz.cebivfvba "furyy", vayvar: <<-FURYY
-    fhqb ncg-trg vafgnyy -l znxr yvahk-urnqref-$(hanzr -e)
-    pq /intenag
-    fhqb -v
-    znxr
-    fhqb qrczbq /intenag/gnfx05.xb
-    rpub "Zbqhyr perngrq naq ybnqrq vagb zbqhyr znc. Vafreg n HFO xrlobneq naq gura purpx qzrft sbe gur \"Uryyb Jbeyq\" zrffntr."
-  FURYY
-raq
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure(2) do |config|
+  config.vm.box = "debian/wheezy64"
+  config.vm.provider :virtualbox do |v|
+    v.customize ["modifyvm", :id, "--usb", "on"]
+  end
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get install -y make linux-headers-$(uname -r)
+    cd /vagrant
+    sudo -i
+    make
+    sudo depmod /vagrant/task05.ko
+    echo "Module created and loaded into module map. Insert a USB keyboard and then check dmesg for the \"Hello World\" message."
+  SHELL
+end

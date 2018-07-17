@@ -1,61 +1,61 @@
-# Qvfpbirel
+# Discovery
 
-Yvfg nyy zbqhyrf jvgu `yfzbq`.
+List all modules with `lsmod`.
 
-Svaq n qrivpr haqre /flf/qrivprf, naq gura ybpngr gur zngpuvat qevire.
+Find a device under /sys/devices, and then locate the matching driver.
 
-> Rirel qverpgbel haqre /flf/qrivprf gung pbagnvaf n svyr pnyyrq "hrirag" ercerfragf n qrivpr.
+> Every directory under /sys/devices that contains a file called "uevent" represents a device.
 
-svaq /flf/qrivprf -anzr hrirag
+find /sys/devices -name uevent
 
-V'z pubbfvat /flf/qrivprf/cyngsbez/cpfcxe (./qeviref/vachg/zvfp/cpfcxe.p)
+I'm choosing /sys/devices/platform/pcspkr (./drivers/input/misc/pcspkr.c)
 
-> N qrivpr vf fvzcyl nal qngn fgehpgher gung pbagnvaf na rzorqqrq fgehpg qrivpr, ab zber naq ab yrff.
+> A device is simply any data structure that contains an embedded struct device, no more and no less.
 
-# Ohvyqvat
+# Building
 
 ```
-pq /hfe/fep/yvahk-fbhepr-3.16
-znxr byqpbasvt
-znxr cercner
-znxr fpevcgf
+cd /usr/src/linux-source-3.16
+make oldconfig
+make prepare
+make scripts
 ```
 
-Zbqvsl lbhe zbqhyr naq rkrphgr gur sbyybjvat:
+Modify your module and execute the following:
 
-``` onfu
-# Va gur qverpgbel juvpu lbhe cngpurq zbqhyr vf
-znxr -P /yvo/zbqhyrf/$(hanzr -e)/ohvyq Z=$(cjq) zbqhyrf
-# Gura vafgnyy jvgu
-znxr -P /yvo/zbqhyrf/$(hanzr -e)/ohvyq Z=$(cjq) zbqhyrf_vafgnyy
+``` bash
+# In the directory which your patched module is
+make -C /lib/modules/$(uname -r)/build M=$(pwd) modules
+# Then install with
+make -C /lib/modules/$(uname -r)/build M=$(pwd) modules_install
 ```
 
-# Snvyherf
+# Failures
 
-Jryc, guvf qvqa'g jbex sbe gur cpfcxe qrivpr orpnhfr vg nyernql qrsvarf na nggevohgr pnyyrq `vq`.
+Welp, this didn't work for the pcspkr device because it already defines an attribute called `id`.
 
-V'z nggrzcgvat gb zbqvsl gur qevire sbe n JvSV HFO nqncgre V unir juvpu hfrf gur Ernygrx 8187.
+I'm attempting to modify the driver for a WiFI USB adapter I have which uses the Realtek 8187.
 
-## irezntvp snvyherf:
+## vermagic failures:
 
-V ena vagb n ohapu bs vffhrf gelvat gb pbzcvyr gur zbqhyrf hfvat nyy bs gur qbphzragngvba V jnf ernqvat.
+I ran into a bunch of issues trying to compile the modules using all of the documentation I was reading.
 
-Gurer'f fbzrguvat nobhg gur jnl jr'er pbzcvyvat egy8187 nf na rkgreany zbqhyrf (jvgu Z=$(cjq)) juvpu whfg
-qbrfa'g dhvgr wvir jvgu gur vapyhqrf fglyr juvpu gurl'er hfvat va gur ybpny Znxrsvyr.
+There's something about the way we're compiling rtl8187 as an external modules (with M=$(pwd)) which just
+doesn't quite jive with the includes style which they're using in the local Makefile.
 
-V jnf noyr gb trg nebhaq guvf vffhr (nf lbh pna frr va gur Intenagsvyr) ol whfg flzyvaxvat gur qeviref fbhepr
-qverpgbel gb gur urnqref ebbg fb gung gur qevire pbhyq erfbyir vgf qrcraqrapl sebz gurer. Vg'f jrveq, ohg vg jbexrq.
+I was able to get around this issue (as you can see in the Vagrantfile) by just symlinking the drivers source
+directory to the headers root so that the driver could resolve its dependency from there. It's weird, but it worked.
 
-Urer ner fbzr erfbheprf V ersreraprq juvyr gebhoyrfubbgvat gung:
+Here are some resources I referenced while troubleshooting that:
 
- - uggcf://xreary-unaqobbx.nyvbgu.qrovna.bet/pu-irefvbaf.ugzy
- - uggcf://yvfgf.qrovna.bet/qrovna-hfre/2017/01/zft00854.ugzy (V frag guvf gb gur znvyvat yvfg)
- - uggc://jjj.gyqc.bet/YQC/yxzct/2.6/ugzy/k380.ugzy
- - uggcf://xreary-unaqobbx.nyvbgu.qrovna.bet/pu-irefvbaf.ugzy
+ - https://kernel-handbook.alioth.debian.org/ch-versions.html
+ - https://lists.debian.org/debian-user/2017/01/msg00854.html (I sent this to the mailing list)
+ - http://www.tldp.org/LDP/lkmpg/2.6/html/x380.html
+ - https://kernel-handbook.alioth.debian.org/ch-versions.html
 
 
-Yvaxf:
- - [N gbhe bs /flf/qrivprf](uggcf://yja.arg/Negvpyrf/646617/)
- - [N serfu ybbx ng gur xreary'f qrivpr zbqry](uggcf://yja.arg/Negvpyrf/645810/)
- - [Ubj gb ohvyq bayl bar xreary zbqhyr](uggc://nfxhohagh.pbz/n/515408)
- - [Guvf xreary cngpu](uggcf://cngpujbex.xreary.bet/cngpu/2847898/)
+Links:
+ - [A tour of /sys/devices](https://lwn.net/Articles/646617/)
+ - [A fresh look at the kernel's device model](https://lwn.net/Articles/645810/)
+ - [How to build only one kernel module](http://askubuntu.com/a/515408)
+ - [This kernel patch](https://patchwork.kernel.org/patch/2847898/)

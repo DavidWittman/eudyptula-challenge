@@ -1,20 +1,20 @@
-Guvf vf Gnfx 19 bs gur Rhqlcghyn Punyyratr
+This is Task 19 of the Eudyptula Challenge
 ------------------------------------------
 
-Unaqyvat qrynlrq jbex vf rnfl abj, evtug?  Fb, gvzr gb zbir ba gb
-fbzrguvat gbgnyyl qvssrerag.  Ubj nobhg argjbexvat?  Jr unir orra
-vtabevat gung cneg bs gur xreary, fb yrg hf abj sbphf ba gur argjbex
-fvqr bs gur xreary, nf gung vf n uhtr ernfba sbe jul Yvahk unf gnxra
-bire gur jbeyq.
+Handling delayed work is easy now, right?  So, time to move on to
+something totally different.  How about networking?  We have been
+ignoring that part of the kernel, so let us now focus on the network
+side of the kernel, as that is a huge reason for why Linux has taken
+over the world.
 
-Sbe guvf gnfx, jevgr n argsvygre xreary zbqhyr gung qbrf gur sbyybjvat:
-  - zbavgbef nyy VCi4 argjbex genssvp gung vf pbzvat vagb gur znpuvar
-  - cevagf gur vq gb gur xreary qroht ybt vs gur argjbex genssvp fgernz
-    pbagnvaf lbhe vq.
-  - cebcreyl haertvfgref lbh sebz gur argsvygre pber jura gur zbqhyr
-    haybnqf.
+For this task, write a netfilter kernel module that does the following:
+  - monitors all IPv4 network traffic that is coming into the machine
+  - prints the id to the kernel debug log if the network traffic stream
+    contains your id.
+  - properly unregisters you from the netfilter core when the module
+    unloads.
 
-Grfg guvf ol fraqvat lbhefrys na rznvy jvgu lbhe vq va gur fhowrpg, zhpu
-yvxr gur rznvy lbh arrq gb fraq onpx gb zr.
+Test this by sending yourself an email with your id in the subject, much
+like the email you need to send back to me.
 
-Fraq va gur cebbs naq gur .p svyr sbe gur zbqhyr.
+Send in the proof and the .c file for the module.

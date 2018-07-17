@@ -1,56 +1,56 @@
-Sebz s78231933rs016oq5915r2402s545o8081o2179q Zba Frc 17 00:00:00 2001
-Sebz: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
-Qngr: Zba, 6 Zne 2017 01:25:54 +0000
-Fhowrpg: [CNGPU] Nqq flf_rhqlcghyn flfpnyy sbe gnfx 15
+From f78231933ef016bd5915e2402f545b8081b2179d Mon Sep 17 00:00:00 2001
+From: David Wittman <dwittman@gmail.com>
+Date: Mon, 6 Mar 2017 01:25:54 +0000
+Subject: [PATCH] Add sys_eudyptula syscall for task 15
 
-Fvtarq-bss-ol: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
+Signed-off-by: David Wittman <dwittman@gmail.com>
 ---
- nepu/k86/flfpnyyf/flfpnyy_64.goy |  1 +
- vapyhqr/yvahk/flfpnyyf.u         |  2 ++
- xreary/flf.p                     | 12 ++++++++++++
- 3 svyrf punatrq, 15 vafregvbaf(+)
+ arch/x86/syscalls/syscall_64.tbl |  1 +
+ include/linux/syscalls.h         |  2 ++
+ kernel/sys.c                     | 12 ++++++++++++
+ 3 files changed, 15 insertions(+)
 
-qvss --tvg n/nepu/k86/flfpnyyf/flfpnyy_64.goy o/nepu/k86/flfpnyyf/flfpnyy_64.goy
-vaqrk 9sqp507..247r063 100644
---- n/nepu/k86/flfpnyyf/flfpnyy_64.goy
-+++ o/nepu/k86/flfpnyyf/flfpnyy_64.goy
+diff --git a/arch/x86/syscalls/syscall_64.tbl b/arch/x86/syscalls/syscall_64.tbl
+index 9fdc507..247e063 100644
+--- a/arch/x86/syscalls/syscall_64.tbl
++++ b/arch/x86/syscalls/syscall_64.tbl
 @@ -324,6 +324,7 @@
- 315	pbzzba	fpurq_trgngge		flf_fpurq_trgngge
- 316	pbzzba	eranzrng2		flf_eranzrng2
- 319	pbzzba	zrzsq_perngr		flf_zrzsq_perngr
-+320	pbzzba	rhqlcghyn		flf_rhqlcghyn
+ 315	common	sched_getattr		sys_sched_getattr
+ 316	common	renameat2		sys_renameat2
+ 319	common	memfd_create		sys_memfd_create
++320	common	eudyptula		sys_eudyptula
  
  #
- # k32-fcrpvsvp flfgrz pnyy ahzoref fgneg ng 512 gb nibvq pnpur vzcnpg
-qvss --tvg n/vapyhqr/yvahk/flfpnyyf.u o/vapyhqr/yvahk/flfpnyyf.u
-vaqrk 9836r15..2p532s4 100644
---- n/vapyhqr/yvahk/flfpnyyf.u
-+++ o/vapyhqr/yvahk/flfpnyyf.u
-@@ -868,3 +868,5 @@ nfzyvaxntr ybat flf_xpzc(cvq_g cvq1, cvq_g cvq2, vag glcr,
- 			 hafvtarq ybat vqk1, hafvtarq ybat vqk2);
- nfzyvaxntr ybat flf_svavg_zbqhyr(vag sq, pbafg pune __hfre *hnetf, vag syntf);
- #raqvs
+ # x32-specific system call numbers start at 512 to avoid cache impact
+diff --git a/include/linux/syscalls.h b/include/linux/syscalls.h
+index 9836e15..2c532f4 100644
+--- a/include/linux/syscalls.h
++++ b/include/linux/syscalls.h
+@@ -868,3 +868,5 @@ asmlinkage long sys_kcmp(pid_t pid1, pid_t pid2, int type,
+ 			 unsigned long idx1, unsigned long idx2);
+ asmlinkage long sys_finit_module(int fd, const char __user *uargs, int flags);
+ #endif
 +
-+nfzyvaxntr ybat flf_rhqlcghyn(hafvtarq vag uvtu_vq, hafvtarq vag ybj_vq);
-qvss --tvg n/xreary/flf.p o/xreary/flf.p
-vaqrk 66n751r..6o3n8r2 100644
---- n/xreary/flf.p
-+++ o/xreary/flf.p
-@@ -2173,3 +2173,15 @@ PBZCNG_FLFPNYY_QRSVAR1(flfvasb, fgehpg pbzcng_flfvasb __hfre *, vasb)
- 	erghea 0;
++asmlinkage long sys_eudyptula(unsigned int high_id, unsigned int low_id);
+diff --git a/kernel/sys.c b/kernel/sys.c
+index 66a751e..6b3a8e2 100644
+--- a/kernel/sys.c
++++ b/kernel/sys.c
+@@ -2173,3 +2173,15 @@ COMPAT_SYSCALL_DEFINE1(sysinfo, struct compat_sysinfo __user *, info)
+ 	return 0;
  }
- #raqvs /* PBASVT_PBZCNG */
+ #endif /* CONFIG_COMPAT */
 +
 +/*
-+ * Flfpnyy sbe Rhqlcghyn Punyyratr Gnfx 15.
++ * Syscall for Eudyptula Challenge Task 15.
 + */
-+FLFPNYY_QRSVAR2(rhqlcghyn, hafvtarq vag, uvtu_vq, hafvtarq vag, ybj_vq)
++SYSCALL_DEFINE2(eudyptula, unsigned int, high_id, unsigned int, low_id)
 +{
-+	h64 vq = 0k5q658q788pp9;
++	u64 id = 0x5d658d788cc9;
 +
-+	vs (vq == (((h64)uvtu_vq << 32) | ybj_vq))
-+		erghea 0;
-+	erghea -RVAINY;
++	if (id == (((u64)high_id << 32) | low_id))
++		return 0;
++	return -EINVAL;
 +}
 -- 
 2.1.4

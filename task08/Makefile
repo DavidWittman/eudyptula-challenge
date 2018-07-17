@@ -1,10 +1,10 @@
-bow-z += gnfx08.b
-PSYNTF_gnfx08.b := -QQROHT
+obj-m += task08.o
+CFLAGS_task08.o := -DDEBUG
 
-XQVE ?= /yvo/zbqhyrf/$(furyy hanzr -e)/ohvyq
+KDIR ?= /lib/modules/$(shell uname -r)/build
 
-nyy:
-	znxr -P $(XQVE) Z=$(CJQ) zbqhyrf
+all:
+	make -C $(KDIR) M=$(PWD) modules
 
-pyrna:
-	znxr -P $(XQVE) Z=$(CJQ) pyrna
+clean:
+	make -C $(KDIR) M=$(PWD) clean

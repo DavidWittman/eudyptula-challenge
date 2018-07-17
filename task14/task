@@ -1,28 +1,28 @@
-Guvf vf Gnfx 14 bs gur Rhqlcghyn Punyyratr
+This is Task 14 of the Eudyptula Challenge
 ------------------------------------------
 
-Abj gung lbh unir gur onfvpf bs yvfgf, naq jr tybffrq bire gur phfgbz
-nyybpngbef (gur svefg phg ng gung gnfx jnf zhpu uneqre, lbh tbg bss
-rnfl), vg'f gvzr gb zbir ba gb fbzrguvat n ovg zber byq-fpubby: gnfxf.
+Now that you have the basics of lists, and we glossed over the custom
+allocators (the first cut at that task was much harder, you got off
+easy), it's time to move on to something a bit more old-school: tasks.
 
-Sbe guvf gnfx:
-  - Nqq n arj svryq gb gur pber xreary gnfx fgehpgher pnyyrq, jnvg sbe
-    vg, "vq".
-  - Jura gur gnfx vf perngrq, frg gur vq gb lbhe vq.  Vzntvangvir, V
-    xabj.  Lbh gel jevgvat gurfr gnfxf.
-  - Nqq n arj cebp svyr sbe rirel gnfx pnyyrq, "vq", ybpngrq va gur
-    /cebp/${CVQ}/ qverpgbel sbe gung gnfx.
-  - Jura gur cebp svyr vf ernq sebz, unir vg cevag bhg gur inyhr bs
-    lbhe vq, naq gura vaperzrag vg ol bar, nyybjvat qvssrerag gnfxf gb
-    unir qvssrerag inyhrf sbe gur "vq" svyr bire gvzr nf gurl ner ernq
-    sebz.
-  - Cebivqr fbzr "cebbs" vg nyy jbexf cebcreyl.
+For this task:
+  - Add a new field to the core kernel task structure called, wait for
+    it, "id".
+  - When the task is created, set the id to your id.  Imaginative, I
+    know.  You try writing these tasks.
+  - Add a new proc file for every task called, "id", located in the
+    /proc/${PID}/ directory for that task.
+  - When the proc file is read from, have it print out the value of
+    your id, and then increment it by one, allowing different tasks to
+    have different values for the "id" file over time as they are read
+    from.
+  - Provide some "proof" it all works properly.
 
-Nf lbh ner gbhpuvat svyrf nyy bire gur xreary gerr, n cngpu vf gur
-erdhverq erfhyg gb or frag va urer.  Cyrnfr fcrpvsl juvpu xreary irefvba
-lbh znxr guvf cngpu ntnvafg, gb tvir zl iveghny znpuvarf n punapr gb
-svther bhg ubj gb nccyl vg.
+As you are touching files all over the kernel tree, a patch is the
+required result to be sent in here.  Please specify which kernel version
+you make this patch against, to give my virtual machines a chance to
+figure out how to apply it.
 
-Nyfb cebivqr fbzr xvaq bs cebbs gung lbh grfgrq gur cngpu.
+Also provide some kind of proof that you tested the patch.
 
-Naq, va pnfr lbh unccrarq gb sbetrg vg, lbhe vq vf "5q658q788pp9".
+And, in case you happened to forget it, your id is "5d658d788cc9".

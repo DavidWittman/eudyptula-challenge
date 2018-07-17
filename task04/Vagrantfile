@@ -1,15 +1,15 @@
-# -*- zbqr: ehol -*-
-# iv: frg sg=ehol :
-Intenag.pbasvther(2) qb |pbasvt|
-  pbasvt.iz.obk = "qrovna/jurrml64"
-  pbasvt.iz.cebivqre "iveghnyobk" qb |i|
-    i.zrzbel = 1024
-    i.pchf = 4
-  raq
-  pbasvt.iz.cebivfvba "furyy", vayvar: <<-FURYY
-    fhqb ncg-trg vafgnyy -l tpp znxr tvg
-    tvg pybar --qrcgu 1 tvg://tvg.xreary.bet/cho/fpz/yvahk/xreary/tvg/gbeinyqf/yvahk.tvg
-    yvahk/fpevcgf/purpxcngpu.cy --ab-gerr -s /intenag/gnfx01.p
-    yvahk/fpevcgf/purpxcngpu.cy --ab-gerr -s /intenag/pbqvat_fglyr.p
-  FURYY
-raq
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure(2) do |config|
+  config.vm.box = "debian/wheezy64"
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 1024
+    v.cpus = 4
+  end
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get install -y gcc make git
+    git clone --depth 1 git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+    linux/scripts/checkpatch.pl --no-tree -f /vagrant/task01.c
+    linux/scripts/checkpatch.pl --no-tree -f /vagrant/coding_style.c
+  SHELL
+end

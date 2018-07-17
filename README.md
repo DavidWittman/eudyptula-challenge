@@ -1,11 +1,5 @@
 # Rhqlcghyn Challenge submissions
 
-## Obscurity
-
-All of the tasks and solutions have been encoded with [rot13](https://en.wikipedia.org/wiki/ROT13) to obscure what I'm actually working on here.
-
-Run `make rot13` to encode or decode everything, or `make rot13 FILES=task01/Vagrantfile` to encode or decode a single file.
-
 ## Submitting answers
 
 ### Setting up mutt to authenticate with Gmail
@@ -29,12 +23,4 @@ I have found it much easier to write clean kernel code in vim using the vim-linu
 
 ```
 git clone https://github.com/vivien/vim-linux-coding-style ~/.vim/bundle/vim-linux-coding-style
-```
-
-### Git hooks
-
-I have added a git pre-commit hook to make sure I don't commit any tasks which reveal the challenge name. To configure the hook, copy the script from `scripts/pre-commit` to `.git/hooks/`:
-
-```
-cp ./scripts/pre-commit .git/
 ```

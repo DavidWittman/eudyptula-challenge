@@ -1,79 +1,79 @@
 /*
- * gnfx08.p
- * Rhqlcghyn Punyyratr: Gnfx 08
+ * task08.c
+ * Eudyptula Challenge: Task 08
  *
- * Guvf vf n xreary zbqhyr juvpu perngrf ragevrf va qrohtsf
+ * This is a kernel module which creates entries in debugfs
  *
  */
 
-#qrsvar ZBQHYR
-#qrsvar YVAHK
-#qrsvar __XREARY__
+#define MODULE
+#define LINUX
+#define __KERNEL__
 
-#vapyhqr <yvahk/xreary.u>
-#vapyhqr <yvahk/zbqhyr.u>
-#vapyhqr <yvahk/qrohtsf.u>
-#vapyhqr <yvahk/sf.u>
-#vapyhqr <yvahk/fgevat.u>
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/debugfs.h>
+#include <linux/fs.h>
+#include <linux/string.h>
 
-fgngvp ffvmr_g rhqlcghyn_ernq(fgehpg svyr *, pune *, fvmr_g, ybss_g *);
-fgngvp ffvmr_g rhqlcghyn_jevgr(fgehpg svyr *, pbafg pune *, fvmr_g, ybss_g *);
+static ssize_t eudyptula_read(struct file *, char *, size_t, loff_t *);
+static ssize_t eudyptula_write(struct file *, const char *, size_t, loff_t *);
 
-fgngvp pune *rhqlcghyn_vq = "5q658q788pp9";
-fgngvp fgehpg qragel *qve;
+static char *eudyptula_id = "5d658d788cc9";
+static struct dentry *dir;
 
-fgngvp pbafg fgehpg svyr_bcrengvbaf rhqlcghyn_sbcf = {
-	.bjare = GUVF_ZBQHYR,
-	.ernq = rhqlcghyn_ernq,
-	.jevgr = rhqlcghyn_jevgr
+static const struct file_operations eudyptula_fops = {
+	.owner = THIS_MODULE,
+	.read = eudyptula_read,
+	.write = eudyptula_write
 };
 
-fgngvp ffvmr_g rhqlcghyn_ernq(fgehpg svyr *s, pune *ohs, fvmr_g pbhag,
-	ybss_g *bssfrg)
+static ssize_t eudyptula_read(struct file *f, char *buf, size_t count,
+	loff_t *offset)
 {
-	erghea fvzcyr_ernq_sebz_ohssre(ohs, pbhag, bssfrg, rhqlcghyn_vq,
-		fgeyra(rhqlcghyn_vq));
+	return simple_read_from_buffer(buf, count, offset, eudyptula_id,
+		strlen(eudyptula_id));
 }
 
-fgngvp ffvmr_g rhqlcghyn_jevgr(fgehpg svyr *s, pbafg pune *ohs, fvmr_g pbhag,
-	ybss_g *bssfrg)
+static ssize_t eudyptula_write(struct file *f, const char *buf, size_t count,
+	loff_t *offset)
 {
-	pune zft[16] = {0};
-	vag erg;
+	char msg[16] = {0};
+	int ret;
 
-	erg = fvzcyr_jevgr_gb_ohssre(zft, fvmrbs(zft), bssfrg, ohs, pbhag);
-	vs (erg < 0)
-		erghea erg;
+	ret = simple_write_to_buffer(msg, sizeof(msg), offset, buf, count);
+	if (ret < 0)
+		return ret;
 
-	vs (!fgeapzc(zft, rhqlcghyn_vq, fgeyra(rhqlcghyn_vq))
-		&& pbhag - 1 == fgeyra(rhqlcghyn_vq))
-		erghea pbhag;
+	if (!strncmp(msg, eudyptula_id, strlen(eudyptula_id))
+		&& count - 1 == strlen(eudyptula_id))
+		return count;
 
-	erghea -RVAINY;
+	return -EINVAL;
 }
 
 
-vag vavg_zbqhyr(ibvq)
+int init_module(void)
 {
-	qve = qrohtsf_perngr_qve("rhqlcghyn", AHYY);
-	vs (VF_REE(qve)) {
-		ce_qroht("gnfx08: snvyrq gb perngr /flf/xreary/qroht/rhqlcghyn\a");
-		erghea -RABQRI;
+	dir = debugfs_create_dir("eudyptula", NULL);
+	if (IS_ERR(dir)) {
+		pr_debug("task08: failed to create /sys/kernel/debug/eudyptula\n");
+		return -ENODEV;
 	}
 
-	vs (!qrohtsf_perngr_svyr("vq", 0666, qve, AHYY, &rhqlcghyn_sbcf)) {
-		ce_qroht("gnfx08: snvyrq gb perngr vq svyr\a");
-		erghea -RABQRI;
+	if (!debugfs_create_file("id", 0666, dir, NULL, &eudyptula_fops)) {
+		pr_debug("task08: failed to create id file\n");
+		return -ENODEV;
 	}
 
-	erghea 0;
+	return 0;
 }
 
-ibvq pyrnahc_zbqhyr(ibvq)
+void cleanup_module(void)
 {
-	qrohtsf_erzbir_erphefvir(qve);
+	debugfs_remove_recursive(dir);
 }
 
-ZBQHYR_YVPRAFR("TCY");
-ZBQHYR_NHGUBE("Qnivq Jvggzna");
-ZBQHYR_QRFPEVCGVBA("Xreary zbqhyr juvpu perngrf /flf/xreary/qroht/rhqlcghyn");
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("David Wittman");
+MODULE_DESCRIPTION("Kernel module which creates /sys/kernel/debug/eudyptula");

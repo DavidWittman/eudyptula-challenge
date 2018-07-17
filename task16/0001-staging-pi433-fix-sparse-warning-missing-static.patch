@@ -1,52 +1,52 @@
-Sebz p2q759rrpn7np60q3s28n667o8q8p2q4pr781p66 Zba Frc 17 00:00:00 2001
-Sebz: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
-Qngr: Fha, 23 Why 2017 17:38:56 -0500
-Fhowrpg: [CNGPU] fgntvat: cv433: svk fcnefr jneavat: zvffvat fgngvp
+From c2d759eeca7ac60d3f28a667b8d8c2d4ce781c66 Mon Sep 17 00:00:00 2001
+From: David Wittman <dwittman@gmail.com>
+Date: Sun, 23 Jul 2017 17:38:56 -0500
+Subject: [PATCH] staging: pi433: fix sparse warning: missing static
 
-N srj ybpny shapgvbaf va gur cv433 zbqhyr jrer trggvat synttrq ol Fcnefr
-sbe zvffvat qrpynengvbaf, fb V nqqrq fgngvp dhnyvsvref gb pyrna hc gur
-jneavatf.
+A few local functions in the pi433 module were getting flagged by Sparse
+for missing declarations, so I added static qualifiers to clean up the
+warnings.
 
-Fvtarq-bss-ol: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
+Signed-off-by: David Wittman <dwittman@gmail.com>
 ---
- qeviref/fgntvat/cv433/cv433_vs.p | 4 ++--
- qeviref/fgntvat/cv433/es69.p     | 2 +-
- 2 svyrf punatrq, 3 vafregvbaf(+), 3 qryrgvbaf(-)
+ drivers/staging/pi433/pi433_if.c | 4 ++--
+ drivers/staging/pi433/rf69.c     | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-qvss --tvg n/qeviref/fgntvat/cv433/cv433_vs.p o/qeviref/fgntvat/cv433/cv433_vs.p
-vaqrk 1op478n..46461o4 100644
---- n/qeviref/fgntvat/cv433/cv433_vs.p
-+++ o/qeviref/fgntvat/cv433/cv433_vs.p
-@@ -313,7 +313,7 @@ fgehpg cv433_vafgnapr {
+diff --git a/drivers/staging/pi433/pi433_if.c b/drivers/staging/pi433/pi433_if.c
+index 1bc478a..46461b4 100644
+--- a/drivers/staging/pi433/pi433_if.c
++++ b/drivers/staging/pi433/pi433_if.c
+@@ -313,7 +313,7 @@ struct pi433_instance {
  
  /*-------------------------------------------------------------------------*/
  
--vag
-+fgngvp vag
- cv433_erprvir(ibvq *qngn)
+-int
++static int
+ pi433_receive(void *data)
  {
- 	fgehpg cv433_qrivpr *qri = qngn;
-@@ -463,7 +463,7 @@ fgehpg cv433_vafgnapr {
- 		erghea olgrf_gbgny;
+ 	struct pi433_device *dev = data;
+@@ -463,7 +463,7 @@ struct pi433_instance {
+ 		return bytes_total;
  }
  
--vag
-+fgngvp vag
- cv433_gk_guernq(ibvq *qngn)
+-int
++static int
+ pi433_tx_thread(void *data)
  {
- 	fgehpg cv433_qrivpr *qrivpr = qngn;
-qvss --tvg n/qeviref/fgntvat/cv433/es69.p o/qeviref/fgntvat/cv433/es69.p
-vaqrk r391pr7..r5rrr84 100644
---- n/qeviref/fgntvat/cv433/es69.p
-+++ o/qeviref/fgntvat/cv433/es69.p
-@@ -433,7 +433,7 @@ vag es69_frg_qp_phg_bss_serdhrapl_qhevat_nsp(fgehpg fcv_qrivpr *fcv, rahz qppCre
- 	erghea es69_frg_qp_phg_bss_serdhrapl_vagrea(fcv, ERT_NSPOJ, qppCreprag);
+ 	struct pi433_device *device = data;
+diff --git a/drivers/staging/pi433/rf69.c b/drivers/staging/pi433/rf69.c
+index e391ce7..e5eee84 100644
+--- a/drivers/staging/pi433/rf69.c
++++ b/drivers/staging/pi433/rf69.c
+@@ -433,7 +433,7 @@ int rf69_set_dc_cut_off_frequency_during_afc(struct spi_device *spi, enum dccPer
+ 	return rf69_set_dc_cut_off_frequency_intern(spi, REG_AFCBW, dccPercent);
  }
  
--vag es69_frg_onaqjvqgu_vagrea(fgehpg fcv_qrivpr *fcv, h8 ert, rahz znagvffr znagvffr, h8 rkcbarag)
-+fgngvp vag es69_frg_onaqjvqgu_vagrea(fgehpg fcv_qrivpr *fcv, h8 ert, rahz znagvffr znagvffr, h8 rkcbarag)
+-int rf69_set_bandwidth_intern(struct spi_device *spi, u8 reg, enum mantisse mantisse, u8 exponent)
++static int rf69_set_bandwidth_intern(struct spi_device *spi, u8 reg, enum mantisse mantisse, u8 exponent)
  {
- 	h8 arjInyhr;
+ 	u8 newValue;
  
 -- 
 1.9.1

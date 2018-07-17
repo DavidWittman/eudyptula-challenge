@@ -1,6 +1,6 @@
-#!/ova/onfu
+#!/bin/bash
 
-frg -rk
+set -ex
 
-png /cebp/1/{vq,vq,vq}
-png /cebp/frys/{vq,vq,vq,vq,vq}
+cat /proc/1/{id,id,id}
+cat /proc/self/{id,id,id,id,id}

@@ -1,29 +1,29 @@
-Guvf vf Gnfx 07 bs gur Rhqlcghyn Punyyratr
+This is Task 07 of the Eudyptula Challenge
 ------------------------------------------
 
-Terng jbex jvgu gung zvfp qrivpr qevire.  Vfa'g gung n avpr naq fvzcyr
-jnl gb jevgr n punenpgre qevire?
+Great work with that misc device driver.  Isn't that a nice and simple
+way to write a character driver?
 
-Whfg jura lbh guvax guvf punyyratr vf nyy nobhg jevgvat xreary pbqr,
-guvf gnfx vf n guebjonpx gb lbhe frpbaq bar.  Lrf, gung'f evtug,
-ohvyqvat xrearyf.  Gheaf bhg gung'f jung zbfg qrirybcref raq hc qbvat:
-gbaf naq gbaf bs erohvyqf, abg jevgvat arj pbqr.  Fnq, ohg vg vf n tbbq
-fxvyy gb xabj.
+Just when you think this challenge is all about writing kernel code,
+this task is a throwback to your second one.  Yes, that's right,
+building kernels.  Turns out that's what most developers end up doing:
+tons and tons of rebuilds, not writing new code.  Sad, but it is a good
+skill to know.
 
-Gur gnfx guvf ebhaq vf:
-  - Qbjaybnq gur yvahk-arkg xreary sbe gbqnl.  Be gbzbeebj, whfg hfr
-    gur yngrfg bar.  Vg punatrf rirel qnl fb gurer vf ab fcrpvsvp bar
-    lbh arrq gb cvpx.  Ohvyq vg.  Obbg vg.  Cebivqr cebbs gung lbh ohvyg
-    naq obbgrq vg.
+The task this round is:
+  - Download the linux-next kernel for today.  Or tomorrow, just use
+    the latest one.  It changes every day so there is no specific one
+    you need to pick.  Build it.  Boot it.  Provide proof that you built
+    and booted it.
 
-Jung vf gur yvahk-arkg xreary?  Nu, gung'f cneg bs gur punyyratr.
+What is the linux-next kernel?  Ah, that's part of the challenge.
 
-Sbe n uvag, lbh fubhyq ernq gur rkpryyrag qbphzragngvba nobhg ubj gur
-Yvahk xreary vf qrirybcrq va Qbphzragngvba/qrirybczrag-cebprff/ va gur
-xreary fbhepr vgfrys.  Vg'f n terng ernq, naq fubhyq gryy lbh nyy lbh
-arire jnagrq gb xabj nobhg jung Yvahk xreary qrirybcref qb naq ubj gurl
-qb vg.
+For a hint, you should read the excellent documentation about how the
+Linux kernel is developed in Documentation/development-process/ in the
+kernel source itself.  It's a great read, and should tell you all you
+never wanted to know about what Linux kernel developers do and how they
+do it.
 
-Nf nyjnlf, cyrnfr erfcbaq gb guvf punyyratr jvgu lbhe vq.  V xabj lbh
-xabj jung vg vf.  V'yy abg rira vapyhqr vg guvf gvzr, V gehfg lbh.
-Qba'g znxr zr srry gung vf n zvfgnxr.
+As always, please respond to this challenge with your id.  I know you
+know what it is.  I'll not even include it this time, I trust you.
+Don't make me feel that is a mistake.

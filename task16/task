@@ -1,109 +1,109 @@
-Guvf vf Gnfx 16 bs gur Rhqlcghyn Punyyratr
+This is Task 16 of the Eudyptula Challenge
 ------------------------------------------
 
-Tbbq wbo jvgu gur arj flfpnyy.  Gur bqqf bs lbh rire univat gb jevgr n
-arj flfpnyy vf cerggl ener, ohg abj lbh xabj jurer gb ybbx gurz hc, naq
-jung gur pbqr vaibyirq va perngvat bar ybbxf yvxr, juvpu vf hfrshy jura
-lbh gel gb qroht guvatf.
+Good job with the new syscall.  The odds of you ever having to write a
+new syscall is pretty rare, but now you know where to look them up, and
+what the code involved in creating one looks like, which is useful when
+you try to debug things.
 
-Yrg'f gnxr n oerngure nsgre nyy bs gung pbqr, naq tb onpx gb qbvat n ovg
-bs ernqvat, naq yrnea fbzr zber nobhg fbzr pbzzba xreary gbbyf.
+Let's take a breather after all of that code, and go back to doing a bit
+of reading, and learn some more about some common kernel tools.
 
-Tb vafgnyy gur gbby 'fcnefr'.  Vg jnf fgnegrq ol Yvahf nf n
-fgngvp-nanylfvf gbby gung npgf zhpu yvxr n pbzcvyre.  Gur xreary ohvyq
-flfgrz vf frg hc gb unir vg eha vs lbh nfx vg gb, naq vg jvyy ercbeg n
-ohapu bs vffhrf va P pbqr gung ner ernyyl fcrpvsvp gb gur xreary.
+Go install the tool 'sparse'.  It was started by Linus as a
+static-analysis tool that acts much like a compiler.  The kernel build
+system is set up to have it run if you ask it to, and it will report a
+bunch of issues in C code that are really specific to the kernel.
 
-Jura lbh ohvyq gur xreary, cnff gur "P=1" bcgvba gb gur ohvyq, gb unir
-fcnefr eha ba gur .p svyr orsber tpp vf eha.  Qrcraqvat ba gur svyr,
-abguvat zvtug or cevagrq bhg, be fbzrguvat zvtug.  Urer'f na rknzcyr bs
-vg orvat eha ba gur rkg4 pbqr:
+When you build the kernel, pass the "C=1" option to the build, to have
+sparse run on the .c file before gcc is run.  Depending on the file,
+nothing might be printed out, or something might.  Here's an example of
+it being run on the ext4 code:
 
-$ znxr P=1 Z=sf/rkg4
-  PURPX   sf/rkg4/onyybp.p
-  PP      sf/rkg4/onyybp.b
-  PURPX   sf/rkg4/ovgznc.p
-  PP      sf/rkg4/ovgznc.b
-  PURPX   sf/rkg4/qve.p
-  PP      sf/rkg4/qve.b
-  PURPX   sf/rkg4/svyr.p
-  PP      sf/rkg4/svyr.b
-  PURPX   sf/rkg4/sflap.p
-  PP      sf/rkg4/sflap.b
-  PURPX   sf/rkg4/vnyybp.p
-  PP      sf/rkg4/vnyybp.b
-  PURPX   sf/rkg4/vabqr.p
-  PP      sf/rkg4/vabqr.b
-  PURPX   sf/rkg4/cntr-vb.p
-  PP      sf/rkg4/cntr-vb.b
-  PURPX   sf/rkg4/vbpgy.p
-  PP      sf/rkg4/vbpgy.b
-  PURPX   sf/rkg4/anzrv.p
-  PP      sf/rkg4/anzrv.b
-  PURPX   sf/rkg4/fhcre.p
-  PP      sf/rkg4/fhcre.b
-  PURPX   sf/rkg4/flzyvax.p
-  PP      sf/rkg4/flzyvax.b
-  PURPX   sf/rkg4/unfu.p
-  PP      sf/rkg4/unfu.b
-  PURPX   sf/rkg4/erfvmr.p
-  PP      sf/rkg4/erfvmr.b
-  PURPX   sf/rkg4/rkgragf.p
-  PP      sf/rkg4/rkgragf.b
-  PURPX   sf/rkg4/rkg4_woq2.p
-  PP      sf/rkg4/rkg4_woq2.b
-  PURPX   sf/rkg4/zvtengr.p
-  PP      sf/rkg4/zvtengr.b
-  PURPX   sf/rkg4/zonyybp.p
-sf/rkg4/zonyybp.p:5018:9: jneavat: pbagrkg vzonynapr va 'rkg4_gevz_rkgrag' - harkcrpgrq haybpx
-  PP      sf/rkg4/zonyybp.b
-  PURPX   sf/rkg4/oybpx_inyvqvgl.p
-  PP      sf/rkg4/oybpx_inyvqvgl.b
-  PURPX   sf/rkg4/zbir_rkgrag.p
-  PP      sf/rkg4/zbir_rkgrag.b
-  PURPX   sf/rkg4/zzc.p
-  PP      sf/rkg4/zzc.b
-  PURPX   sf/rkg4/vaqverpg.p
-  PP      sf/rkg4/vaqverpg.b
-  PURPX   sf/rkg4/rkgragf_fgnghf.p
-  PP      sf/rkg4/rkgragf_fgnghf.b
-  PURPX   sf/rkg4/kngge.p
-  PP      sf/rkg4/kngge.b
-  PURPX   sf/rkg4/kngge_hfre.p
-  PP      sf/rkg4/kngge_hfre.b
-  PURPX   sf/rkg4/kngge_gehfgrq.p
-  PP      sf/rkg4/kngge_gehfgrq.b
-  PURPX   sf/rkg4/vayvar.p
-  PP      sf/rkg4/vayvar.b
-  PURPX   sf/rkg4/npy.p
-  PP      sf/rkg4/npy.b
-  PURPX   sf/rkg4/kngge_frphevgl.p
-  PP      sf/rkg4/kngge_frphevgl.b
-  YQ      sf/rkg4/rkg4.b
-  YQ      sf/rkg4/ohvyg-va.b
-  Ohvyqvat zbqhyrf, fgntr 2.
-  ZBQCBFG 0 zbqhyrf
+$ make C=1 M=fs/ext4
+  CHECK   fs/ext4/balloc.c
+  CC      fs/ext4/balloc.o
+  CHECK   fs/ext4/bitmap.c
+  CC      fs/ext4/bitmap.o
+  CHECK   fs/ext4/dir.c
+  CC      fs/ext4/dir.o
+  CHECK   fs/ext4/file.c
+  CC      fs/ext4/file.o
+  CHECK   fs/ext4/fsync.c
+  CC      fs/ext4/fsync.o
+  CHECK   fs/ext4/ialloc.c
+  CC      fs/ext4/ialloc.o
+  CHECK   fs/ext4/inode.c
+  CC      fs/ext4/inode.o
+  CHECK   fs/ext4/page-io.c
+  CC      fs/ext4/page-io.o
+  CHECK   fs/ext4/ioctl.c
+  CC      fs/ext4/ioctl.o
+  CHECK   fs/ext4/namei.c
+  CC      fs/ext4/namei.o
+  CHECK   fs/ext4/super.c
+  CC      fs/ext4/super.o
+  CHECK   fs/ext4/symlink.c
+  CC      fs/ext4/symlink.o
+  CHECK   fs/ext4/hash.c
+  CC      fs/ext4/hash.o
+  CHECK   fs/ext4/resize.c
+  CC      fs/ext4/resize.o
+  CHECK   fs/ext4/extents.c
+  CC      fs/ext4/extents.o
+  CHECK   fs/ext4/ext4_jbd2.c
+  CC      fs/ext4/ext4_jbd2.o
+  CHECK   fs/ext4/migrate.c
+  CC      fs/ext4/migrate.o
+  CHECK   fs/ext4/mballoc.c
+fs/ext4/mballoc.c:5018:9: warning: context imbalance in 'ext4_trim_extent' - unexpected unlock
+  CC      fs/ext4/mballoc.o
+  CHECK   fs/ext4/block_validity.c
+  CC      fs/ext4/block_validity.o
+  CHECK   fs/ext4/move_extent.c
+  CC      fs/ext4/move_extent.o
+  CHECK   fs/ext4/mmp.c
+  CC      fs/ext4/mmp.o
+  CHECK   fs/ext4/indirect.c
+  CC      fs/ext4/indirect.o
+  CHECK   fs/ext4/extents_status.c
+  CC      fs/ext4/extents_status.o
+  CHECK   fs/ext4/xattr.c
+  CC      fs/ext4/xattr.o
+  CHECK   fs/ext4/xattr_user.c
+  CC      fs/ext4/xattr_user.o
+  CHECK   fs/ext4/xattr_trusted.c
+  CC      fs/ext4/xattr_trusted.o
+  CHECK   fs/ext4/inline.c
+  CC      fs/ext4/inline.o
+  CHECK   fs/ext4/acl.c
+  CC      fs/ext4/acl.o
+  CHECK   fs/ext4/xattr_security.c
+  CC      fs/ext4/xattr_security.o
+  LD      fs/ext4/ext4.o
+  LD      fs/ext4/built-in.o
+  Building modules, stage 2.
+  MODPOST 0 modules
 
-Nf lbh pna frr, bayl bar jneavat jnf sbhaq urer, naq bqqf ner, vg vf n
-snyfr-cbfvgvir, nf V'z fher gubfr rkg4 qrirybcref xabj jung gurl ner
-qbvat jvgu gurve ybpxvat shapgvbaf, evtug?
+As you can see, only one warning was found here, and odds are, it is a
+false-positive, as I'm sure those ext4 developers know what they are
+doing with their locking functions, right?
 
-Naljnl gur gnfx guvf gvzr vf:
-  - Eha fcnefr ba gur qeviref/fgntvat/ qverpgbel, lrf, gung ubeevoyr
-    pbqr ntnva, fbeel.
-  - Svaq bar jneavat gung ybbxf vagrerfgvat.
-  - Jevgr n cngpu gung erfbyirf gur vffhr.
-  - Znxr fher gur cngpu vf pbeerpg ol ehaavat vg guebhtu
-    fpevcgf/purpxcngpu.cy
-  - Fhozvg gur pbqr gb gur znvagnvare bs gur qevire/fhoflfgrz, svaqvat
-    gur cebcre anzr naq znvyvat yvfgf gb fraq vg gb ol ehaavat gur gbby,
-    fpevcgf/trg_znvagnvare.cy ba lbhe cngpu.
-  - Jbex jvgu gur znvagnvare gb trg gur cngpu npprcgrq vagb gurve gerr.
-  - Fraq n jro yvax onpx gb zr bs lbhe cngpu va gur choyvp znvyvat yvfg
-    nepuvir (qba'g pp: zr ba gur cngpu, gung jvyy bayl pbashfr zr naq
-    rirelbar va gur xreary qrirybczrag pbzzhavgl) nf jryy nf n cbvagre
-    gb gur cngpu va gur znvagnvare'f choyvp tvg gerr.
+Anyway the task this time is:
+  - Run sparse on the drivers/staging/ directory, yes, that horrible
+    code again, sorry.
+  - Find one warning that looks interesting.
+  - Write a patch that resolves the issue.
+  - Make sure the patch is correct by running it through
+    scripts/checkpatch.pl
+  - Submit the code to the maintainer of the driver/subsystem, finding
+    the proper name and mailing lists to send it to by running the tool,
+    scripts/get_maintainer.pl on your patch.
+  - Work with the maintainer to get the patch accepted into their tree.
+  - Send a web link back to me of your patch in the public mailing list
+    archive (don't cc: me on the patch, that will only confuse me and
+    everyone in the kernel development community) as well as a pointer
+    to the patch in the maintainer's public git tree.
 
-Gung'f vg, zhpu yvxr gnfx 10 jnf, ohg guvf gvzr lbh ner svkvat ybtvpny
-vffhrf, abg whfg crfxl pbqvat fglyr vffhrf.  Lbh ner n erny qrirybcre
-abj, svkvat erny ohtf!
+That's it, much like task 10 was, but this time you are fixing logical
+issues, not just pesky coding style issues.  You are a real developer
+now, fixing real bugs!

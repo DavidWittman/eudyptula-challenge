@@ -1,69 +1,69 @@
 /*
- * gnfx19.p
- * Rhqlcghyn Punyyratr: Gnfx 19
+ * task19.c
+ * Eudyptula Challenge: Task 19
  *
- * N argsvygre xreary zbqhyr juvpu zbavgbef VCi4 genssvp sbe n fcrpvsvp
- * frdhrapr bs olgrf. Va guvf pnfr, vg'f zl Rhqlcghyn VQ.
+ * A netfilter kernel module which monitors IPv4 traffic for a specific
+ * sequence of bytes. In this case, it's my Eudyptula ID.
  *
  */
 
-#qrsvar ZBQHYR
-#qrsvar YVAHK
-#qrsvar __XREARY__
+#define MODULE
+#define LINUX
+#define __KERNEL__
 
-#vapyhqr <yvahk/xreary.u>
-#vapyhqr <yvahk/zbqhyr.u>
-#vapyhqr <yvahk/argsvygre.u>
-#vapyhqr <yvahk/argsvygre_vci4.u>
-#vapyhqr <yvahk/grkgfrnepu.u>
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/netfilter.h>
+#include <linux/netfilter_ipv4.h>
+#include <linux/textsearch.h>
 
-#qrsvar RHQLCGHYN_VQ "5q658q788pp9"
+#define EUDYPTULA_ID "5d658d788cc9"
 
-fgngvp fgehpg gf_pbasvt *pbas;
+static struct ts_config *conf;
 
-fgngvp hafvtarq vag ubbx_sa(pbafg fgehpg as_ubbx_bcf *bcf,
-			    fgehpg fx_ohss *fxo,
-			    pbafg fgehpg arg_qrivpr *va,
-			    pbafg fgehpg arg_qrivpr *bhg,
-			    vag (*bxsa)(fgehpg fx_ohss *))
+static unsigned int hook_fn(const struct nf_hook_ops *ops,
+			    struct sk_buff *skb,
+			    const struct net_device *in,
+			    const struct net_device *out,
+			    int (*okfn)(struct sk_buff *))
 {
-	fgehpg gf_fgngr fgngr;
+	struct ts_state state;
 
-	zrzfrg(&fgngr, 0, fvmrbs(fgehpg gf_fgngr));
+	memset(&state, 0, sizeof(struct ts_state));
 
-	vs (fxo_svaq_grkg(fxo, 0, fxo->yra, pbas, &fgngr) != HVAG_ZNK)
-		ce_qroht("%f", RHQLCGHYN_VQ);
+	if (skb_find_text(skb, 0, skb->len, conf, &state) != UINT_MAX)
+		pr_debug("%s", EUDYPTULA_ID);
 
-	erghea AS_NPPRCG;
+	return NF_ACCEPT;
 }
 
-fgngvp fgehpg as_ubbx_bcf asub = {
-	.ubbx = &ubbx_sa,
-	.bjare = GUVF_ZBQHYR,
-	.ubbxahz = AS_VARG_CER_EBHGVAT,
-	.cs = CS_VARG,
-	.cevbevgl = AS_VC_CEV_SVEFG
+static struct nf_hook_ops nfho = {
+	.hook = &hook_fn,
+	.owner = THIS_MODULE,
+	.hooknum = NF_INET_PRE_ROUTING,
+	.pf = PF_INET,
+	.priority = NF_IP_PRI_FIRST
 };
 
-vag vavg_zbqhyr(ibvq)
+int init_module(void)
 {
-	pbas = grkgfrnepu_cercner("xzc", RHQLCGHYN_VQ, fgeyra(RHQLCGHYN_VQ),
-				  TSC_XREARY, GF_NHGBYBNQ);
-	vs (VF_REE(pbas)) {
-		ce_qroht("[gnfx19] Reebe cercnevat grkgfrnepu");
-		erghea CGE_REE(pbas);
+	conf = textsearch_prepare("kmp", EUDYPTULA_ID, strlen(EUDYPTULA_ID),
+				  GFP_KERNEL, TS_AUTOLOAD);
+	if (IS_ERR(conf)) {
+		pr_debug("[task19] Error preparing textsearch");
+		return PTR_ERR(conf);
 	}
 
-	as_ertvfgre_ubbx(&asub);
-	erghea 0;
+	nf_register_hook(&nfho);
+	return 0;
 }
 
-ibvq pyrnahc_zbqhyr(ibvq)
+void cleanup_module(void)
 {
-	grkgfrnepu_qrfgebl(pbas);
-	as_haertvfgre_ubbx(&asub);
+	textsearch_destroy(conf);
+	nf_unregister_hook(&nfho);
 }
 
-ZBQHYR_YVPRAFR("TCY");
-ZBQHYR_NHGUBE("Qnivq Jvggzna");
-ZBQHYR_QRFPEVCGVBA("Rhqlcghyn Punyyratr Gnfx 19");
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("David Wittman");
+MODULE_DESCRIPTION("Eudyptula Challenge Task 19");

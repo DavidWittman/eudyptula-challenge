@@ -1,17 +1,17 @@
-# Gnfx fgehpgher
-Gur pber xreary gnfx fgehpgher vf qrpynerq va vapyhqr/yvahk/fpurq.u nf `fgehpg gnfx_fgehpg`.
+# Task structure
+The core kernel task structure is declared in include/linux/sched.h as `struct task_struct`.
 
-# Frg gnfx vq
+# Set task id
 
-Vg _ybbxf_ yvxr nyy arj gnfxf ner perngrq jvguva `qb_sbex` va xreary/sbex.p
+It _looks_ like all new tasks are created within `do_fork` in kernel/fork.c
 
-# Cebp
+# Proc
 
-Jr'yy nyfb arrq gb rqvg gur cebp sf, juvpu jvyy or haqre sf/cebp/onfr.p
-Cvq ragevrf ner nqqrq sbe gnfxf ng sf/cebp/onfr.p:2944
+We'll also need to edit the proc fs, which will be under fs/proc/base.c
+Pid entries are added for tasks at fs/proc/base.c:2944
 
-V guvax guvf jvyy jbex:
+I think this will work:
  
- > BAR("vq", F_VEHTB, cebp_cvq_vq),
+ > ONE("id", S_IRUGO, proc_pid_id),
 
- F_VEHTB = Nyy hfref pna ernq
+ S_IRUGO = All users can read

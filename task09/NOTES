@@ -1,85 +1,85 @@
-# Qbphzragngvba/xbowrpg.gkg
+# Documentation/kobject.txt
 
-uggcf://jjj.xreary.bet/qbp/Qbphzragngvba/xbowrpg.gkg
+https://www.kernel.org/doc/Documentation/kobject.txt
 
-Perngvat "fvzcyr" xbowrpgf
+Creating "simple" kobjects
 
-Fbzrgvzrf nyy gung n qrirybcre jnagf vf n jnl gb perngr n fvzcyr qverpgbel
-va gur flfsf uvrenepul, naq abg unir gb zrff jvgu gur jubyr pbzcyvpngvba bs
-xfrgf, fubj naq fgber shapgvbaf, naq bgure qrgnvyf.  Guvf vf gur bar
-rkprcgvba jurer n fvatyr xbowrpg fubhyq or perngrq.  Gb perngr fhpu na
-ragel, hfr gur shapgvba:
+Sometimes all that a developer wants is a way to create a simple directory
+in the sysfs hierarchy, and not have to mess with the whole complication of
+ksets, show and store functions, and other details.  This is the one
+exception where a single kobject should be created.  To create such an
+entry, use the function:
 
-    fgehpg xbowrpg *xbowrpg_perngr_naq_nqq(pune *anzr, fgehpg xbowrpg *cnerag);
+    struct kobject *kobject_create_and_add(char *name, struct kobject *parent);
 
-Guvf shapgvba jvyy perngr n xbowrpg naq cynpr vg va flfsf va gur ybpngvba
-haqrearngu gur fcrpvsvrq cnerag xbowrpg.  Gb perngr fvzcyr nggevohgrf
-nffbpvngrq jvgu guvf xbowrpg, hfr:
+This function will create a kobject and place it in sysfs in the location
+underneath the specified parent kobject.  To create simple attributes
+associated with this kobject, use:
 
-    vag flfsf_perngr_svyr(fgehpg xbowrpg *xbow, fgehpg nggevohgr *ngge);
-be
-    vag flfsf_perngr_tebhc(fgehpg xbowrpg *xbow, fgehpg nggevohgr_tebhc *tec);
+    int sysfs_create_file(struct kobject *kobj, struct attribute *attr);
+or
+    int sysfs_create_group(struct kobject *kobj, struct attribute_group *grp);
 
-Obgu glcrf bs nggevohgrf hfrq urer, jvgu n xbowrpg gung unf orra perngrq
-jvgu gur xbowrpg_perngr_naq_nqq(), pna or bs glcr xbow_nggevohgr, fb ab
-fcrpvny phfgbz nggevohgr vf arrqrq gb or perngrq.
+Both types of attributes used here, with a kobject that has been created
+with the kobject_create_and_add(), can be of type kobj_attribute, so no
+special custom attribute is needed to be created.
 
-Frr gur rknzcyr zbqhyr, fnzcyrf/xbowrpg/xbowrpg-rknzcyr.p sbe na
-vzcyrzragngvba bs n fvzcyr xbowrpg naq nggevohgrf.
+See the example module, samples/kobject/kobject-example.c for an
+implementation of a simple kobject and attributes.
 
 ---
 
-Bar vzcbegnag cbvag pnaabg or birefgngrq: rirel xbowrpg zhfg unir n
-eryrnfr() zrgubq, naq gur xbowrpg zhfg crefvfg (va n pbafvfgrag fgngr)
-hagvy gung zrgubq vf pnyyrq. Vs gurfr pbafgenvagf ner abg zrg, gur pbqr vf
-synjrq.  Abgr gung gur xreary jvyy jnea lbh vs lbh sbetrg gb cebivqr n
-eryrnfr() zrgubq.  Qb abg gel gb trg evq bs guvf jneavat ol cebivqvat na
-"rzcgl" eryrnfr shapgvba; lbh jvyy or zbpxrq zrepvyrffyl ol gur xbowrpg
-znvagnvare vs lbh nggrzcg guvf.
+One important point cannot be overstated: every kobject must have a
+release() method, and the kobject must persist (in a consistent state)
+until that method is called. If these constraints are not met, the code is
+flawed.  Note that the kernel will warn you if you forget to provide a
+release() method.  Do not try to get rid of this warning by providing an
+"empty" release function; you will be mocked mercilessly by the kobject
+maintainer if you attempt this.
 
-Vagrerfgvatyl, gur eryrnfr() zrgubq vf abg fgberq va gur xbowrpg vgfrys;
-vafgrnq, vg vf nffbpvngrq jvgu gur xglcr. Fb yrg hf vagebqhpr fgehpg
-xbow_glcr:
+Interestingly, the release() method is not stored in the kobject itself;
+instead, it is associated with the ktype. So let us introduce struct
+kobj_type:
 
-    fgehpg xbow_glcr {
-        ibvq (*eryrnfr)(fgehpg xbowrpg *xbow);
-        pbafg fgehpg flfsf_bcf *flfsf_bcf;
-        fgehpg nggevohgr **qrsnhyg_nggef;
-        pbafg fgehpg xbow_af_glcr_bcrengvbaf *(*puvyq_af_glcr)(fgehpg xbowrpg *xbow);
-        pbafg ibvq *(*anzrfcnpr)(fgehpg xbowrpg *xbow);
+    struct kobj_type {
+        void (*release)(struct kobject *kobj);
+        const struct sysfs_ops *sysfs_ops;
+        struct attribute **default_attrs;
+        const struct kobj_ns_type_operations *(*child_ns_type)(struct kobject *kobj);
+        const void *(*namespace)(struct kobject *kobj);
     };
 ---
 
-Nf n xfrg pbagnvaf n xbowrpg jvguva vg, vg fubhyq nyjnlf or qlanzvpnyyl
-perngrq naq arire qrpynerq fgngvpnyyl be ba gur fgnpx.  Gb perngr n arj
-xfrg hfr:
-  fgehpg xfrg *xfrg_perngr_naq_nqq(pbafg pune *anzr,
-                   fgehpg xfrg_hrirag_bcf *h,
-                   fgehpg xbowrpg *cnerag);
+As a kset contains a kobject within it, it should always be dynamically
+created and never declared statically or on the stack.  To create a new
+kset use:
+  struct kset *kset_create_and_add(const char *name,
+                   struct kset_uevent_ops *u,
+                   struct kobject *parent);
 
-Jura lbh ner svavfurq jvgu gur xfrg, pnyy:
-  ibvq xfrg_haertvfgre(fgehpg xfrg *xfrg);
-gb qrfgebl vg.  Guvf erzbirf gur xfrg sebz flfsf naq qrperzragf vgf ersrerapr
-pbhag.  Jura gur ersrerapr pbhag tbrf gb mreb, gur xfrg jvyy or eryrnfrq.
-Orpnhfr bgure ersreraprf gb gur xfrg znl fgvyy rkvfg, gur eryrnfr znl unccra
-nsgre xfrg_haertvfgre() ergheaf.
+When you are finished with the kset, call:
+  void kset_unregister(struct kset *kset);
+to destroy it.  This removes the kset from sysfs and decrements its reference
+count.  When the reference count goes to zero, the kset will be released.
+Because other references to the kset may still exist, the release may happen
+after kset_unregister() returns.
 
-Na rknzcyr bs hfvat n xfrg pna or frra va gur fnzcyrf/xbowrpg/xfrg-rknzcyr.p
-svyr va gur xreary gerr.
+An example of using a kset can be seen in the samples/kobject/kset-example.c
+file in the kernel tree.
 
-uggc://yke.serr-ryrpgebaf.pbz/fbhepr/fnzcyrf/xbowrpg/xbowrpg-rknzcyr.p
+http://lxr.free-electrons.com/source/samples/kobject/kobject-example.c
 
 ---
 
-Ernqvat/Jevgvat Nggevohgr Qngn
+Reading/Writing Attribute Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Gb ernq be jevgr nggevohgrf, fubj() be fgber() zrgubqf zhfg or
-fcrpvsvrq jura qrpynevat gur nggevohgr. Gur zrgubq glcrf fubhyq or nf
-fvzcyr nf gubfr qrsvarq sbe qrivpr nggevohgrf:
+To read or write attributes, show() or store() methods must be
+specified when declaring the attribute. The method types should be as
+simple as those defined for device attributes:
 
-ffvmr_g (*fubj)(fgehpg qrivpr *qri, fgehpg qrivpr_nggevohgr *ngge, pune *ohs);
-ffvmr_g (*fgber)(fgehpg qrivpr *qri, fgehpg qrivpr_nggevohgr *ngge,
-                 pbafg pune *ohs, fvmr_g pbhag);
+ssize_t (*show)(struct device *dev, struct device_attribute *attr, char *buf);
+ssize_t (*store)(struct device *dev, struct device_attribute *attr,
+                 const char *buf, size_t count);
 
-uggcf://jjj.xreary.bet/qbp/Qbphzragngvba/svyrflfgrzf/flfsf.gkg
+https://www.kernel.org/doc/Documentation/filesystems/sysfs.txt

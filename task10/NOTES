@@ -1,88 +1,88 @@
 ```
-# Svaq svyrf jvgu fglyvfgvp vffhrf
-sbe s va qeviref/fgntvat/**/*.p; qb
-    rpub; rpub "######## $s #######"
-    fpevcgf/purpxcngpu.cy --grefr -s $s
-    rpub; rpub; rpub; rpub
-qbar
+# Find files with stylistic issues
+for f in drivers/staging/**/*.c; do
+    echo; echo "######## $f #######"
+    scripts/checkpatch.pl --terse -f $f
+    echo; echo; echo; echo
+done
 ```
 
-Rnpu qevire va gur fgntvat nern fubhyq unir n GBQB, gurfr ner jbegu purpxvat.
+Each driver in the staging area should have a TODO, these are worth checking.
 
-TXU jebgr n terng thvqr urer:
+GKH wrote a great guide here:
 
-uggc://jjj.ghkenqne.pbz/pbagrag/arjovrf-thvqr-unpxvat-yvahk-xreary
+http://www.tuxradar.com/content/newbies-guide-hacking-linux-kernel
 
-# Zl svkrf
+# My fixes
 
-xf_jyna_arg.p:3404: JNEAVAT: cyrnfr, ab fcnprf ng gur fgneg bs n yvar
-xf_jyna_arg.p:3404: REEBE: gung bcra oenpr { fubhyq or ba gur cerivbhf yvar
+ks_wlan_net.c:3404: WARNING: please, no spaces at the start of a line
+ks_wlan_net.c:3404: ERROR: that open brace { should be on the previous line
 
-`znxr qeviref/fgntvat/xf7010` gb irevsl punatrf
+`make drivers/staging/ks7010` to verify changes
 
-# Rznvyvat gur cngpu
+# Emailing the patch
 
-``` onfu
-$ fpevcgf/trg_znvagnvare.cy qeviref/fgntvat/xf7010/
-Tert Xebnu-Unegzna <tertxu@yvahksbhaqngvba.bet> (fhccbegre:FGNTVAT FHOFLFGRZ,pbzzvg_fvtare:125/126=99%)
-Jbysenz Fnat <jfn@gur-qernzf.qr> (pbzzvg_fvtare:45/126=36%,nhguberq:40/126=32%)
-fnlyv xneavx <xneavxfnlyv1995@tznvy.pbz> (pbzzvg_fvtare:10/126=8%,nhguberq:10/126=8%)
-Fnovgun Trbetr <fnovgun.trbetr@tznvy.pbz> (pbzzvg_fvtare:9/126=7%,nhguberq:9/126=7%)
-qriry@qevireqri.bfhbfy.bet (bcra yvfg:FGNTVAT FHOFLFGRZ)
-yvahk-xreary@itre.xreary.bet (bcra yvfg)
+``` bash
+$ scripts/get_maintainer.pl drivers/staging/ks7010/
+Greg Kroah-Hartman <gregkh@linuxfoundation.org> (supporter:STAGING SUBSYSTEM,commit_signer:125/126=99%)
+Wolfram Sang <wsa@the-dreams.de> (commit_signer:45/126=36%,authored:40/126=32%)
+sayli karnik <karniksayli1995@gmail.com> (commit_signer:10/126=8%,authored:10/126=8%)
+Sabitha George <sabitha.george@gmail.com> (commit_signer:9/126=7%,authored:9/126=7%)
+devel@driverdev.osuosl.org (open list:STAGING SUBSYSTEM)
+linux-kernel@vger.kernel.org (open list)
 ```
 
-Rznvy gur pbzzvggref naq PP gur yvfgf. Lbh pna qb guvf nyy guebhtu tvg.
+Email the committers and CC the lists. You can do this all through git.
 
-``` onfu
-$ tvg fraq-rznvy \
-  --gb tertxu@yvahksbhaqngvba.bet \
-  --gb jfn@gur-qernzf.qr \
-  --gb xneavxfnlyv1995@tznvy.pbz \
-  --gb fnovgun.trbetr@tznvy.pbz \
-  --pp qriry@qevireqri.bfhbfy.bet \
-  --pp yvahk-xreary@itre.xreary.bet \
-  qeviref/fgntvat/xf7010/0001-fgntvat-xf7010-Svk-oenpr-fglyr-vffhr-va-xf_jyna_arg..cngpu
+``` bash
+$ git send-email \
+  --to gregkh@linuxfoundation.org \
+  --to wsa@the-dreams.de \
+  --to karniksayli1995@gmail.com \
+  --to sabitha.george@gmail.com \
+  --cc devel@driverdev.osuosl.org \
+  --cc linux-kernel@vger.kernel.org \
+  drivers/staging/ks7010/0001-staging-ks7010-Fix-brace-style-issue-in-ks_wlan_net..patch
 ```
 
-# Zl znvyvat yvfg zrffntr
+# My mailing list message
 
-uggcf://yxzy.bet/yxzy/2017/1/14/286
+https://lkml.org/lkml/2017/1/14/286
 
-# Zl pbzzvg
+# My commit
 
-Zl cngpu jnf npprcgrq vagb Tert XU'f fgntvat-grfgvat oenapu.
+My patch was accepted into Greg KH's staging-testing branch.
 
 ```
-$ tvg pybar -o fgntvat-grfgvat tvg://tvg.xreary.bet/cho/fpz/yvahk/xreary/tvg/tertxu/fgntvat.tvg --qrcgu 100
-$ tvg fubj 9n8936q62p1ps97o44o9rp48q54q90723n461814
-pbzzvg 9n8936q62p1ps97o44o9rp48q54q90723n461814
-Nhgube: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
-Qngr:   Fng Wna 14 17:26:07 2017 -0600
+$ git clone -b staging-testing git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git --depth 100
+$ git show 9a8936d62c1cf97b44b9ec48d54d90723a461814
+commit 9a8936d62c1cf97b44b9ec48d54d90723a461814
+Author: David Wittman <dwittman@gmail.com>
+Date:   Sat Jan 14 17:26:07 2017 -0600
 
-    fgntvat: xf7010: Svk oenpr fglyr vffhr va xf_jyna_arg.p
+    staging: ks7010: Fix brace style issue in ks_wlan_net.c
 
-    Guvf punatr svkrf n purpxcngpu reebe sbe "gung bcra oenpr { fubhyq or
-    ba gur cerivbhf yvar" nf jryy nf n eryngrq fcnpvat jneavat.
+    This change fixes a checkpatch error for "that open brace { should be
+    on the previous line" as well as a related spacing warning.
 
-    Fvtarq-bss-ol: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
-    Fvtarq-bss-ol: Tert Xebnu-Unegzna <tertxu@yvahksbhaqngvba.bet>
+    Signed-off-by: David Wittman <dwittman@gmail.com>
+    Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
-qvss --tvg n/qeviref/fgntvat/xf7010/xf_jyna_arg.p o/qeviref/fgntvat/xf7010/xf_jyna_arg.p
-vaqrk r5q04nq..8p55428 100644
---- n/qeviref/fgntvat/xf7010/xf_jyna_arg.p
-+++ o/qeviref/fgntvat/xf7010/xf_jyna_arg.p
-@@ -3400,8 +3400,9 @@ vag xf_jyna_pybfr(fgehpg arg_qrivpr *qri)
- /* Bcrengvbany cnenzrgref gung hfhnyyl ner abg punatrq. */
- /* Gvzr va wvssvrf orsber pbapyhqvat gur genafzvggre vf uhat. */
- #qrsvar GK_GVZRBHG  (3*UM)
- #-fgngvp pbafg hafvtarq pune qhzzl_nqqe[] =
- #-    { 0k00, 0k0o, 0kr3, 0k00, 0k00, 0k00 };
- #+fgngvp pbafg hafvtarq pune qhzzl_nqqe[] = {
- #+       0k00, 0k0o, 0kr3, 0k00, 0k00, 0k00
+diff --git a/drivers/staging/ks7010/ks_wlan_net.c b/drivers/staging/ks7010/ks_wlan_net.c
+index e5d04ad..8c55428 100644
+--- a/drivers/staging/ks7010/ks_wlan_net.c
++++ b/drivers/staging/ks7010/ks_wlan_net.c
+@@ -3400,8 +3400,9 @@ int ks_wlan_close(struct net_device *dev)
+ /* Operational parameters that usually are not changed. */
+ /* Time in jiffies before concluding the transmitter is hung. */
+ #define TX_TIMEOUT  (3*HZ)
+ #-static const unsigned char dummy_addr[] =
+ #-    { 0x00, 0x0b, 0xe3, 0x00, 0x00, 0x00 };
+ #+static const unsigned char dummy_addr[] = {
+ #+       0x00, 0x0b, 0xe3, 0x00, 0x00, 0x00
  #+};
  #
- #  fgngvp pbafg fgehpg arg_qrivpr_bcf xf_jyna_argqri_bcf = {
- #          .aqb_fgneg_kzvg = xf_jyna_fgneg_kzvg,
+ #  static const struct net_device_ops ks_wlan_netdev_ops = {
+ #          .ndo_start_xmit = ks_wlan_start_xmit,
  #
 ```

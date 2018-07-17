@@ -1,60 +1,60 @@
-# Ybpxvat
+# Locking
 
-3.1. Gjb Znva Glcrf bs Xreary Ybpxf: Fcvaybpxf naq Frzncuberf
+3.1. Two Main Types of Kernel Locks: Spinlocks and Semaphores
 
-Gurer ner gjb znva glcrf bs xreary ybpxf. Gur shaqnzragny glcr vf gur fcvaybpx (vapyhqr/nfz/fcvaybpx.u), juvpu vf n irel fvzcyr fvatyr-ubyqre ybpx: vs lbh pna'g trg gur fcvaybpx, lbh xrrc gelvat (fcvaavat) hagvy lbh pna. Fcvaybpxf ner irel fznyy naq snfg, naq pna or hfrq naljurer.
+There are two main types of kernel locks. The fundamental type is the spinlock (include/asm/spinlock.h), which is a very simple single-holder lock: if you can't get the spinlock, you keep trying (spinning) until you can. Spinlocks are very small and fast, and can be used anywhere.
 
-Gur frpbaq glcr vf n frzncuber (vapyhqr/nfz/frzncuber.u): vg pna unir zber guna bar ubyqre ng nal gvzr (gur ahzore qrpvqrq ng vavgvnyvmngvba gvzr), nygubhtu vg vf zbfg pbzzbayl hfrq nf n fvatyr-ubyqre ybpx (n zhgrk). Vs lbh pna'g trg n frzncuber, lbhe gnfx jvyy chg vgfrys ba gur dhrhr, naq or jbxra hc jura gur frzncuber vf eryrnfrq. Guvf zrnaf gur PCH jvyy qb fbzrguvat ryfr juvyr lbh ner jnvgvat, ohg gurer ner znal pnfrf jura lbh fvzcyl pna'g fyrrc (frr Puncgre 9), naq fb unir gb hfr n fcvaybpx vafgrnq.
+The second type is a semaphore (include/asm/semaphore.h): it can have more than one holder at any time (the number decided at initialization time), although it is most commonly used as a single-holder lock (a mutex). If you can't get a semaphore, your task will put itself on the queue, and be woken up when the semaphore is released. This means the CPU will do something else while you are waiting, but there are many cases when you simply can't sleep (see Chapter 9), and so have to use a spinlock instead.
 
-Fbhepr: uggcf://jjj.xreary.bet/cho/yvahk/xreary/crbcyr/ehfgl/xreary-ybpxvat/p93.ugzy
+Source: https://www.kernel.org/pub/linux/kernel/people/rusty/kernel-locking/c93.html
 
-# Qrohtsf
+# Debugfs
 
-Rknzcyr: uggcf://tvguho.pbz/punqirefnel/qrohtsf-ghgbevny/oybo/znfgre/rknzcyr1/qrohtsf_rknzcyr1.p
+Example: https://github.com/chadversary/debugfs-tutorial/blob/master/example1/debugfs_example1.c
 
-Qbphzragngvba: uggcf://jjj.xreary.bet/qbp/Qbphzragngvba/svyrflfgrzf/qrohtsf.gkg
+Documentation: https://www.kernel.org/doc/Documentation/filesystems/debugfs.txt
 
-# Wvssvrf
+# Jiffies
 
-> Gur tybony inevnoyr wvssvrf ubyqf gur ahzore bs gvpxf gung unir bppheerq fvapr gur flfgrz obbgrq. Ba obbg, gur xreary vavgvnyvmrf gur inevnoyr gb mreb, naq vg vf vaperzragrq ol bar qhevat rnpu gvzre vagreehcg. Guhf, orpnhfr gurer ner UM gvzre vagreehcgf va n frpbaq, gurer ner UM wvssvrf va n frpbaq. Gur flfgrz hcgvzr vf gurersber wvssvrf/UM frpbaqf.
+> The global variable jiffies holds the number of ticks that have occurred since the system booted. On boot, the kernel initializes the variable to zero, and it is incremented by one during each timer interrupt. Thus, because there are HZ timer interrupts in a second, there are HZ jiffies in a second. The system uptime is therefore jiffies/HZ seconds.
 
-Fbhepr: uggc://jjj.znxryvahk.arg/obbxf/yxq2/pu10yri1frp3
+Source: http://www.makelinux.net/books/lkd2/ch10lev1sec3
 
-# Fhozvggvat guvf gnfx
+# Submitting this task
 
-## Pbasvthevat tvg-fraq-rznvy sbe Tznvy
+## Configuring git-send-email for Gmail
 
-Zl Hohagh 14.04 ubfg qvq abg unir gur `tvg-rznvy` cyhtva vafgnyyrq, fb V unq gb qb gung svefg jvgu:
-
-```
-fhqb ncg-trg vafgnyy -l tvg-rznvy
-```
-
-Gura nqqvat gur sbyybjvat ragel gb zl `~/.tvgpbasvt`:
+My Ubuntu 14.04 host did not have the `git-email` plugin installed, so I had to do that first with:
 
 ```
-[fraqrznvy]
-    sebz = Lbhe Anzr <LBHERZNVY@tznvy.pbz>
-    fzgcfreire = fzgc.tznvy.pbz
-    fzgchfre = LBHERZNVY@tznvy.pbz
-    fzgcrapelcgvba = gyf
-    # Guvf pna or lbhe cnffjbeq be nccyvpngvba cnffjbeq vs lbh'er hfvat ZSN
-    # Bzvg guvf svryq gb cebzcg sbe gur cnffbeq
-    fzgccnff = LBHECNFFJBEQ
-    punvaercylgb = snyfr
-    fzgcfreirecbeg = 587
+sudo apt-get install -y git-email
+```
+
+Then adding the following entry to my `~/.gitconfig`:
+
+```
+[sendemail]
+    from = Your Name <YOUREMAIL@gmail.com>
+    smtpserver = smtp.gmail.com
+    smtpuser = YOUREMAIL@gmail.com
+    smtpencryption = tls
+    # This can be your password or application password if you're using MFA
+    # Omit this field to prompt for the passord
+    smtppass = YOURPASSWORD
+    chainreplyto = false
+    smtpserverport = 587
 ```
 
 ###
 
-## Fraqvat gur svefg rznvy
+## Sending the first email
 
-Fraq nf abezny jvgu `zhgg -n gnfx08.p -- yvggyr@rhqlcghyn-punyyratr.bet`. Erpbeq gur Zrffntr-Vq urnqre sbe gur cngpu rznvyf.
+Send as normal with `mutt -a task08.c -- little@eudyptula-challenge.org`. Record the Message-Id header for the patch emails.
 
-## Fraqvat gur cngpurf
+## Sending the patches
 
-Gur `-2` urer whfg zrnaf gb fraq gur ynfg gjb pbzzvgf nf cngpurf. `--guernq` naq `--punva-ercyl-gb` znl or gur qrsnhygf urer, ohg V jnagrq gb rkcyvpvgyl frg gurz.
+The `-2` here just means to send the last two commits as patches. `--thread` and `--chain-reply-to` may be the defaults here, but I wanted to explicitly set them.
 
 ```
-tvg fraq-rznvy -2 --naabgngr --guernq --punva-ercyl-gb --va-ercyl-gb --va-ercyl-gb "<20161013155101.TN23181@obk.rknzcyr.klm>" --gb yvggyr@rhqlcghyn-punyyratr.bet
+git send-email -2 --annotate --thread --chain-reply-to --in-reply-to --in-reply-to "<20161013155101.GA23181@box.example.xyz>" --to little@eudyptula-challenge.org
 ```

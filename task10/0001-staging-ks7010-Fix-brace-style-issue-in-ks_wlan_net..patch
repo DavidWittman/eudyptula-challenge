@@ -1,32 +1,32 @@
-Sebz r141sps509n035473n289p77n9s4rnq7268787rn Zba Frc 17 00:00:00 2001
-Sebz: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
-Qngr: Fng, 14 Wna 2017 17:08:23 -0600
-Fhowrpg: [CNGPU] fgntvat: xf7010: Svk oenpr fglyr vffhr va xf_jyna_arg.p
+From e141fcf509a035473a289c77a9f4ead7268787ea Mon Sep 17 00:00:00 2001
+From: David Wittman <dwittman@gmail.com>
+Date: Sat, 14 Jan 2017 17:08:23 -0600
+Subject: [PATCH] staging: ks7010: Fix brace style issue in ks_wlan_net.c
 
-Guvf punatr svkrf n purpxcngpu reebe sbe "gung bcra oenpr { fubhyq or
-ba gur cerivbhf yvar" nf jryy nf n eryngrq fcnpvat jneavat.
+This change fixes a checkpatch error for "that open brace { should be
+on the previous line" as well as a related spacing warning.
 
-Fvtarq-bss-ol: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
+Signed-off-by: David Wittman <dwittman@gmail.com>
 ---
- qeviref/fgntvat/xf7010/xf_jyna_arg.p | 5 +++--
- 1 svyr punatrq, 3 vafregvbaf(+), 2 qryrgvbaf(-)
+ drivers/staging/ks7010/ks_wlan_net.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-qvss --tvg n/qeviref/fgntvat/xf7010/xf_jyna_arg.p o/qeviref/fgntvat/xf7010/xf_jyna_arg.p
-vaqrk r5q04nq..8p55428 100644
---- n/qeviref/fgntvat/xf7010/xf_jyna_arg.p
-+++ o/qeviref/fgntvat/xf7010/xf_jyna_arg.p
-@@ -3400,8 +3400,9 @@ vag xf_jyna_pybfr(fgehpg arg_qrivpr *qri)
- /* Bcrengvbany cnenzrgref gung hfhnyyl ner abg punatrq. */
- /* Gvzr va wvssvrf orsber pbapyhqvat gur genafzvggre vf uhat. */
- #qrsvar GK_GVZRBHG  (3*UM)
--fgngvp pbafg hafvtarq pune qhzzl_nqqe[] =
--    { 0k00, 0k0o, 0kr3, 0k00, 0k00, 0k00 };
-+fgngvp pbafg hafvtarq pune qhzzl_nqqe[] = {
-+	0k00, 0k0o, 0kr3, 0k00, 0k00, 0k00
+diff --git a/drivers/staging/ks7010/ks_wlan_net.c b/drivers/staging/ks7010/ks_wlan_net.c
+index e5d04ad..8c55428 100644
+--- a/drivers/staging/ks7010/ks_wlan_net.c
++++ b/drivers/staging/ks7010/ks_wlan_net.c
+@@ -3400,8 +3400,9 @@ int ks_wlan_close(struct net_device *dev)
+ /* Operational parameters that usually are not changed. */
+ /* Time in jiffies before concluding the transmitter is hung. */
+ #define TX_TIMEOUT  (3*HZ)
+-static const unsigned char dummy_addr[] =
+-    { 0x00, 0x0b, 0xe3, 0x00, 0x00, 0x00 };
++static const unsigned char dummy_addr[] = {
++	0x00, 0x0b, 0xe3, 0x00, 0x00, 0x00
 +};
  
- fgngvp pbafg fgehpg arg_qrivpr_bcf xf_jyna_argqri_bcf = {
- 	.aqb_fgneg_kzvg = xf_jyna_fgneg_kzvg,
+ static const struct net_device_ops ks_wlan_netdev_ops = {
+ 	.ndo_start_xmit = ks_wlan_start_xmit,
 -- 
 1.9.1
 

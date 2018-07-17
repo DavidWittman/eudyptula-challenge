@@ -1,40 +1,40 @@
-#vapyhqr <yvahk/zbqhyr.u>
-#vapyhqr <yvahk/xreary.u>
-#vapyhqr <nfz/qrynl.u>
-#vapyhqr <yvahk/fyno.u>
+#include <linux/module.h>
+#include <linux/kernel.h>
+#include <asm/delay.h>
+#include <linux/slab.h>
 
-vag qb_jbex( vag * zl_vag, vag erginy ) {
-	vag k;
-	vag l=*zl_vag;
-	vag m;
+int do_work( int * my_int, int retval ) {
+	int x;
+	int y=*my_int;
+	int z;
 	
-	sbe(k=0;k< * zl_vag;++k) {
-		hqrynl(10);
+	for(x=0;x< * my_int;++x) {
+		udelay(10);
 	}
 
-	vs (l < 10 )
-		// Gung jnf n ybat fyrrc, gryy hfrefcnpr nobhg vg
-		cevagx("Jr fyrcg n ybat gvzr!");
+	if (y < 10 )
+		// That was a long sleep, tell userspace about it
+		printk("We slept a long time!");
 
-	m = k * l;
+	z = x * y;
 
-	erghea m;
+	return z;
 }
 
-vag
-zl_vavg (ibvq)
+int
+my_init (void)
 {
-	vag k = 10;
+	int x = 10;
 
-	k = qb_jbex(&k, k);
+	x = do_work(&x, x);
 
-	erghea k;
+	return x;
 }
 
-ibvq zl_rkvg( ibvq )
+void my_exit( void )
 {
-	erghea;
+	return;
 }
 
-zbqhyr_vavg(zl_vavg);
-zbqhyr_rkvg(zl_rkvg);
+module_init(my_init);
+module_exit(my_exit);

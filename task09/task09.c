@@ -1,122 +1,122 @@
 /*
- * gnfx09.p
- * Rhqlcghyn Punyyratr: Gnfx 09
+ * task09.c
+ * Eudyptula Challenge: Task 09
  *
- * Guvf vf n xreary zbqhyr juvpu perngrf ragevrf va flfsf
+ * This is a kernel module which creates entries in sysfs
  *
  */
 
-#qrsvar ZBQHYR
-#qrsvar YVAHK
-#qrsvar __XREARY__
+#define MODULE
+#define LINUX
+#define __KERNEL__
 
-#vapyhqr <yvahk/xreary.u>
-#vapyhqr <yvahk/zbqhyr.u>
-#vapyhqr <yvahk/sf.u>
-#vapyhqr <yvahk/fgevat.u>
-#vapyhqr <yvahk/wvssvrf.u>
-#vapyhqr <yvahk/fcvaybpx.u>
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/fs.h>
+#include <linux/string.h>
+#include <linux/jiffies.h>
+#include <linux/spinlock.h>
 
-fgngvp ffvmr_g vq_fubj(fgehpg xbowrpg *, fgehpg xbow_nggevohgr *, pune *);
-fgngvp ffvmr_g vq_fgber(fgehpg xbowrpg *, fgehpg xbow_nggevohgr *,
-		pbafg pune *, fvmr_g);
-fgngvp ffvmr_g wvssvrf_fubj(fgehpg xbowrpg *, fgehpg xbow_nggevohgr *, pune *);
-fgngvp ffvmr_g sbb_fubj(fgehpg xbowrpg *, fgehpg xbow_nggevohgr *, pune *);
-fgngvp ffvmr_g sbb_fgber(fgehpg xbowrpg *, fgehpg xbow_nggevohgr *,
-		pbafg pune *, fvmr_g);
+static ssize_t id_show(struct kobject *, struct kobj_attribute *, char *);
+static ssize_t id_store(struct kobject *, struct kobj_attribute *,
+		const char *, size_t);
+static ssize_t jiffies_show(struct kobject *, struct kobj_attribute *, char *);
+static ssize_t foo_show(struct kobject *, struct kobj_attribute *, char *);
+static ssize_t foo_store(struct kobject *, struct kobj_attribute *,
+		const char *, size_t);
 
-fgngvp pune *vq = "5q658q788pp9";
+static char *id = "5d658d788cc9";
 
-fgngvp QRSVAR_EJYBPX(sbb_ybpx);
-fgngvp pune sbb_zft[CNTR_FVMR];
+static DEFINE_RWLOCK(foo_lock);
+static char foo_msg[PAGE_SIZE];
 
-fgngvp fgehpg xbow_nggevohgr vq_nggevohgr = __NGGE_EJ(vq);
-fgngvp fgehpg xbow_nggevohgr wvssvrf_nggevohgr = __NGGE_EB(wvssvrf);
-fgngvp fgehpg xbow_nggevohgr sbb_nggevohgr = __NGGE_EJ(sbb);
+static struct kobj_attribute id_attribute = __ATTR_RW(id);
+static struct kobj_attribute jiffies_attribute = __ATTR_RO(jiffies);
+static struct kobj_attribute foo_attribute = __ATTR_RW(foo);
 
-fgngvp fgehpg nggevohgr *nggef[] = {
-	&vq_nggevohgr.ngge,
-	&wvssvrf_nggevohgr.ngge,
-	&sbb_nggevohgr.ngge,
-	AHYY,	/* arrq gb AHYY grezvangr nggevohgr yvfg */
+static struct attribute *attrs[] = {
+	&id_attribute.attr,
+	&jiffies_attribute.attr,
+	&foo_attribute.attr,
+	NULL,	/* need to NULL terminate attribute list */
 };
 
-fgngvp fgehpg nggevohgr_tebhc ngge_tebhc = {
-	.nggef = nggef,
+static struct attribute_group attr_group = {
+	.attrs = attrs,
 };
 
-fgngvp fgehpg xbowrpg *qve;
+static struct kobject *dir;
 
-fgngvp ffvmr_g vq_fubj(fgehpg xbowrpg *xbow, fgehpg xbow_nggevohgr *ngge,
-			pune *ohs)
+static ssize_t id_show(struct kobject *kobj, struct kobj_attribute *attr,
+			char *buf)
 {
-	erghea fcevags(ohs, "%f\a", vq);
+	return sprintf(buf, "%s\n", id);
 }
 
-fgngvp ffvmr_g vq_fgber(fgehpg xbowrpg *xbow, fgehpg xbow_nggevohgr *ngge,
-			pbafg pune *ohs, fvmr_g pbhag)
+static ssize_t id_store(struct kobject *kobj, struct kobj_attribute *attr,
+			const char *buf, size_t count)
 {
-	vs (pbhag - 1 == fgeyra(vq) && !fgeapzc(ohs, vq, fgeyra(vq)))
-		erghea pbhag;
+	if (count - 1 == strlen(id) && !strncmp(buf, id, strlen(id)))
+		return count;
 
-	erghea -RVAINY;
+	return -EINVAL;
 }
 
-fgngvp ffvmr_g wvssvrf_fubj(fgehpg xbowrpg *xbow, fgehpg xbow_nggevohgr *ngge,
-			pune *ohs)
+static ssize_t jiffies_show(struct kobject *kobj, struct kobj_attribute *attr,
+			char *buf)
 {
-	erghea fcevags(ohs, "%yh\a", wvssvrf);
+	return sprintf(buf, "%lu\n", jiffies);
 }
 
-fgngvp ffvmr_g sbb_fubj(fgehpg xbowrpg *xbow, fgehpg xbow_nggevohgr *ngge,
-			pune *ohs)
+static ssize_t foo_show(struct kobject *kobj, struct kobj_attribute *attr,
+			char *buf)
 {
-	vag erg;
+	int ret;
 
-	ernq_ybpx(&sbb_ybpx);
-	erg = fcevags(ohs, "%f", sbb_zft);
-	ernq_haybpx(&sbb_ybpx);
+	read_lock(&foo_lock);
+	ret = sprintf(buf, "%s", foo_msg);
+	read_unlock(&foo_lock);
 
-	erghea erg;
+	return ret;
 }
 
-fgngvp ffvmr_g sbb_fgber(fgehpg xbowrpg *xbow, fgehpg xbow_nggevohgr *ngge,
-			pbafg pune *ohs, fvmr_g pbhag)
+static ssize_t foo_store(struct kobject *kobj, struct kobj_attribute *attr,
+			const char *buf, size_t count)
 {
-	vag erg;
+	int ret;
 
-	jevgr_ybpx(&sbb_ybpx);
-	erg = facevags(sbb_zft, fvmrbs(sbb_zft), "%.*f",
-			(vag)zva(pbhag, fvmrbs(sbb_zft) - 1), ohs);
-	vs (erg > 0)
-		sbb_zft[erg] = '\0';
-	jevgr_haybpx(&sbb_ybpx);
+	write_lock(&foo_lock);
+	ret = snprintf(foo_msg, sizeof(foo_msg), "%.*s",
+			(int)min(count, sizeof(foo_msg) - 1), buf);
+	if (ret > 0)
+		foo_msg[ret] = '\0';
+	write_unlock(&foo_lock);
 
-	erghea erg;
+	return ret;
 }
 
-vag vavg_zbqhyr(ibvq)
+int init_module(void)
 {
-	vag erginy;
+	int retval;
 
-	qve = xbowrpg_perngr_naq_nqq("rhqlcghyn", xreary_xbow);
-	vs (!qve) {
-		ce_qroht("gnfx09: snvyrq gb perngr /flf/xreary/rhqlcghyn\a");
-		erghea -RABZRZ;
+	dir = kobject_create_and_add("eudyptula", kernel_kobj);
+	if (!dir) {
+		pr_debug("task09: failed to create /sys/kernel/eudyptula\n");
+		return -ENOMEM;
 	}
 
-	erginy = flfsf_perngr_tebhc(qve, &ngge_tebhc);
-	vs (erginy)
-		xbowrpg_chg(qve);
+	retval = sysfs_create_group(dir, &attr_group);
+	if (retval)
+		kobject_put(dir);
 
-	erghea erginy;
+	return retval;
 }
 
-ibvq pyrnahc_zbqhyr(ibvq)
+void cleanup_module(void)
 {
-	xbowrpg_chg(qve);
+	kobject_put(dir);
 }
 
-ZBQHYR_YVPRAFR("TCY");
-ZBQHYR_NHGUBE("Qnivq Jvggzna");
-ZBQHYR_QRFPEVCGVBA("Xreary zbqhyr juvpu perngrf /flf/xreary/rhqlcghyn");
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("David Wittman");
+MODULE_DESCRIPTION("Kernel module which creates /sys/kernel/eudyptula");

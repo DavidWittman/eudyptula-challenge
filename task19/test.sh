@@ -1,10 +1,10 @@
-#!/ova/onfu
+#!/bin/bash
 
-frg -k
+set -x
 
-fhqb vafzbq /intenag/gnfx19.xb
-fyrrc 1
-clguba -p 'vzcbeg fzgcyvo; f = fzgcyvo.FZGC("127.0.0.1"); f.fraqznvy("intenag@ybpnyubfg", "intenag@ybpnyubfg", "Fhowrpg: 5q658q788pp9"); f.dhvg()'
+sudo insmod /vagrant/task19.ko
+sleep 1
+python -c 'import smtplib; s = smtplib.SMTP("127.0.0.1"); s.sendmail("vagrant@localhost", "vagrant@localhost", "Subject: 5d658d788cc9"); s.quit()'
 
-# ABGR: Fbzrgvzrf vg jvyy ohssre gur svefg ragel gb qzrft
-qzrft | gnvy
+# NOTE: Sometimes it will buffer the first entry to dmesg
+dmesg | tail

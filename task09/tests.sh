@@ -1,41 +1,41 @@
-#!/hfe/ova/rai onfu
+#!/usr/bin/env bash
 
-frg -k
+set -x
 
-qrpyner SBB=/flf/xreary/rhqlcghyn/sbb
+declare FOO=/sys/kernel/eudyptula/foo
 
-fhqb vafzbq /intenag/gnfx09.xb
+sudo insmod /vagrant/task09.ko
 
-# Ernq/jevgr gb vq svyr
-png /flf/xreary/rhqlcghyn/vq; rpub
-rpub $(png /flf/xreary/rhqlcghyn/vq) | fhqb grr /flf/xreary/rhqlcghyn/vq
-rpub $?
+# Read/write to id file
+cat /sys/kernel/eudyptula/id; echo
+echo $(cat /sys/kernel/eudyptula/id) | sudo tee /sys/kernel/eudyptula/id
+echo $?
 
-# Fubj wvssvrf
-png /flf/xreary/rhqlcghyn/wvssvrf
-fyrrc 1
-png /flf/xreary/rhqlcghyn/wvssvrf
+# Show jiffies
+cat /sys/kernel/eudyptula/jiffies
+sleep 1
+cat /sys/kernel/eudyptula/jiffies
 
-# Grfg sbb svyr
-## Abezny hfref pna ernq, abg jevgr
-png $SBB
-rpub "nopq" > $SBB
+# Test foo file
+## Normal users can read, not write
+cat $FOO
+echo "abcd" > $FOO
 
-## Ebbg pna jevgr
-rpub "nopq" | fhqb grr $SBB
-png $SBB
-rpub "klm" | fhqb grr $SBB
-png $SBB
+## Root can write
+echo "abcd" | sudo tee $FOO
+cat $FOO
+echo "xyz" | sudo tee $FOO
+cat $FOO
 
-## Jevgr hc gb bar cntr fvmr
-clguba -p 'vzcbeg flf; flf.fgqbhg.jevgr("N" * 4095)' | fhqb grr $SBB
-png $SBB; rpub
-## Jevgr bire bar cntr fvmr
-## flfsf bayl nyybjf jevgrf bs CNTR_FVMR, gur erfhyg urer jvyy or n 
-## yratgu bs yra(ohs) % CNTR_FVMR
-clguba -p 'vzcbeg flf; flf.fgqbhg.jevgr("O" * 5096)' | fhqb grr $SBB
-[[ $(png /flf/xreary/rhqlcghyn/sbb | jp -p) -rd 1000 ]] && rpub "CNFF"
+## Write up to one page size
+python -c 'import sys; sys.stdout.write("A" * 4095)' | sudo tee $FOO
+cat $FOO; echo
+## Write over one page size
+## sysfs only allows writes of PAGE_SIZE, the result here will be a 
+## length of len(buf) % PAGE_SIZE
+python -c 'import sys; sys.stdout.write("B" * 5096)' | sudo tee $FOO
+[[ $(cat /sys/kernel/eudyptula/foo | wc -c) -eq 1000 ]] && echo "PASS"
 
-# Pyrna hc nyy rhqlcghyn qrohtsf svyrf
-fhqb ezzbq gnfx09.xb
-yf -y /flf/xreary/rhqlcghyn
+# Clean up all eudyptula debugfs files
+sudo rmmod task09.ko
+ls -l /sys/kernel/eudyptula

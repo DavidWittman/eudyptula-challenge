@@ -1,63 +1,63 @@
-Guvf vf Gnfx 08 bs gur Rhqlcghyn Punyyratr
+This is Task 08 of the Eudyptula Challenge
 ------------------------------------------
 
-Jr jvyy pbzr onpx gb gur yvahk-arkg xreary va n yngre rkrepvfr, fb qba'g
-tb naq qryrgr gung qverpgbel, lbh'yy jnag vg nebhaq.  Ohg rabhtu bs
-ohvyqvat xrearyf, yrg'f jevgr zber pbqr!
+We will come back to the linux-next kernel in a later exercise, so don't
+go and delete that directory, you'll want it around.  But enough of
+building kernels, let's write more code!
 
-Guvf gnfx vf zhpu yvxr gur 06 gnfx jvgu gur zvfp qrivpr, ohg guvf gvzr
-jr ner tbvat gb sbphf ba nabgure hfre/xreary vagresnpr, qrohtsf.  Vg vf
-ehzberq gung gur perngbe bs qrohtsf fnvq gung gurer vf bayl bar ehyr sbe
-qrohtsf hfr": "Gurer ner ab ehyrf jura hfvat qrohtsf."  Fb yrg'f gnxr
-gurz hc ba gung bssre naq frr ubj gb hfr vg.
+This task is much like the 06 task with the misc device, but this time
+we are going to focus on another user/kernel interface, debugfs.  It is
+rumored that the creator of debugfs said that there is only one rule for
+debugfs use": "There are no rules when using debugfs."  So let's take
+them up on that offer and see how to use it.
 
-qrohtsf fubhyq or zbhagrq ol lbhe qvfgeb va /flf/xreary/qroht/.  Vs vg
-vfa'g, gura lbh pna zbhag vg jvgu gur yvar:
-        zbhag -g qrohtsf abar /flf/xreary/qroht/
+debugfs should be mounted by your distro in /sys/kernel/debug/.  If it
+isn't, then you can mount it with the line:
+        mount -t debugfs none /sys/kernel/debug/
 
-Znxr fher vg vf ranoyrq va lbhe xreary, jvgu gur PBASVT_QROHT_SF bcgvba,
-lbh jvyy arrq vg sbe guvf gnfx.
+Make sure it is enabled in your kernel, with the CONFIG_DEBUG_FS option,
+you will need it for this task.
 
-Gur gnfxf, va fcrpvsvpf ner:
+The tasks, in specifics are:
 
-  - Gnxr gur xreary zbqhyr lbh jebgr sbe gnfx 01, naq zbqvsl vg gb
-    perngr n qrohtsf fhoqverpgbel pnyyrq "rhqlcghyn".  Va gung
-    qverpgbel, perngr gur iveghny svyr pnyyrq "vq".
-  - Guvf "vq" svyr, bcrengrf whfg yvxr vg qvq sbe rknzcyr 06, naq hfrf
-    gur fnzr ybtvp gurer, gur svyr vf gb or ernqnoyr naq jevgnoyr ol nal
-    hfre.
-  - Fhozvg guvf gnfx nf gur svefg rznvy.
-  - Onfr lbhe jbex ba guvf fhozvffvba, naq perngr n arj qrohtsf svyr
-    pnyyrq "wvssvrf".
-  - Guvf "wvssvrf" svyr vf gb or ernq-bayl ol nal hfre, naq jura ernq,
-    fubhyq erghea gur pheerag inyhr bs gur wvssvrf xreary gvzre.
-  - Fhozvg guvf erfhyg nf n cngpu ntnvafg gur svefg rznvy.
-  - Onfr lbhe jbex ntnva ba gung fhozvffvba, naq perngr n svany qrohtsf
-    svyr pnyyrq "sbb".
-  - Gur svyr "sbb" arrqf gb or jevgnoyr bayl ol ebbg, ohg ernqnoyr ol
-    nalbar.  Jura jevgvat gb vg, gur inyhr zhfg or fgberq, hc gb bar
-    cntr bs qngn.  Jura ernq, juvpu pna or qbar ol nal hfre, gur inyhr
-    gung vf fgberq va vg zhfg or erghearq.  Cebcreyl unaqyr gur snpg
-    gung fbzrbar pbhyq or ernqvat sebz gur svyr juvyr fbzrbar ryfr vf
-    jevgvat gb vg (bu, n ybpxvat uvag!)
-  - Fhozvg guvf erfhyg nf n cngpu ntnvafg gur frpbaq rznvy.
-  - Jura gur zbqhyr vf haybnqrq, nyy bs gur qrohtsf svyrf ner pyrnarq
-    hc, naq nal zrzbel nyybpngrq vf serrq, sbe nyy fhozvffvbaf.
-  - Cebivqr fbzr "cebbs" guvf nyy jbexf va gur svefg rznvy.
+  - Take the kernel module you wrote for task 01, and modify it to
+    create a debugfs subdirectory called "eudyptula".  In that
+    directory, create the virtual file called "id".
+  - This "id" file, operates just like it did for example 06, and uses
+    the same logic there, the file is to be readable and writable by any
+    user.
+  - Submit this task as the first email.
+  - Base your work on this submission, and create a new debugfs file
+    called "jiffies".
+  - This "jiffies" file is to be read-only by any user, and when read,
+    should return the current value of the jiffies kernel timer.
+  - Submit this result as a patch against the first email.
+  - Base your work again on that submission, and create a final debugfs
+    file called "foo".
+  - The file "foo" needs to be writable only by root, but readable by
+    anyone.  When writing to it, the value must be stored, up to one
+    page of data.  When read, which can be done by any user, the value
+    that is stored in it must be returned.  Properly handle the fact
+    that someone could be reading from the file while someone else is
+    writing to it (oh, a locking hint!)
+  - Submit this result as a patch against the second email.
+  - When the module is unloaded, all of the debugfs files are cleaned
+    up, and any memory allocated is freed, for all submissions.
+  - Provide some "proof" this all works in the first email.
 
-Ntnva, lbh ner hfvat lbhe vq va gur pbqr, fb lbh xabj jung vg vf ol abj,
-ab arrq gb ercrng vg ntnva.
+Again, you are using your id in the code, so you know what it is by now,
+no need to repeat it again.
 
-Fb, sbe guvf gnfx, V rkcrpg gb frr 3 rznvyf, nyy "yvaxrq" fbzrubj, va zl
-znvyobk.  Gurl fubhyq ybbx fbzrguvat yvxr guvf:
+So, for this task, I expect to see 3 emails, all "linked" somehow, in my
+mailbox.  They should look something like this:
 
-        [5q658q788pp9] Gnfx 08 erfhygf
-        ├─>[5q658q788pp9] [CNGPU 01/02] Gnfx 08: nqq wvssvrf svyr
-        └─>[5q658q788pp9] [CNGPU 02/02] Gnfx 08: nqq sbb svyr
+        [5d658d788cc9] Task 08 results
+        ├─>[5d658d788cc9] [PATCH 01/02] Task 08: add jiffies file
+        └─>[5d658d788cc9] [PATCH 02/02] Task 08: add foo file
 
-Be, rira orggre:
-        [5q658q788pp9] Gnfx 08 erfhygf
-        └─>[5q658q788pp9] [CNGPU 01/02] Gnfx 08: nqq wvssvrf svyr
-          └─>[5q658q788pp9] [CNGPU 02/02] Gnfx 08: nqq sbb svyr
+Or, even better:
+        [5d658d788cc9] Task 08 results
+        └─>[5d658d788cc9] [PATCH 01/02] Task 08: add jiffies file
+          └─>[5d658d788cc9] [PATCH 02/02] Task 08: add foo file
 
-Uvag, ybbx ng hfvat 'tvg fraq-rznvy' nf n jnl gb fraq gurfr svyrf bhg.
+Hint, look at using 'git send-email' as a way to send these files out.

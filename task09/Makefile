@@ -1,13 +1,13 @@
-bow-z += gnfx09.b
-PSYNTF_gnfx09.b := -QQROHT
+obj-m += task09.o
+CFLAGS_task09.o := -DDEBUG
 
-XQVE ?= /yvo/zbqhyrf/$(furyy hanzr -e)/ohvyq
+KDIR ?= /lib/modules/$(shell uname -r)/build
 
-nyy:
-	znxr -P $(XQVE) Z=$(CJQ) zbqhyrf
+all:
+	make -C $(KDIR) M=$(PWD) modules
 
-pyrna:
-	znxr -P $(XQVE) Z=$(CJQ) pyrna
+clean:
+	make -C $(KDIR) M=$(PWD) clean
 
-yvag:
-	../fpevcgf/purpxcngpu.cy --ab-gerr -s gnfx09.p
+lint:
+	../scripts/checkpatch.pl --no-tree -f task09.c

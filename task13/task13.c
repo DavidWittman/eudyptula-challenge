@@ -1,118 +1,118 @@
 /*
- * Rhqlcghyn Punyyratr: Gnfx 13
+ * Eudyptula Challenge: Task 13
  *
- * Perngr n yvaxrq yvfg hfvat gur xreary'f yvfg vzcyrzragngvba,
- * ohg hfr gur fyno pnpur vafgrnq.
+ * Create a linked list using the kernel's list implementation,
+ * but use the slab cache instead.
  *
  */
 
-#qrsvar ZBQHYR
-#qrsvar YVAHK
-#qrsvar __XREARY__
+#define MODULE
+#define LINUX
+#define __KERNEL__
 
-#vapyhqr <yvahk/zbqhyr.u>
-#vapyhqr <yvahk/xreary.u>
-#vapyhqr <yvahk/yvfg.u>
-#vapyhqr <yvahk/fyno.u>
-#vapyhqr <yvahk/fgevat.u>
+#include <linux/module.h>
+#include <linux/kernel.h>
+#include <linux/list.h>
+#include <linux/slab.h>
+#include <linux/string.h>
 
-ZBQHYR_YVPRAFR("TCY");
-ZBQHYR_NHGUBE("Qnivq Jvggzna");
-ZBQHYR_QRFPEVCGVBA("Rhqlcghyn Punyyratr Gnfx 13");
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("David Wittman");
+MODULE_DESCRIPTION("Eudyptula Challenge Task 13");
 
-#qrsvar VQRAGVGL_ANZR_YRA 20
+#define IDENTITY_NAME_LEN 20
 
-fgngvp fgehpg xzrz_pnpur *vqragvgl_pnpur;
+static struct kmem_cache *identity_cache;
 
-fgehpg vqragvgl {
-	pune anzr[VQRAGVGL_ANZR_YRA];
-	vag vq;
-	obby ohfl;
-	fgehpg yvfg_urnq yvfg;
+struct identity {
+	char name[IDENTITY_NAME_LEN];
+	int id;
+	bool busy;
+	struct list_head list;
 };
 
-fgngvp YVFG_URNQ(vqragvgl_yvfg);
+static LIST_HEAD(identity_list);
 
-fgngvp vag vqragvgl_perngr(pune *anzr, vag vq)
+static int identity_create(char *name, int id)
 {
-	fgehpg vqragvgl *v = xzrz_pnpur_nyybp(vqragvgl_pnpur, TSC_XREARY);
+	struct identity *i = kmem_cache_alloc(identity_cache, GFP_KERNEL);
 
-	vs (!v)
-		erghea -RABZRZ;
+	if (!i)
+		return -ENOMEM;
 
-	fgeapcl(v->anzr, anzr, VQRAGVGL_ANZR_YRA);
-	v->anzr[VQRAGVGL_ANZR_YRA-1] = '\0';
-	v->vq = vq;
-	v->ohfl = snyfr;
+	strncpy(i->name, name, IDENTITY_NAME_LEN);
+	i->name[IDENTITY_NAME_LEN-1] = '\0';
+	i->id = id;
+	i->busy = false;
 
-	yvfg_nqq(&v->yvfg, &vqragvgl_yvfg);
+	list_add(&i->list, &identity_list);
 
-	erghea 0;
+	return 0;
 }
 
-fgngvp fgehpg vqragvgl *vqragvgl_svaq(vag vq)
+static struct identity *identity_find(int id)
 {
-	fgehpg vqragvgl *v = AHYY;
+	struct identity *i = NULL;
 
-	yvfg_sbe_rnpu_ragel(v, &vqragvgl_yvfg, yvfg)
-		vs (v->vq == vq)
-			erghea v;
+	list_for_each_entry(i, &identity_list, list)
+		if (i->id == id)
+			return i;
 
-	erghea AHYY;
+	return NULL;
 }
 
-fgngvp ibvq vqragvgl_qrfgebl(vag vq)
+static void identity_destroy(int id)
 {
-	fgehpg vqragvgl *v = vqragvgl_svaq(vq);
+	struct identity *i = identity_find(id);
 
-	vs (v != AHYY) {
-		yvfg_qry(&v->yvfg);
-		xzrz_pnpur_serr(vqragvgl_pnpur, v);
+	if (i != NULL) {
+		list_del(&i->list);
+		kmem_cache_free(identity_cache, i);
 	}
 }
 
-vag vavg_zbqhyr(ibvq)
+int init_module(void)
 {
-	vag erginy = 0;
-	fgehpg vqragvgl *grzc;
+	int retval = 0;
+	struct identity *temp;
 
-	vqragvgl_pnpur = xzrz_pnpur_perngr("shaxl_ohggybiva",
-		fvmrbs(fgehpg vqragvgl), 0, 0, AHYY);
-	vs (!vqragvgl_pnpur)
-		erghea -RABZRZ;
+	identity_cache = kmem_cache_create("funky_buttlovin",
+		sizeof(struct identity), 0, 0, NULL);
+	if (!identity_cache)
+		return -ENOMEM;
 
-	erginy = vqragvgl_perngr("Nyvpr", 1);
-	vs (erginy)
-		erghea erginy;
+	retval = identity_create("Alice", 1);
+	if (retval)
+		return retval;
 
-	erginy = vqragvgl_perngr("Obo", 2);
-	vs (erginy)
-		erghea erginy;
+	retval = identity_create("Bob", 2);
+	if (retval)
+		return retval;
 
-	erginy = vqragvgl_perngr("Qnir", 3);
-	vs (erginy)
-		erghea erginy;
+	retval = identity_create("Dave", 3);
+	if (retval)
+		return retval;
 
-	erginy = vqragvgl_perngr("Tran", 10);
-	vs (erginy)
-		erghea erginy;
+	retval = identity_create("Gena", 10);
+	if (retval)
+		return retval;
 
-	grzc = vqragvgl_svaq(3);
-	ce_qroht("vq 3 = %f\a", grzc->anzr);
+	temp = identity_find(3);
+	pr_debug("id 3 = %s\n", temp->name);
 
-	grzc = vqragvgl_svaq(42);
-	vs (grzc == AHYY)
-		ce_qroht("vq 42 abg sbhaq\a");
+	temp = identity_find(42);
+	if (temp == NULL)
+		pr_debug("id 42 not found\n");
 
-	vqragvgl_qrfgebl(2);
-	vqragvgl_qrfgebl(1);
-	vqragvgl_qrfgebl(10);
-	vqragvgl_qrfgebl(42);
-	vqragvgl_qrfgebl(3);
+	identity_destroy(2);
+	identity_destroy(1);
+	identity_destroy(10);
+	identity_destroy(42);
+	identity_destroy(3);
 
-	erghea 0;
+	return 0;
 }
 
-ibvq pyrnahc_zbqhyr(ibvq)
+void cleanup_module(void)
 {
 }

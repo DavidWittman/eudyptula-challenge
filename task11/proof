@@ -1,5 +1,5 @@
-ebbg@qrovna-wrffvr:~# png /flf/qrivprf/cpv0000:00/0000:00:0o.0/hfo1/1-1/vq
-5q658q788pp9
-ebbg@qrovna-wrffvr:~# rpub $(png /flf/qrivprf/cpv0000:00/0000:00:0o.0/hfo1/1-1/vq) > /flf/qrivprf/cpv0000:00/0000:00:0o.0/hfo1/1-1/vq
-ebbg@qrovna-wrffvr:~# rpub $?
+root@debian-jessie:~# cat /sys/devices/pci0000:00/0000:00:0b.0/usb1/1-1/id
+5d658d788cc9
+root@debian-jessie:~# echo $(cat /sys/devices/pci0000:00/0000:00:0b.0/usb1/1-1/id) > /sys/devices/pci0000:00/0000:00:0b.0/usb1/1-1/id
+root@debian-jessie:~# echo $?
 0

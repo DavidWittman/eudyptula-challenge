@@ -1,16 +1,16 @@
-#!/ova/fu
+#!/bin/sh
 
-tvg pybar --qrcgu 1 tvg://tvg.xreary.bet/cho/fpz/yvahk/xreary/tvg/gbeinyqf/yvahk.tvg fpengpu
-pq fpengpu
-tvg erzbgr nqq yvahk-arkg tvg://tvg.xreary.bet/cho/fpz/yvahk/xreary/tvg/arkg/yvahk-arkg.tvg
-tvg srgpu yvahk-arkg
-tvg srgpu --gntf yvahk-arkg
+git clone --depth 1 git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git scratch
+cd scratch
+git remote add linux-next git://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+git fetch linux-next
+git fetch --tags linux-next
 
-vs [ -a "$1" ]; gura
-    rpub
-    rpub ">>> Purpxvat bhg $1"
-    tvg purpxbhg "$1"
-ryfr
-    rpub
-    rpub '>>> Cvpx n gnt sebz nobir naq purpx vg bhg. r.t. `tvg purpxbhg arkg-20170323`'
-sv
+if [ -n "$1" ]; then
+    echo
+    echo ">>> Checking out $1"
+    git checkout "$1"
+else
+    echo
+    echo '>>> Pick a tag from above and check it out. e.g. `git checkout next-20170323`'
+fi

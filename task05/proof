@@ -1,15 +1,15 @@
-intenag@jurrml:~$ yfzbq | terc gnfx05
-intenag@jurrml:~$ # Vafregvat HFO xrlobneq
-intenag@jurrml:~$ yfzbq | terc gnfx05
-gnfx05                 12388  0 
-intenag@jurrml:~$ qzrft | gnvy
-[    7.137963] NQQEPBAS(ARGQRI_HC): rgu0: yvax vf abg ernql
-[    7.155494] r1000: rgu0 AVP Yvax vf Hc 1000 Zocf Shyy Qhcyrk, Sybj Pbageby: EK
-[    7.155781] NQQEPBAS(ARGQRI_PUNATR): rgu0: yvax orpbzrf ernql
-[   17.752459] rgu0: ab VCi6 ebhgref cerfrag
-[  312.092825] hfo 1-1: arj shyy-fcrrq HFO qrivpr ahzore 2 hfvat bupv_upq
-[  312.361159] hfo 1-1: Arj HFO qrivpr sbhaq, vqIraqbe=046q, vqCebqhpg=p52o
-[  312.361173] hfo 1-1: Arj HFO qrivpr fgevatf: Zse=1, Cebqhpg=2, FrevnyAhzore=0
-[  312.361181] hfo 1-1: Cebqhpg: HFO Erprvire
-[  312.361187] hfo 1-1: Znahsnpghere: Ybtvgrpu
-[  312.388942] Uryyb Jbeyq!
+vagrant@wheezy:~$ lsmod | grep task05
+vagrant@wheezy:~$ # Inserting USB keyboard
+vagrant@wheezy:~$ lsmod | grep task05
+task05                 12388  0 
+vagrant@wheezy:~$ dmesg | tail
+[    7.137963] ADDRCONF(NETDEV_UP): eth0: link is not ready
+[    7.155494] e1000: eth0 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX
+[    7.155781] ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+[   17.752459] eth0: no IPv6 routers present
+[  312.092825] usb 1-1: new full-speed USB device number 2 using ohci_hcd
+[  312.361159] usb 1-1: New USB device found, idVendor=046d, idProduct=c52b
+[  312.361173] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+[  312.361181] usb 1-1: Product: USB Receiver
+[  312.361187] usb 1-1: Manufacturer: Logitech
+[  312.388942] Hello World!

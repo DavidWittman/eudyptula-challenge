@@ -1,43 +1,43 @@
 /*
- * gnfx20.p
+ * task20.c
  *
- * Guvf vf n hfrefcnpr cebtenz juvpu pnyyf gur SNG vbpgy juvpu V
- * perngrq sbe guvf gnfx, SNG_VBPGY_FRG_IBYHZR_YNORY.
+ * This is a userspace program which calls the FAT ioctl which I
+ * created for this task, FAT_IOCTL_SET_VOLUME_LABEL.
  *
  */
 
-#vapyhqr <fgqvb.u>
-#vapyhqr <flf/spagy.u>
-#vapyhqr <flf/vbpgy.u>
+#include <stdio.h>
+#include <sys/fcntl.h>
+#include <sys/ioctl.h>
 
-#qrsvar SNG_VBPGY_FRG_IBYHZR_YNORY _VBJ('e', 0k14, pune *)
+#define FAT_IOCTL_SET_VOLUME_LABEL _IOW('r', 0x14, char *)
 
-vag frg_ibyhzr_ynory(pune *cngu, pune *ynory)
+int set_volume_label(char *path, char *label)
 {
-	vag sq;
-	vag ergpbqr;
-	sq = bcra(cngu, B_EQBAYL);
-	vs (sq == -1) {
-		cevags("Reebe bcravat %f\a", cngu);
-		erghea sq;
+	int fd;
+	int retcode;
+	fd = open(path, O_RDONLY);
+	if (fd == -1) {
+		printf("Error opening %s\n", path);
+		return fd;
 	}
 
-	ergpbqr = vbpgy(sq, SNG_VBPGY_FRG_IBYHZR_YNORY, ynory);
-	pybfr(sq);
-	erghea ergpbqr;
+	retcode = ioctl(fd, FAT_IOCTL_SET_VOLUME_LABEL, label);
+	close(fd);
+	return retcode;
 }
 
-vag znva(ibvq)
+int main(void)
 {
-	vag ergpbqr;
+	int retcode;
 
-	ergpbqr = frg_ibyhzr_ynory("/zag/sng16/", "NSGRE");
-	vs (ergpbqr != 0)
-		erghea ergpbqr;
+	retcode = set_volume_label("/mnt/fat16/", "AFTER");
+	if (retcode != 0)
+		return retcode;
 
-	frg_ibyhzr_ynory("/zag/sng32/", "NSGRE");
-	vs (ergpbqr != 0)
-		erghea ergpbqr;
+	set_volume_label("/mnt/fat32/", "AFTER");
+	if (retcode != 0)
+		return retcode;
 
-	erghea 0;
+	return 0;
 }

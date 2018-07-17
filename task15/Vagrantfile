@@ -1,30 +1,30 @@
-# -*- zbqr: ehol -*-
-# iv: frg sg=ehol :
-Intenag.pbasvther(2) qb |pbasvt|
-  # qrovna/wrffvr64 bayl pbzrf jvgu 10TO juvpu jnfa'g rabhtu gb pbzcvyr
-  pbasvt.iz.obk = "rivqraprcevzr/wrffvr64"
-  pbasvt.iz.cebivqre "iveghnyobk" qb |i|
-    i.zrzbel = 1024
-    i.pchf = 2
-  raq
-  pbasvt.iz.cebivfvba "furyy", cevivyrtrq: gehr, vayvar: <<-FURYY
-    frg -r
-    XREARY_IREFVBA=3.16
-    ncg-trg hcqngr
-    ncg-trg vafgnyy -l tpp znxr tvg yvahk-fbhepr ivz
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure(2) do |config|
+  # debian/jessie64 only comes with 10GB which wasn't enough to compile
+  config.vm.box = "evidenceprime/jessie64"
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 1024
+    v.cpus = 2
+  end
+  config.vm.provision "shell", privileged: true, inline: <<-SHELL
+    set -e
+    KERNEL_VERSION=3.16
+    apt-get update
+    apt-get install -y gcc make git linux-source vim
 
-    # Pbzcvyr bhe grfg cebtenz
-    pq ~intenag
-    tpp -b gnfx15 /intenag/gnfx15.p
-    puzbq +k gnfx15
+    # Compile our test program
+    cd ~vagrant
+    gcc -o task15 /vagrant/task15.c
+    chmod +x task15
 
-    # Rkgenpg, cngpu, naq vafgnyy xreary
-    gne -P /hfe/fep/ -ks /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}.*
-    pq /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}
-    cngpu -c1 < /intenag/0001-Nqq-flf_rhqlcghyn-flfpnyy-sbe-gnfx-15.cngpu
-    znxr qrspbasvt
-    znxr -w5
-    znxr -w5 zbqhyrf_vafgnyy vafgnyy
-    rpub; rpub "Arj xreary vafgnyyrq. Erobbg naq eha ./gnfx15!"; rpub
-  FURYY
-raq
+    # Extract, patch, and install kernel
+    tar -C /usr/src/ -xf /usr/src/linux-source-${KERNEL_VERSION}.*
+    cd /usr/src/linux-source-${KERNEL_VERSION}
+    patch -p1 < /vagrant/0001-Add-sys_eudyptula-syscall-for-task-15.patch
+    make defconfig
+    make -j5
+    make -j5 modules_install install
+    echo; echo "New kernel installed. Reboot and run ./task15!"; echo
+  SHELL
+end

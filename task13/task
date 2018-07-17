@@ -1,28 +1,28 @@
-Guvf vf Gnfx 13 bs gur Rhqlcghyn Punyyratr
+This is Task 13 of the Eudyptula Challenge
 ------------------------------------------
 
-Jrera'g gubfr yvfgf sha gb cynl jvgu?  Lbh fubhyq trg hfrq gb gurz, gurl
-ner hfrq nyy bire gur xreary va ybgf bs qvssrerag cynprf.
+Weren't those lists fun to play with?  You should get used to them, they
+are used all over the kernel in lots of different places.
 
-Abj gung jr ner nyybpngvat n fgehpgher gung jr jnag gb hfr n ybg bs, jr
-zvtug jnag gb fgneg pnevat nobhg gur fcrrq bs gur nyybpngvba, naq abg
-unir gb jbeel nobhg gur perngvba bs gubfr bowrpgf sebz gur "trareny"
-zrzbel cbbyf bs gur xreary.
+Now that we are allocating a structure that we want to use a lot of, we
+might want to start caring about the speed of the allocation, and not
+have to worry about the creation of those objects from the "general"
+memory pools of the kernel.
 
-Guvf gnfx vf gb gnxr gur pbqr jevggra va gnfx 12, naq pnhfr nyy zrzbel
-nyybpngrq sebz gur 'fgehpg vqragvgl' gb pbzr sebz n cevingr fyno pnpur
-whfg sbe gur sha bs vg.
+This task is to take the code written in task 12, and cause all memory
+allocated from the 'struct identity' to come from a private slab cache
+just for the fun of it.
 
-Vafgrnq bs hfvat xznyybp() naq xserr() va gur zbqhyr, hfr
-xzrz_pnpur_nyybp() naq xzrz_pnpur_serr() vafgrnq.  Bs pbhefr guvf zrnaf
-lbh jvyy unir gb vavgvnyvmr lbhe zrzbel pnpur cebcreyl jura gur zbqhyr
-fgnegf hc.  Qba'g sbetrg gb qb gung.  Lbh ner serr gb anzr lbhe zrzbel
-pnpur jungrire lbh jvfu, ohg vg fubhyq fubj hc va gur /cebp/fynovasb
-svyr.
+Instead of using kmalloc() and kfree() in the module, use
+kmem_cache_alloc() and kmem_cache_free() instead.  Of course this means
+you will have to initialize your memory cache properly when the module
+starts up.  Don't forget to do that.  You are free to name your memory
+cache whatever you wish, but it should show up in the /proc/slabinfo
+file.
 
-Qba'g fraq gur shyy zbqhyr sbe guvf gnfx, bayl n cngpu jvgu gur qvss
-sebz gnfx 12 fubjvat gur yvarf punatrq.  Guvf zrnaf lbh jvyy unir gb
-xrrc n pbcl bs lbhe 12 gnfx erfhygf fbzrjurer gb znxr fher lbh qba'g
-birejevgr gurz.
+Don't send the full module for this task, only a patch with the diff
+from task 12 showing the lines changed.  This means you will have to
+keep a copy of your 12 task results somewhere to make sure you don't
+overwrite them.
 
-Nyfb fubj gur bhgchg bs /cebp/fynovasb jvgu lbhe zbqhyr ybnqrq.
+Also show the output of /proc/slabinfo with your module loaded.

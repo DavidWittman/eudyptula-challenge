@@ -1,48 +1,48 @@
-Guvf vf Gnfx 04 bs gur Rhqlcghyn Punyyratr
+This is Task 04 of the Eudyptula Challenge
 ------------------------------------------
 
-Jbaqreshy wbo va znxvat vg guvf sne.  V ubcr lbh unir orra univat sha.
-Bu, lbh'er trggvat oberq, whfg obbgvat naq vafgnyyvat xrearyf?  Jryy,
-gvzr sbe fbzr crqnagvp guvatf gb znxr lbh srry gung gubfr xreary ohvyqf
-ner npghnyyl sha!
+Wonderful job in making it this far.  I hope you have been having fun.
+Oh, you're getting bored, just booting and installing kernels?  Well,
+time for some pedantic things to make you feel that those kernel builds
+are actually fun!
 
-Cneg bs gur wbo bs orvat n xreary qrirybcre vf erpbtavmvat gur cebcre
-Yvahk xreary pbqvat fglyr.  Gur shyy qrfpevcgvba bs guvf pbqvat fglyr
-pna or sbhaq va gur xreary vgfrys, va gur Qbphzragngvba/PbqvatFglyr
-svyr.  V'q erpbzzraq tbvat naq ernqvat gung evtug abj.  Vg'f cerggl
-fvzcyr fghss, naq fbzrguvat gung lbh ner tbvat gb arrq gb xabj naq
-haqrefgnaq.  Gurer vf nyfb n gbby va gur xreary fbhepr gerr va gur
-fpevcgf/ qverpgbel pnyyrq purpxcngpu.cy gung pna or hfrq gb grfg sbe
-nqurevat gb gur pbqvat fglyr ehyrf, nf xreary cebtenzzref ner ynml naq
-cersre gb yrg fpevcgf qb gurve jbex sbe gurz...
+Part of the job of being a kernel developer is recognizing the proper
+Linux kernel coding style.  The full description of this coding style
+can be found in the kernel itself, in the Documentation/CodingStyle
+file.  I'd recommend going and reading that right now.  It's pretty
+simple stuff, and something that you are going to need to know and
+understand.  There is also a tool in the kernel source tree in the
+scripts/ directory called checkpatch.pl that can be used to test for
+adhering to the coding style rules, as kernel programmers are lazy and
+prefer to let scripts do their work for them...
 
-Jul n pbqvat fgnaqneq ng nyy?  Orpnhfr bs lbhe oenva (lrf, lbhef, abg
-zvar, erzrzore, V'z whfg fbzr qhzo furyy fpevcgf).  Bapr lbhe oenva
-yrneaf gur cnggreaf, gur vasbezngvba pbagnvarq ernyyl fgnegf gb fvax va
-orggre.  Fb vg'f vzcbegnag gung rirelbar sbyybj gur fnzr fgnaqneq fb
-gung gur cnggreaf orpbzr pbafvfgrag.  Va bgure jbeqf, lbh jnag gb znxr
-vg ernyyl rnfl sbe bgure crbcyr gb svaq gur ohtf va lbhe pbqr, naq abg
-or pbashfrq naq qvfgenpgrq ol gur snpg gung lbh unccra gb cersre 5
-fcnprf vafgrnq bs gnof sbe vaqragngvba.  Bs pbhefr lbh jbhyq arire
-cersre fhpu n guvat, V'q arire npphfr lbh bs gung, vg jnf whfg na
-rknzcyr, cyrnfr sbetvir zl vzcregvarapr!
+Why a coding standard at all?  Because of your brain (yes, yours, not
+mine, remember, I'm just some dumb shell scripts).  Once your brain
+learns the patterns, the information contained really starts to sink in
+better.  So it's important that everyone follow the same standard so
+that the patterns become consistent.  In other words, you want to make
+it really easy for other people to find the bugs in your code, and not
+be confused and distracted by the fact that you happen to prefer 5
+spaces instead of tabs for indentation.  Of course you would never
+prefer such a thing, I'd never accuse you of that, it was just an
+example, please forgive my impertinence!
 
-Naljnl, gur gnfxf sbe guvf ebhaq nyy qrny jvgu gur Yvahk xreary pbqvat
-fglyr.  Nggnpurq gb guvf zrffntr ner vf bar xreary zbqhyr gung qbrf abg
-sbyybj gur cebcre Yvahk xreary pbqvat fglyr ehyrf.  Svk guvf svyr hc,
-NAQ svk hc gur svany fhozvffvba lbh qvq sbe Gnfx 01, naq fraq gurz onpx
-gb zr nf nggnpuzragf va lbhe erfcbafr rznvy.
+Anyway, the tasks for this round all deal with the Linux kernel coding
+style.  Attached to this message are is one kernel module that does not
+follow the proper Linux kernel coding style rules.  Fix this file up,
+AND fix up the final submission you did for Task 01, and send them back
+to me as attachments in your response email.
 
-Lrf, gur ybtvp va nggnpurq frpbaq zbqhyr vf penml, naq cebonoyl jebat,
-ohg qba'g sbphf ba gung, whfg ybbx ng gur cnggreaf urer, naq svk hc gur
-pbqvat fglyr, qb abg erzbir yvarf bs pbqr.
+Yes, the logic in attached second module is crazy, and probably wrong,
+but don't focus on that, just look at the patterns here, and fix up the
+coding style, do not remove lines of code.
 
-Bu, naq orsber lbh guvax "Nu, ohg V tbg gur pbqvat fglyr evtug sbe Gnfx
-01, V nyernql xabj guvf fghss!", erzrzore gung fb sne bayl 10 crbcyr,
-bhg bs bire 4000, unir tbggra gur pbqvat fglyr rknpgyl evtug sbe gurve
-Gnfx 01 zbqhyr.  Lrf, lbh pbhyq or bar bs gubfr crbcyr, ohg gur bqqf ner
-abg va lbhe snibe.  Lbh fubhyq ybbx ng vg ntnva whfg gb or fher.
+Oh, and before you think "Ah, but I got the coding style right for Task
+01, I already know this stuff!", remember that so far only 10 people,
+out of over 4000, have gotten the coding style exactly right for their
+Task 01 module.  Yes, you could be one of those people, but the odds are
+not in your favor.  You should look at it again just to be sure.
 
-Fb ntnva, nggnpu 2 svyrf, guvf bar svkrq hc, naq lbhe Gnfx 01
-fhozvffvba.  Qba'g hfr onfr64 rvgure, gur fpevcgf jvyy vafgnagyl erwrpg
-vg, lbh qba'g jnag gb trg ba gurve onq fvqr.
+So again, attach 2 files, this one fixed up, and your Task 01
+submission.  Don't use base64 either, the scripts will instantly reject
+it, you don't want to get on their bad side.

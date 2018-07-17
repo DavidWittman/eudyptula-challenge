@@ -1,29 +1,29 @@
 /*
-znva.p
-Rhqlcghyn Punyyratr: Gnfx 01
+main.c
+Eudyptula Challenge: Task 01
 
-Guvf vf n xreary zbqhyr juvpu cevagf "Uryyb Jbeyq!" gb gur xreary
-qroht ybt jura ybnqrq.
+This is a kernel module which prints "Hello World!" to the kernel
+debug log when loaded.
 */
 
-#qrsvar ZBQHYR
-#qrsvar YVAHK
-#qrsvar __XREARY__
+#define MODULE
+#define LINUX
+#define __KERNEL__
 
-#vapyhqr <yvahk/zbqhyr.u>
-#vapyhqr <yvahk/xreary.u>
+#include <linux/module.h>
+#include <linux/kernel.h>
 
-ZBQHYR_YVPRAFR("TCY");
-ZBQHYR_NHGUBE("Qnivq Jvggzna");
-ZBQHYR_QRFPEVCGVBA("Uryyb Jbeyq rknzcyr");
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("David Wittman");
+MODULE_DESCRIPTION("Hello World example");
 
-vag vavg_zbqhyr(ibvq)
+int init_module(void)
 {
-   cevagx(XREA_QROHT "Uryyb Jbeyq!\a");
-   erghea 0;
+   printk(KERN_DEBUG "Hello World!\n");
+   return 0;
 }
 
 
-ibvq pyrnahc_zbqhyr(ibvq)
+void cleanup_module(void)
 {
 }

@@ -1,104 +1,104 @@
-Eha pybar fpevcg, purpx bhg n arkg gnt.
+Run clone script, check out a next tag.
 
-./pybar.fu
-tvg gnt -y | terc arkg
-tvg purpxbhg arkg-20170324
+./clone.sh
+git tag -l | grep next
+git checkout next-20170324
 
-## pbasvther lbhe xreary sbe fgntvat zbqhyrf
+## configure your kernel for staging modules
 
-Nccyl gur qrsnhyg pbasvt
-
-```
-znxr qrspbasvt
-```
-
-Hfr phefrf vagresnpr gb ranoyr fgntvat qeviref.
+Apply the default config
 
 ```
-znxr zrahpbasvt
+make defconfig
 ```
 
-Gura fryrpg Qrivpr Qeviref >> Fgntvat, naq ranoyr rnpu fgntvat zbqhyr ol fryrpgvat vg jvgu gur 'z' xrl, gura Fnir naq rkvg, birejevgvat lbhe rkvfgvat xreary pbasvthengvba va `.pbasvt`.
+Use curses interface to enable staging drivers.
 
 ```
-znxr zbqhyrf_cercner
+make menuconfig
 ```
 
-## Purpx nyy zbqhyrf!
-
-znxr P=1 Z=qeviref/fgntvat
-
-# Erfbheprf
-
-fgntvat: fz750so: svk fcnefr jneavat sbe ybpx - uggcf://cngpujbex.xreary.bet/cngpu/6949241/
-
-## Abgrf
+Then select Device Drivers >> Staging, and enable each staging module by selecting it with the 'm' key, then Save and exit, overwriting your existing kernel configuration in `.config`.
 
 ```
-$ znxr P=2 Z=qeviref/fgntvat/cv433/
-
-  JNEAVAT: Flzoby irefvba qhzc ./Zbqhyr.flziref
-           vf zvffvat; zbqhyrf jvyy unir ab qrcraqrapvrf naq zbqirefvbaf.
-
-  PURPX   qeviref/fgntvat/cv433/cv433_vs.p
-qeviref/fgntvat/cv433/cv433_vs.p:211:9: jneavat: zvkvat qvssrerag rahz glcrf
-qeviref/fgntvat/cv433/cv433_vs.p:211:9:     vag rahz bcgvbaBaBss  irefhf
-qeviref/fgntvat/cv433/cv433_vs.p:211:9:     vag rahz cnpxrgSbezng 
-qeviref/fgntvat/cv433/cv433_vs.p:211:9: jneavat: zvkvat qvssrerag rahz glcrf
-qeviref/fgntvat/cv433/cv433_vs.p:211:9:     vag rahz bcgvbaBaBss  irefhf
-qeviref/fgntvat/cv433/cv433_vs.p:211:9:     vag rahz cnpxrgSbezng 
-qeviref/fgntvat/cv433/cv433_vs.p:268:9: jneavat: zvkvat qvssrerag rahz glcrf
-qeviref/fgntvat/cv433/cv433_vs.p:268:9:     vag rahz bcgvbaBaBss  irefhf
-qeviref/fgntvat/cv433/cv433_vs.p:268:9:     vag rahz cnpxrgSbezng 
-qeviref/fgntvat/cv433/cv433_vs.p:268:9: jneavat: zvkvat qvssrerag rahz glcrf
-qeviref/fgntvat/cv433/cv433_vs.p:268:9:     vag rahz bcgvbaBaBss  irefhf
-qeviref/fgntvat/cv433/cv433_vs.p:268:9:     vag rahz cnpxrgSbezng 
-qeviref/fgntvat/cv433/cv433_vs.p:317:1: jneavat: flzoby 'cv433_erprvir' jnf abg qrpynerq. Fubhyq vg or fgngvp?
-qeviref/fgntvat/cv433/cv433_vs.p:467:1: jneavat: flzoby 'cv433_gk_guernq' jnf abg qrpynerq. Fubhyq vg or fgngvp?
-./vapyhqr/yvahk/guernq_vasb.u:129:18: jneavat: vapbeerpg glcr va nethzrag 1 (qvssrerag zbqvsvref)
-./vapyhqr/yvahk/guernq_vasb.u:129:18:    rkcrpgrq ibvq *<abvqrag>
-./vapyhqr/yvahk/guernq_vasb.u:129:18:    tbg ibvq pbafg *nqqe
-qeviref/fgntvat/cv433/cv433_vs.p:1155:36: reebe: vapbzcngvoyr glcrf sbe bcrengvba (<)
-qeviref/fgntvat/cv433/cv433_vs.p:1155:36:    yrsg fvqr unf glcr fgehpg gnfx_fgehpg *gk_gnfx_fgehpg
-qeviref/fgntvat/cv433/cv433_vs.p:1155:36:    evtug fvqr unf glcr vag
-  PURPX   qeviref/fgntvat/cv433/es69.p
-qeviref/fgntvat/cv433/es69.p:206:17: jneavat: qhovbhf: k & !l
-qeviref/fgntvat/cv433/es69.p:436:5: jneavat: flzoby 'es69_frg_onaqjvqgu_vagrea' jnf abg qrpynerq. Fubhyq vg or fgngvp?
-  Ohvyqvat zbqhyrf, fgntr 2.
-  ZBQCBFG 1 zbqhyrf
+make modules_prepare
 ```
 
-Rknzcyr svk:
-```
-pbzzvg 6qn2sn86r564pq3n7p1ronqpo8q0367857r8p369
-Nhgube: Thvyyrezb B. Serfpuv <xrqebg@tznvy.pbz>
-Qngr:   Ghr Why 4 16:46:43 2017 -0400
+## Check all modules!
 
-    zrqvn: fgntvat: ngbzvfc: tp2235: svk fcnefr jneavat: zvffvat fgngvp
+make C=1 M=drivers/staging
+
+# Resources
+
+staging: sm750fb: fix sparse warning for lock - https://patchwork.kernel.org/patch/6949241/
+
+## Notes
+
+```
+$ make C=2 M=drivers/staging/pi433/
+
+  WARNING: Symbol version dump ./Module.symvers
+           is missing; modules will have no dependencies and modversions.
+
+  CHECK   drivers/staging/pi433/pi433_if.c
+drivers/staging/pi433/pi433_if.c:211:9: warning: mixing different enum types
+drivers/staging/pi433/pi433_if.c:211:9:     int enum optionOnOff  versus
+drivers/staging/pi433/pi433_if.c:211:9:     int enum packetFormat 
+drivers/staging/pi433/pi433_if.c:211:9: warning: mixing different enum types
+drivers/staging/pi433/pi433_if.c:211:9:     int enum optionOnOff  versus
+drivers/staging/pi433/pi433_if.c:211:9:     int enum packetFormat 
+drivers/staging/pi433/pi433_if.c:268:9: warning: mixing different enum types
+drivers/staging/pi433/pi433_if.c:268:9:     int enum optionOnOff  versus
+drivers/staging/pi433/pi433_if.c:268:9:     int enum packetFormat 
+drivers/staging/pi433/pi433_if.c:268:9: warning: mixing different enum types
+drivers/staging/pi433/pi433_if.c:268:9:     int enum optionOnOff  versus
+drivers/staging/pi433/pi433_if.c:268:9:     int enum packetFormat 
+drivers/staging/pi433/pi433_if.c:317:1: warning: symbol 'pi433_receive' was not declared. Should it be static?
+drivers/staging/pi433/pi433_if.c:467:1: warning: symbol 'pi433_tx_thread' was not declared. Should it be static?
+./include/linux/thread_info.h:129:18: warning: incorrect type in argument 1 (different modifiers)
+./include/linux/thread_info.h:129:18:    expected void *<noident>
+./include/linux/thread_info.h:129:18:    got void const *addr
+drivers/staging/pi433/pi433_if.c:1155:36: error: incompatible types for operation (<)
+drivers/staging/pi433/pi433_if.c:1155:36:    left side has type struct task_struct *tx_task_struct
+drivers/staging/pi433/pi433_if.c:1155:36:    right side has type int
+  CHECK   drivers/staging/pi433/rf69.c
+drivers/staging/pi433/rf69.c:206:17: warning: dubious: x & !y
+drivers/staging/pi433/rf69.c:436:5: warning: symbol 'rf69_set_bandwidth_intern' was not declared. Should it be static?
+  Building modules, stage 2.
+  MODPOST 1 modules
+```
+
+Example fix:
+```
+commit 6da2fa86e564cd3a7c1ebadcb8d0367857e8c369
+Author: Guillermo O. Freschi <kedrot@gmail.com>
+Date:   Tue Jul 4 16:46:43 2017 -0400
+
+    media: staging: atomisp: gc2235: fix sparse warning: missing static
     
-    Frireny ybpny hfr fgehpgf jrer zvffvat qrpynengvbaf. Nqqrq fgngvp
-    dhnyvsvre gb pyrna hc Fcnefr jneavat.
+    Several local use structs were missing declarations. Added static
+    qualifier to clean up Sparse warning.
     
-    Fvtarq-bss-ol: Thvyyrezb B. Serfpuv <xrqebg@tznvy.pbz>
-    Fvtarq-bss-ol: Fnxnev Nvyhf <fnxnev.nvyhf@yvahk.vagry.pbz>
-    Fvtarq-bss-ol: Znheb Pneinyub Puruno <zpuruno@f-bcrafbhepr.pbz>
+    Signed-off-by: Guillermo O. Freschi <kedrot@gmail.com>
+    Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+    Signed-off-by: Mauro Carvalho Chehab <mchehab@s-opensource.com>
 ```
 
 ```
-tvg fraq-rznvy --gb tertxu@yvahksbhaqngvba.bet --gb yvahk@Jbys-Ragjvpxyhatra.qr --pp qriry@qevireqri.bfhbfy.bet --pp yvahk-xreary@itre.xreary.bet ../0001-fgntvat-cv433-svk-fcnefr-jneavat-zvffvat-fgngvp.cngpu
+git send-email --to gregkh@linuxfoundation.org --to linux@Wolf-Entwicklungen.de --cc devel@driverdev.osuosl.org --cc linux-kernel@vger.kernel.org ../0001-staging-pi433-fix-sparse-warning-missing-static.patch
 ```
 
-Zl cngpu: uggcf://yxzy.bet/yxzy/2017/7/23/124
+My patch: https://lkml.org/lkml/2017/7/23/124
 
-Qnzavg! :(
+Damnit! :(
 
-> Gur svkrf bs guvf cngpu ner svar, ohg gurer ner nyernql cngpurf bhg gurer,
-pbagnvavat gurfr svkrf.
+> The fixes of this patch are fine, but there are already patches out there,
+containing these fixes.
 
-### Gnxr gjb
+### Take two
 
-uggcf://yxzy.bet/yxzy/2017/8/2/3
+https://lkml.org/lkml/2017/8/2/3
 
-### Fhpprff!
+### Success!
 
-Zl cngpu jnf zretrq vagb gur fgntvat-grfgvat gerr gbqnl @ 5o86429sqo7rr05oqnp73q58o92r028215qorr9r
+My patch was merged into the staging-testing tree today @ 5b86429fdb7ee05bdac73d58b92e028215dbee9e

@@ -1,19 +1,19 @@
-#!/ova/onfu
+#!/bin/bash
 
-frg -k
+set -x
 
-QRIVPR=/qri/rhqlcghyn
+DEVICE=/dev/eudyptula
 
-fhqb vafzbq /intenag/gnfx18.xb
+sudo insmod /vagrant/task18.ko
 
-[[ -p "$QRIVPR" ]] || (rpub "$QRIVPR abg perngrq cebcreyl!"; rkvg 1;)
+[[ -c "$DEVICE" ]] || (echo "$DEVICE not created properly!"; exit 1;)
 
-rpub -a "Nyvpr" > $QRIVPR
-rpub -a "Obo" > $QRIVPR
-fyrrc 15
-rpub -a "Qnir" > $QRIVPR
-rpub -a "Tran" > $QRIVPR
+echo -n "Alice" > $DEVICE
+echo -n "Bob" > $DEVICE
+sleep 15
+echo -n "Dave" > $DEVICE
+echo -n "Gena" > $DEVICE
 
-fhqb ezzbq gnfx18
+sudo rmmod task18
 
-qzrft | gnvy
+dmesg | tail

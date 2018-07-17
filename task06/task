@@ -1,29 +1,29 @@
-Guvf vf Gnfx 06 bs gur Rhqlcghyn Punyyratr
+This is Task 06 of the Eudyptula Challenge
 ------------------------------------------
 
-Avpr wbo jvgu gur zbqhyr ybnqvat znpebf.  Gubfr ner gevpxl, ohg n irel
-inyhnoyr fxvyy gb xabj nobhg, rfcrpvnyyl jura ehaavat npebff gurz va
-erny xreary pbqr.
+Nice job with the module loading macros.  Those are tricky, but a very
+valuable skill to know about, especially when running across them in
+real kernel code.
 
-Fcrnxvat bs erny xreary pbqr, yrg'f jevgr fbzr!
+Speaking of real kernel code, let's write some!
 
-Gur gnfxf guvf gvzr ner:
-  - Gnxr gur xreary zbqhyr lbh jebgr sbe gnfx 01, naq zbqvsl vg gb or n
-    zvfp pune qrivpr qevire.  Gur zvfp vagresnpr vf n irel fvzcyr jnl gb
-    or noyr gb perngr n punenpgre qrivpr, jvgubhg univat gb jbeel nobhg
-    nyy bs gur flfsf naq punenpgre qrivpr ertvfgengvba zrff.  Naq jung n
-    zrff vg vf, fb fgvpx gb gur fvzcyr vagresnprf jurerire cbffvoyr.
-  - Gur zvfp qrivpr fubhyq or perngrq jvgu n qlanzvp zvabe ahzore, ab
-    arrq ehaavat bss naq gelvat gb erfreir n erny zvabe ahzore sbe lbhe
-    grfg zbqhyr, gung jbhyq or penml.
-  - Gur zvfp qrivpr fubhyq vzcyrzrag gur ernq naq jevgr shapgvbaf.
-  - Gur zvfp qrivpr abqr fubhyq fubj hc va /qri/rhqlcghyn.
-  - Jura gur punenpgre qrivpr abqr vf ernq sebz, lbhe nffvtarq vq vf
-    erghearq gb gur pnyyre.
-  - Jura gur punenpgre qrivpr abqr vf jevggra gb, gur qngn frag gb gur
-    xreary arrqf gb or purpxrq.  Vs vg zngpurf lbhe nffvtarq vq, gura
-    erghea n pbeerpg jevgr erghea inyhr.  Vs gur inyhr qbrf abg zngpu
-    lbhe nffvtarq vq, erghea gur "vainyvq inyhr" reebe inyhr.
-  - Gur zvfp qrivpr fubhyq or ertvfgrerq jura lbhe zbqhyr vf ybnqrq, naq
-    haertvfgrerq jura vg vf haybnqrq.
-  - Cebivqr fbzr "cebbs" guvf nyy jbexf cebcreyl.
+The tasks this time are:
+  - Take the kernel module you wrote for task 01, and modify it to be a
+    misc char device driver.  The misc interface is a very simple way to
+    be able to create a character device, without having to worry about
+    all of the sysfs and character device registration mess.  And what a
+    mess it is, so stick to the simple interfaces wherever possible.
+  - The misc device should be created with a dynamic minor number, no
+    need running off and trying to reserve a real minor number for your
+    test module, that would be crazy.
+  - The misc device should implement the read and write functions.
+  - The misc device node should show up in /dev/eudyptula.
+  - When the character device node is read from, your assigned id is
+    returned to the caller.
+  - When the character device node is written to, the data sent to the
+    kernel needs to be checked.  If it matches your assigned id, then
+    return a correct write return value.  If the value does not match
+    your assigned id, return the "invalid value" error value.
+  - The misc device should be registered when your module is loaded, and
+    unregistered when it is unloaded.
+  - Provide some "proof" this all works properly.

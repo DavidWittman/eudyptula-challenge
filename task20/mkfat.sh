@@ -1,22 +1,22 @@
-#!/ova/fu
+#!/bin/sh
 
-frg -r
+set -e
 
-# Fvmr bs svyrflfgrzf va ZvO
-FVMR="64"
+# Size of filesystems in MiB
+SIZE="64"
 
-zxqve -c /zag/sng16 /zag/sng32
+mkdir -p /mnt/fat16 /mnt/fat32
 
-rpub "### Znxvat /qri/ybbc0 ###"
-qq vs=/qri/mreb bs=/gzc/sng16 of=1Z pbhag="$FVMR"
-ybfrghc /qri/ybbc0 /gzc/sng16
-zxsf.isng -a ORSBER -S 16 /qri/ybbc0
-zbhag /qri/ybbc0 /zag/sng16
-sfpx -nl /qri/ybbc0 || gehr
+echo "### Making /dev/loop0 ###"
+dd if=/dev/zero of=/tmp/fat16 bs=1M count="$SIZE"
+losetup /dev/loop0 /tmp/fat16
+mkfs.vfat -n BEFORE -F 16 /dev/loop0
+mount /dev/loop0 /mnt/fat16
+fsck -ay /dev/loop0 || true
 
-rpub "### Znxvat /qri/ybbc1 ###"
-qq vs=/qri/mreb bs=/gzc/sng32 of=1Z pbhag="$FVMR"
-ybfrghc /qri/ybbc1 /gzc/sng32
-zxsf.isng -a ORSBER -S 32 /qri/ybbc1
-zbhag /qri/ybbc1 /zag/sng32
-sfpx -nl /qri/ybbc1 || gehr
+echo "### Making /dev/loop1 ###"
+dd if=/dev/zero of=/tmp/fat32 bs=1M count="$SIZE"
+losetup /dev/loop1 /tmp/fat32
+mkfs.vfat -n BEFORE -F 32 /dev/loop1
+mount /dev/loop1 /mnt/fat32
+fsck -ay /dev/loop1 || true

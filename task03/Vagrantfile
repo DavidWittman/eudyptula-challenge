@@ -1,21 +1,21 @@
-# -*- zbqr: ehol -*-
-# iv: frg sg=ehol :
-Intenag.pbasvther(2) qb |pbasvt|
-  pbasvt.iz.obk = "qrovna/jurrml64"
-  pbasvt.iz.cebivqre "iveghnyobk" qb |i|
-    i.zrzbel = 1024
-    i.pchf = 4
-  raq
-  pbasvt.iz.cebivfvba "furyy", vayvar: <<-FURYY
-    fhqb ncg-trg vafgnyy -l tpp znxr tvg
-    tvg pybar --qrcgu 1 tvg://tvg.xreary.bet/cho/fpz/yvahk/xreary/tvg/gbeinyqf/yvahk.tvg
-    pq yvahk
-    frq -v 'f/^RKGENIREFVBA = .*/RKGENIREFVBA = -rhqlcghyn/' Znxrsvyr
-    fhqb znxr qrspbasvt
-    rpub "PBASVT_YBPNYIREFVBA_NHGB=l" >> .pbasvt
-    fhqb znxr -w5 YBPNYIREFVBA="-g03"
-    fhqb znxr -w5 zbqhyrf_vafgnyy vafgnyy
-    fhqb hcqngr-teho2
-    tvg qvss | grr ~/gnfx03.cngpu
-  FURYY
-raq
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure(2) do |config|
+  config.vm.box = "debian/wheezy64"
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 1024
+    v.cpus = 4
+  end
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get install -y gcc make git
+    git clone --depth 1 git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+    cd linux
+    sed -i 's/^EXTRAVERSION = .*/EXTRAVERSION = -eudyptula/' Makefile
+    sudo make defconfig
+    echo "CONFIG_LOCALVERSION_AUTO=y" >> .config
+    sudo make -j5 LOCALVERSION="-t03"
+    sudo make -j5 modules_install install
+    sudo update-grub2
+    git diff | tee ~/task03.patch
+  SHELL
+end

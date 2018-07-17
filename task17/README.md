@@ -1,44 +1,44 @@
-# Abgrf
+# Notes
 
 ```
-QRPYNER_JNVG_DHRHR_URNQ (jrr_dhrhr);
+DECLARE_WAIT_QUEUE_HEAD (wee_queue);
 ```
 
-Naq gura V guvax V jnag gb hfr `jnvg_rirag_vagreehcgvoyr` gb fyrrc gur guernq:
+And then I think I want to use `wait_event_interruptible` to sleep the thread:
 
 ```
-vag jnvg_rirag_vagreehcgvoyr(jnvg_dhrhr_urnq_g dhrhr, vag pbaqvgvba);
+int wait_event_interruptible(wait_queue_head_t queue, int condition);
 ```
 
-sbyybjrq ol `jnxr_hc_vagreehcgvoyr` gb jnxr gur guernq hc yngre.
+followed by `wake_up_interruptible` to wake the thread up later.
 
 
-Urer'f na rknzcyr:
+Here's an example:
 
 ```
-QRPYNER_JNVG_DHRHR_URNQ(jd);
+DECLARE_WAIT_QUEUE_HEAD(wq);
 
-ffvmr_g fyrrcl_ernq (fgehpg svyr *svyc, pune *ohs, fvmr_g pbhag, 
-   ybss_g *cbf)
+ssize_t sleepy_read (struct file *filp, char *buf, size_t count, 
+   loff_t *pos)
 {
-  cevagx(XREA_QROHT "cebprff %v (%f) tbvat gb fyrrc\a",
-      pheerag->cvq, pheerag->pbzz);
-  vagreehcgvoyr_fyrrc_ba(&jd);
-  cevagx(XREA_QROHT "njbxra %v (%f)\a", pheerag->cvq, pheerag->pbzz);
-  erghea 0; /* RBS */
+  printk(KERN_DEBUG "process %i (%s) going to sleep\n",
+      current->pid, current->comm);
+  interruptible_sleep_on(&wq);
+  printk(KERN_DEBUG "awoken %i (%s)\n", current->pid, current->comm);
+  return 0; /* EOF */
 }
 
-ffvmr_g fyrrcl_jevgr (fgehpg svyr *svyc, pbafg pune *ohs, fvmr_g pbhag,
-        ybss_g *cbf)
+ssize_t sleepy_write (struct file *filp, const char *buf, size_t count,
+        loff_t *pos)
 {
-  cevagx(XREA_QROHT "cebprff %v (%f) njnxravat gur ernqref...\a",
-     pheerag->cvq, pheerag->pbzz);
-  jnxr_hc_vagreehcgvoyr(&jd);
-  erghea pbhag; /* fhpprrq, gb nibvq ergevny */
+  printk(KERN_DEBUG "process %i (%s) awakening the readers...\n",
+     current->pid, current->comm);
+  wake_up_interruptible(&wq);
+  return count; /* succeed, to avoid retrial */
 }
 ```
 
-# Yvaxf
+# Links
 
-uggc://jjj.kzy.pbz/yqq/puncgre/obbx/pu05.ugzy
-uggc://jjj.znxryvahk.arg/yqq3/puc-6-frpg-2
+http://www.xml.com/ldd/chapter/book/ch05.html
+http://www.makelinux.net/ldd3/chp-6-sect-2

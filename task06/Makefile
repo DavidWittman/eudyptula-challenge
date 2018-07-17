@@ -1,9 +1,9 @@
-bow-z += gnfx06.b
+obj-m += task06.o
 
-XQVE ?= /yvo/zbqhyrf/$(furyy hanzr -e)/ohvyq
+KDIR ?= /lib/modules/$(shell uname -r)/build
 
-nyy:
-	znxr -P $(XQVE) Z=$(CJQ) zbqhyrf
+all:
+	make -C $(KDIR) M=$(PWD) modules
 
-pyrna:
-	znxr -P $(XQVE) Z=$(CJQ) pyrna
+clean:
+	make -C $(KDIR) M=$(PWD) clean

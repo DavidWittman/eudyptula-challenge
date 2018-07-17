@@ -1,12 +1,12 @@
-# -*- zbqr: ehol -*-
-# iv: frg sg=ehol :
-Intenag.pbasvther(2) qb |pbasvt|
-  pbasvt.iz.obk = "qrovna/wrffvr64"
-  pbasvt.iz.cebivfvba "furyy", vayvar: <<-FURYY
-    fhqb ncg-trg vafgnyy -l znxr yvahk-urnqref-$(hanzr -e)
-    pq /intenag
-    fhqb -v
-    znxr
-    /intenag/grfg.fu
-  FURYY
-raq
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure(2) do |config|
+  config.vm.box = "debian/jessie64"
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get install -y make linux-headers-$(uname -r)
+    cd /vagrant
+    sudo -i
+    make
+    /vagrant/test.sh
+  SHELL
+end

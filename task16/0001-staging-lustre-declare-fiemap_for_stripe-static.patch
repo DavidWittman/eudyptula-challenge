@@ -1,39 +1,39 @@
-Sebz 3o8rpq817o636qo3690575r96p9545ps6o1s116s Zba Frc 17 00:00:00 2001
-Sebz: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
-Qngr: Ghr, 1 Nht 2017 22:59:22 -0500
-Fhowrpg: [CNGPU] fgntvat: yhfger: qrpyner svrznc_sbe_fgevcr fgngvp
+From 3b8ecd817b636db3690575e96c9545cf6b1f116f Mon Sep 17 00:00:00 2001
+From: David Wittman <dwittman@gmail.com>
+Date: Tue, 1 Aug 2017 22:59:22 -0500
+Subject: [PATCH] staging: lustre: declare fiemap_for_stripe static
 
-Qrpyner svrznc_sbe_fgevcr nf fgngvp gb svk fcnefr jneavatf:
+Declare fiemap_for_stripe as static to fix sparse warnings:
 
-> jneavat: flzoby 'svrznc_sbe_fgevcr' jnf abg qrpynerq. Fubhyq vg or
-> fgngvp?
+> warning: symbol 'fiemap_for_stripe' was not declared. Should it be
+> static?
 
-Fvtarq-bss-ol: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
+Signed-off-by: David Wittman <dwittman@gmail.com>
 ---
- qeviref/fgntvat/yhfger/yhfger/ybi/ybi_bowrpg.p | 10 +++++-----
- 1 svyr punatrq, 5 vafregvbaf(+), 5 qryrgvbaf(-)
+ drivers/staging/lustre/lustre/lov/lov_object.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-qvss --tvg n/qeviref/fgntvat/yhfger/yhfger/ybi/ybi_bowrpg.p o/qeviref/fgntvat/yhfger/yhfger/ybi/ybi_bowrpg.p
-vaqrk 8sp0opp..334rpo1 100644
---- n/qeviref/fgntvat/yhfger/yhfger/ybi/ybi_bowrpg.p
-+++ o/qeviref/fgntvat/yhfger/yhfger/ybi/ybi_bowrpg.p
-@@ -1141,11 +1141,11 @@ fgehpg svrznc_fgngr {
- 	obby		sf_rabhtu;
+diff --git a/drivers/staging/lustre/lustre/lov/lov_object.c b/drivers/staging/lustre/lustre/lov/lov_object.c
+index 8fc0bcc..334ecb1 100644
+--- a/drivers/staging/lustre/lustre/lov/lov_object.c
++++ b/drivers/staging/lustre/lustre/lov/lov_object.c
+@@ -1141,11 +1141,11 @@ struct fiemap_state {
+ 	bool		fs_enough;
  };
  
--vag svrznc_sbe_fgevcr(pbafg fgehpg yh_rai *rai, fgehpg py_bowrpg *bow,
--		      fgehpg ybi_fgevcr_zq *yfz,
--		      fgehpg svrznc *svrznc, fvmr_g *ohsyra,
--		      fgehpg yy_svrznc_vasb_xrl *szxrl, vag fgevcrab,
--		      fgehpg svrznc_fgngr *sf)
-+fgngvp vag svrznc_sbe_fgevcr(pbafg fgehpg yh_rai *rai, fgehpg py_bowrpg *bow,
-+			     fgehpg ybi_fgevcr_zq *yfz,
-+			     fgehpg svrznc *svrznc, fvmr_g *ohsyra,
-+			     fgehpg yy_svrznc_vasb_xrl *szxrl, vag fgevcrab,
-+			     fgehpg svrznc_fgngr *sf)
+-int fiemap_for_stripe(const struct lu_env *env, struct cl_object *obj,
+-		      struct lov_stripe_md *lsm,
+-		      struct fiemap *fiemap, size_t *buflen,
+-		      struct ll_fiemap_info_key *fmkey, int stripeno,
+-		      struct fiemap_state *fs)
++static int fiemap_for_stripe(const struct lu_env *env, struct cl_object *obj,
++			     struct lov_stripe_md *lsm,
++			     struct fiemap *fiemap, size_t *buflen,
++			     struct ll_fiemap_info_key *fmkey, int stripeno,
++			     struct fiemap_state *fs)
  {
- 	fgehpg py_bowrpg *fhobow;
- 	fgehpg ybi_boq *ybi = yh2ybi_qri(bow->pb_yh.yb_qri)->yq_ybi;
+ 	struct cl_object *subobj;
+ 	struct lov_obd *lov = lu2lov_dev(obj->co_lu.lo_dev)->ld_lov;
 -- 
 2.7.4
 

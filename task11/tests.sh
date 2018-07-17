@@ -1,9 +1,9 @@
-#!/hfe/ova/rai onfu
+#!/usr/bin/env bash
 
-frg -rk
+set -ex
 
-VQ_NGGE="/flf/qrivprf/cpv0000:00/0000:00:0o.0/hfo1/1-1/vq"
+ID_ATTR="/sys/devices/pci0000:00/0000:00:0b.0/usb1/1-1/id"
 
-png "$VQ_NGGE"; rpub
-rpub $(png "$VQ_NGGE") > "$VQ_NGGE"
-rpub $?
+cat "$ID_ATTR"; echo
+echo $(cat "$ID_ATTR") > "$ID_ATTR"
+echo $?

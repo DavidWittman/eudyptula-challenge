@@ -1,32 +1,32 @@
-Guvf vf Gnfx 11 bs gur Rhqlcghyn Punyyratr
+This is Task 11 of the Eudyptula Challenge
 ------------------------------------------
 
-Lbh znqr n fhpprffshy cngpu gb gur xreary fbhepr gerr, gung'f n terng
-fgrc!
+You made a successful patch to the kernel source tree, that's a great
+step!
 
-Ohg, yrg'f abg erfg, gvzr gb trg onpx gb pbqr.
+But, let's not rest, time to get back to code.
 
-Erzrzore gung zrff bs xbowrpg naq flfsf pbqr onpx va gnfx 09?  Yrg'f
-zbir bar yriry hc gur gerr naq fgneg gb zrff jvgu qrivprf naq abg enj
-xbowrpgf.
+Remember that mess of kobject and sysfs code back in task 09?  Let's
+move one level up the tree and start to mess with devices and not raw
+kobjects.
 
-Sbe guvf gnfx:
-  - Jevgr n cngpu ntnvafg nal qevire gung lbh ner pheeragyl hfvat ba
-    lbhe znpuvar.  Fb svefg lbh unir gb svther bhg juvpu qeviref lbh ner
-    hfvat, naq jurer gur fbhepr pbqr va gur xreary gerr vf sbe gung
-    qevire.
-  - Va gung qevire, nqq n flfsf svyr gb fubj hc va gur /flf/qrivprf/
-    gerr sbe gur qrivpr gung vf pnyyrq "vq".  Nf lbh zvtug rkcrpg, guvf
-    svyr sbyybjf gur fnzr ehyrf nf gnfx 09 nf sbe jung lbh pna ernq naq
-    jevgr gb vg.
-  - Gur svyr vf gb fubj hc bayl sbe qrivprf gung ner pbagebyyrq ol n
-    fvatyr qevire, abg sbe nyy qrivprf bs n fvatyr glcr (yvxr nyy HFO
-    qrivprf.  Ohg nyy HFO znvyobk YRQf jbhyq or npprcgnoyr, vs lbh
-    unccra gb unir gur qrivpr gung gung qevire pbagebyf.)
+For this task:
+  - Write a patch against any driver that you are currently using on
+    your machine.  So first you have to figure out which drivers you are
+    using, and where the source code in the kernel tree is for that
+    driver.
+  - In that driver, add a sysfs file to show up in the /sys/devices/
+    tree for the device that is called "id".  As you might expect, this
+    file follows the same rules as task 09 as for what you can read and
+    write to it.
+  - The file is to show up only for devices that are controlled by a
+    single driver, not for all devices of a single type (like all USB
+    devices.  But all USB mailbox LEDs would be acceptable, if you
+    happen to have the device that that driver controls.)
 
-Fhozvg obgu gur cngpu, va cebcre xreary pbzzvg sbez, naq "cebbs" bs vg
-jbexvat cebcreyl ba lbhe znpuvar.
+Submit both the patch, in proper kernel commit form, and "proof" of it
+working properly on your machine.
 
-Naq nf nyjnlf, cyrnfr hfr lbhe vq va gur fhowrpg yvar.  Vs lbh unccrarq
-gb sbetrg vg, nf vg unf orra n juvyr fvapr V erzvaqrq lbh bs vg, vg vf
-"5q658q788pp9".
+And as always, please use your id in the subject line.  If you happened
+to forget it, as it has been a while since I reminded you of it, it is
+"5d658d788cc9".

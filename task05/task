@@ -1,17 +1,17 @@
-Guvf vf Gnfx 05 bs gur Rhqlcghyn Punyyratr
+This is Task 05 of the Eudyptula Challenge
 ------------------------------------------
 
-Lrnu, lbh fheivirq gur pbqvat fglyr zrff!  Abj, ba gb fbzr "erny"
-guvatf, nf V xabj lbh ner trggvat oberq ol gurfr fb sne.
+Yeah, you survived the coding style mess!  Now, on to some "real"
+things, as I know you are getting bored by these so far.
 
-Fb, gjb fvzcyr gnfxf guvf gvzr nebhaq:
-  - Gnxr gur xreary zbqhyr lbh jebgr sbe gnfx 01, naq zbqvsl vg fb gung
-    jura nal HFO xrlobneq vf cyhttrq va, gur zbqhyr jvyy or
-    nhgbzngvpnyyl ybnqrq ol gur pbeerpg hfrefcnpr ubgcyht gbbyf (juvpu
-    ner vzcyrzragrq ol qrczbq / xzbq / hqri / zqri / flfgrzq, qrcraqvat
-    ba jung qvfgeb lbh ner hfvat.)
-  - Ntnva, cebivqr "cebbs" guvf nyy jbexf.
+So, two simple tasks this time around:
+  - Take the kernel module you wrote for task 01, and modify it so that
+    when any USB keyboard is plugged in, the module will be
+    automatically loaded by the correct userspace hotplug tools (which
+    are implemented by depmod / kmod / udev / mdev / systemd, depending
+    on what distro you are using.)
+  - Again, provide "proof" this all works.
 
-Lrf, fb fvzcyr, naq lrg, vg'f n ovg gevpxl.  Nf n uvag, tb ernq puncgre
-14 bs gur obbx, "Yvahk Qrivpr Qeviref, 3eq rqvgvba."  Qba'g jbeel, vg'f
-serr, naq bayvar, ab arrq gb tb ohl nalguvat.
+Yes, so simple, and yet, it's a bit tricky.  As a hint, go read chapter
+14 of the book, "Linux Device Drivers, 3rd edition."  Don't worry, it's
+free, and online, no need to go buy anything.

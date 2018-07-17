@@ -1,25 +1,25 @@
-# Abgrf
+# Notes
 
-YVFG_URNQ_VAVG vf n fgngvp vavgvnyvmre, VAVG_YVFG_URNQ vf n shapgvba. Gurl obgu vavgvnyvfr n yvfg_urnq gb or rzcgl.
+LIST_HEAD_INIT is a static initializer, INIT_LIST_HEAD is a function. They both initialise a list_head to be empty.
 
-Vs lbh ner fgngvpnyyl qrpynevat n yvfg_urnq, lbh fubhyq hfr YVFG_URNQ_VAVG, rt:
+If you are statically declaring a list_head, you should use LIST_HEAD_INIT, eg:
 
-    fgngvp fgehpg yvfg_urnq zlyvfg = YVFG_URNQ_VAVG(zlyvfg);
+    static struct list_head mylist = LIST_HEAD_INIT(mylist);
 
-Lbh fubhyq hfr VAVG_YVFG_URNQ() sbe n yvfg urnq gung vf qlanzvpnyyl nyybpngrq, hfhnyyl cneg bs nabgure fgehpgher. Gurer ner znal rknzcyrf va gur xreary fbhepr.
+You should use INIT_LIST_HEAD() for a list head that is dynamically allocated, usually part of another structure. There are many examples in the kernel source.
 
 ---
 
-Hfr xznyybp (yvahk/fyno.u) sbe zrzbel nyybpngvba
+Use kmalloc (linux/slab.h) for memory allocation
 
-    cge = xznyybp(fvmrbs(fgehpg qbt), TSC_XREARY);
+    ptr = kmalloc(sizeof(struct dog), GFP_KERNEL);
 
-Jung vf TSC_XREARY?
+What is GFP_KERNEL?
 
-  > Guvf vf n abezny nyybpngvba naq zvtug oybpx. Guvf vf gur synt gb hfr va cebprff pbagrkg pbqr jura vg vf fnsr gb fyrrc. Gur xreary jvyy qb jungrire vg unf gb va beqre gb bognva gur zrzbel erdhrfgrq ol gur pnyyre. Guvf synt fubhyq or lbhe svefg pubvpr.
+  > This is a normal allocation and might block. This is the flag to use in process context code when it is safe to sleep. The kernel will do whatever it has to in order to obtain the memory requested by the caller. This flag should be your first choice.
 
-# Erfbheprf
- - uggcf://xrearyarjovrf.bet/SND/YvaxrqYvfgf
- - uggc://jjj.znxryvahk.arg/yqq3/puc-11-frpg-5
- - uggcf://vfvf.cbyl.rqh/xhyrfu/fghss/fep/xyvfg/
- - uggc://jjj.znxryvahk.arg/obbxf/yxq2/pu11yri1frp4
+# Resources
+ - https://kernelnewbies.org/FAQ/LinkedLists
+ - http://www.makelinux.net/ldd3/chp-11-sect-5
+ - https://isis.poly.edu/kulesh/stuff/src/klist/
+ - http://www.makelinux.net/books/lkd2/ch11lev1sec4

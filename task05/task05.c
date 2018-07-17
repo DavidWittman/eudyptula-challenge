@@ -1,46 +1,46 @@
 /*
- * gnfx05.p
- * Rhqlcghyn Punyyratr: Gnfx 05
+ * task05.c
+ * Eudyptula Challenge: Task 05
  *
- * Guvf vf n xreary zbqhyr juvpu cevagf "Uryyb Jbeyq!" gb gur xreary
- * qroht ybt jura ybnqrq.
+ * This is a kernel module which prints "Hello World!" to the kernel
+ * debug log when loaded.
  *
- * Vg vf nhgbzngvpnyyl ybnqrq jura nal HFO xrlobneq vf cyhttrq va.
+ * It is automatically loaded when any USB keyboard is plugged in.
  *
  */
 
-#qrsvar ZBQHYR
-#qrsvar YVAHK
-#qrsvar __XREARY__
+#define MODULE
+#define LINUX
+#define __KERNEL__
 
-#vapyhqr <yvahk/xreary.u>
-#vapyhqr <yvahk/zbqhyr.u>
-#vapyhqr <yvahk/uvq.u>
-#vapyhqr <yvahk/hfo.u>
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/hid.h>
+#include <linux/usb.h>
 
-vag vavg_zbqhyr(ibvq)
+int init_module(void)
 {
-	ce_qroht("Uryyb Jbeyq!\a");
-	erghea 0;
+	pr_debug("Hello World!\n");
+	return 0;
 }
 
 
-ibvq pyrnahc_zbqhyr(ibvq)
+void cleanup_module(void)
 {
 }
 
-fgngvp fgehpg hfo_qrivpr_vq xoq_gnoyr[] = {
+static struct usb_device_id kbd_table[] = {
 	{
-		HFO_VAGRESNPR_VASB(
-			HFO_VAGRESNPR_PYNFF_UVQ,
-			HFO_VAGRESNPR_FHOPYNFF_OBBG,
-			HFO_VAGRESNPR_CEBGBPBY_XRLOBNEQ
+		USB_INTERFACE_INFO(
+			USB_INTERFACE_CLASS_HID,
+			USB_INTERFACE_SUBCLASS_BOOT,
+			USB_INTERFACE_PROTOCOL_KEYBOARD
 		)
 	},
-	{ } /* Grezvangvat ragel */
+	{ } /* Terminating entry */
 };
 
-ZBQHYR_YVPRAFR("TCY");
-ZBQHYR_NHGUBE("Qnivq Jvggzna");
-ZBQHYR_QRFPEVCGVBA("Uryyb Jbeyq rknzcyr, HFO Xrlobneq ubgcyht rqvgvba.");
-ZBQHYR_QRIVPR_GNOYR(hfo, xoq_gnoyr);
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("David Wittman");
+MODULE_DESCRIPTION("Hello World example, USB Keyboard hotplug edition.");
+MODULE_DEVICE_TABLE(usb, kbd_table);

@@ -1,19 +1,19 @@
-Guvf vf Gnfx 01 bs gur Rhqlcghyn Punyyratr
+This is Task 01 of the Eudyptula Challenge
 ------------------------------------------
 
-Jevgr n Yvahk xreary zbqhyr, naq fgnaq-nybar Znxrsvyr, gung jura ybnqrq
-cevagf gb gur xreary qroht ybt yriry, "Uryyb Jbeyq!"  Or fher gb znxr
-gur zbqhyr haybnqnoyr nf jryy.
+Write a Linux kernel module, and stand-alone Makefile, that when loaded
+prints to the kernel debug log level, "Hello World!"  Be sure to make
+the module unloadable as well.
 
-Gur Znxrsvyr fubhyq ohvyq gur xreary zbqhyr ntnvafg gur fbhepr sbe gur
-pheeragyl ehaavat xreary, be, hfr na raivebazrag inevnoyr gb fcrpvsl
-jung xreary gerr gb ohvyq vg ntnvafg.
+The Makefile should build the kernel module against the source for the
+currently running kernel, or, use an environment variable to specify
+what kernel tree to build it against.
 
-Cyrnfr fubj cebbs bs guvf zbqhyr orvat ohvyg, naq ehaavat, va lbhe
-xreary.  Jung guvf cebbs vf vf hc gb lbh.  V'z fher lbh pna pbzr hc jvgu
-fbzrguvat.  Nyfb or fher gb fraq gur xreary zbqhyr lbh jebgr, nybat jvgu
-gur Znxrsvyr lbh perngrq gb ohvyq gur zbqhyr.
+Please show proof of this module being built, and running, in your
+kernel.  What this proof is is up to you.  I'm sure you can come up with
+something.  Also be sure to send the kernel module you wrote, along with
+the Makefile you created to build the module.
 
-Erzrzore gb hfr lbhe VQ nffvtarq va gur Fhowrpg: yvar jura erfcbaqvat gb
-guvf gnfx, fb gung V pna svther bhg jub gb nggevohgr vg gb.  Lbh pna
-whfg erfcbaq gb gur gnfx jvgu gur nafjref naq nyy fubhyq or svar.
+Remember to use your ID assigned in the Subject: line when responding to
+this task, so that I can figure out who to attribute it to.  You can
+just respond to the task with the answers and all should be fine.

@@ -1,40 +1,40 @@
-#!/hfe/ova/rai onfu
+#!/usr/bin/env bash
 
-frg -k
+set -x
 
-qrpyner SBB=/flf/xreary/qroht/rhqlcghyn/sbb
+declare FOO=/sys/kernel/debug/eudyptula/foo
 
-# Zbhag qrohtsf
-fhqb zbhag -g qrohtsf abar /flf/xreary/qroht
-fhqb puzbq 0755 /flf/xreary/qroht
-fhqb vafzbq /intenag/gnfx08.xb
+# Mount debugfs
+sudo mount -t debugfs none /sys/kernel/debug
+sudo chmod 0755 /sys/kernel/debug
+sudo insmod /vagrant/task08.ko
 
-# Ernq/jevgr gb vq svyr
-png /flf/xreary/qroht/rhqlcghyn/vq; rpub
-rpub $(png /flf/xreary/qroht/rhqlcghyn/vq) > /flf/xreary/qroht/rhqlcghyn/vq
-rpub $?
+# Read/write to id file
+cat /sys/kernel/debug/eudyptula/id; echo
+echo $(cat /sys/kernel/debug/eudyptula/id) > /sys/kernel/debug/eudyptula/id
+echo $?
 
-# Fubj wvssvrf
-png /flf/xreary/qroht/rhqlcghyn/wvssvrf
-fyrrc 1
-png /flf/xreary/qroht/rhqlcghyn/wvssvrf
+# Show jiffies
+cat /sys/kernel/debug/eudyptula/jiffies
+sleep 1
+cat /sys/kernel/debug/eudyptula/jiffies
 
-# Grfg sbb svyr
-## Abezny hfref pna ernq, abg jevgr
-png $SBB
-rpub "nopq" > $SBB
+# Test foo file
+## Normal users can read, not write
+cat $FOO
+echo "abcd" > $FOO
 
-## Ebbg pna jevgr
-rpub "nopq" | fhqb grr $SBB
-png $SBB
-rpub "klm" | fhqb grr $SBB
-png $SBB
+## Root can write
+echo "abcd" | sudo tee $FOO
+cat $FOO
+echo "xyz" | sudo tee $FOO
+cat $FOO
 
-## Jevgr hc gb bar cntr fvmr
-clguba -p 'vzcbeg flf; flf.fgqbhg.jevgr("N" * 4095)' | fhqb grr $SBB
-png $SBB; rpub
-clguba -p 'vzcbeg flf; flf.fgqbhg.jevgr("N" * 4097)' | fhqb grr $SBB
+## Write up to one page size
+python -c 'import sys; sys.stdout.write("A" * 4095)' | sudo tee $FOO
+cat $FOO; echo
+python -c 'import sys; sys.stdout.write("A" * 4097)' | sudo tee $FOO
 
-# Pyrna hc nyy rhqlcghyn qrohtsf svyrf
-fhqb ezzbq gnfx08.xb
-yf -y /flf/xreary/qroht/rhqlcghyn
+# Clean up all eudyptula debugfs files
+sudo rmmod task08.ko
+ls -l /sys/kernel/debug/eudyptula

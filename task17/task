@@ -1,34 +1,34 @@
-Guvf vf Gnfx 17 bs gur Rhqlcghyn Punyyratr
+This is Task 17 of the Eudyptula Challenge
 ------------------------------------------
 
-Nabgure cngpu znqr naq frag va.  Frr, gung jnfa'g fb uneq.  Xrrc fraqvat
-va xreary cngpurf bhgfvqr bs guvf punyyratr, gubfr ynml xreary
-qrirybcref arrq nyy gur uryc gurl pna trg va pyrnavat hc gurve pbqr.
+Another patch made and sent in.  See, that wasn't so hard.  Keep sending
+in kernel patches outside of this challenge, those lazy kernel
+developers need all the help they can get in cleaning up their code.
 
-Vg vf gvzr gb fgneg chggvat gur qvssrerag cvrprf bs jung jr unir qbar va
-gur cnfg gbtrgure, vagb n zhpu ynetre zbqhyr, qbvat zber pbzcyrk guvatf.
-Zhpu zber yvxr jung n "erny" xreary zbqhyr unf gb qb.
+It is time to start putting the different pieces of what we have done in
+the past together, into a much larger module, doing more complex things.
+Much more like what a "real" kernel module has to do.
 
-Tb qvt hc lbhe pbqr sebz gnfx 06, gur zvfp pune qrivpr qevire, naq znxr
-gur sbyybjvat punatrf:
+Go dig up your code from task 06, the misc char device driver, and make
+the following changes:
 
- - Qryrgr gur ernq shapgvba.  Lbh qba'g arrq gung nalzber, fb znxr vg n
-   jevgr-bayl zvfp qrivpr naq or fher gb frg gur zbqr bs gur qrivpr gb
-   or jevgr-bayl, ol nalbar.  Vs lbh qb guvf evtug, hqri jvyy frg hc gur
-   abqr nhgbzngvpnyyl jvgu gur pbeerpg crezvffvbaf.
- - Perngr n jnvg dhrhr, anzr vg "jrr_jnvg".
- - Va lbhe zbqhyr vavg shapgvba, perngr n xreary guernq, anzrq bs pbhefr
-   "rhqlcghyn".
- - Gur guernq'f znva shapgvba fubhyq abg qb nalguvat ng guvf cbvag va
-   gvzr, rkprcg znxr fher gb fuhgqbja vs nfxrq gb, naq jnvg ba gur
-   "jrr_jnvg" jnvgdhrhr.
- - Va lbhe zbqhyr rkvg shapgvba, fuhg qbja gur xreary guernq lbh fgnegrq
-   hc.
+ - Delete the read function.  You don't need that anymore, so make it a
+   write-only misc device and be sure to set the mode of the device to
+   be write-only, by anyone.  If you do this right, udev will set up the
+   node automatically with the correct permissions.
+ - Create a wait queue, name it "wee_wait".
+ - In your module init function, create a kernel thread, named of course
+   "eudyptula".
+ - The thread's main function should not do anything at this point in
+   time, except make sure to shutdown if asked to, and wait on the
+   "wee_wait" waitqueue.
+ - In your module exit function, shut down the kernel thread you started
+   up.
 
-Ybnq naq haybnq gur zbqhyr naq "cebir" gung vg jbexf cebcreyl (gung gur
-guernq vf perngrq, vg pna or sbhaq va gur cebprff yvfg, naq gung gur
-qrivpr abqr vf perngrq jvgu gur pbeerpg crezvffvba inyhr.)  Fraq va gur
-cebbs naq gur .p svyr sbe gur zbqhyr.
+Load and unload the module and "prove" that it works properly (that the
+thread is created, it can be found in the process list, and that the
+device node is created with the correct permission value.)  Send in the
+proof and the .c file for the module.
 
-Or fher gb xrrc guvf pbqr nebhaq, nf jr jvyy or qbvat zber jvgu vg arkg
-gvzr.
+Be sure to keep this code around, as we will be doing more with it next
+time.

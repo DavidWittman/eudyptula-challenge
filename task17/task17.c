@@ -1,98 +1,98 @@
 /*
- * gnfx17.p
- * Rhqlcghyn Punyyratr: Gnfx 17
+ * task17.c
+ * Eudyptula Challenge: Task 17
  *
- * Guvf vf n xreary zbqhyr juvpu perngrf n xreary guernq juvpu yvfgraf gb n
- * jnvg dhrhr.
+ * This is a kernel module which creates a kernel thread which listens to a
+ * wait queue.
  *
  */
 
-#qrsvar ZBQHYR
-#qrsvar YVAHK
-#qrsvar __XREARY__
+#define MODULE
+#define LINUX
+#define __KERNEL__
 
-#vapyhqr <yvahk/xreary.u>
-#vapyhqr <yvahk/zbqhyr.u>
-#vapyhqr <yvahk/sf.u>
-#vapyhqr <yvahk/fgevat.u>
-#vapyhqr <yvahk/zvfpqrivpr.u>
-#vapyhqr <yvahk/xguernq.u>
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/fs.h>
+#include <linux/string.h>
+#include <linux/miscdevice.h>
+#include <linux/kthread.h>
 
-fgngvp QRPYNER_JNVG_DHRHR_URNQ(jrr_jnvg);
+static DECLARE_WAIT_QUEUE_HEAD(wee_wait);
 
-fgngvp fgehpg gnfx_fgehpg *guernq;
+static struct task_struct *thread;
 
-fgngvp pune *rhqlcghyn_vq = "5q658q788pp9";
+static char *eudyptula_id = "5d658d788cc9";
 
-fgngvp ffvmr_g rhqlcghyn_jevgr(fgehpg svyr *, pbafg pune *, fvmr_g, ybss_g *);
+static ssize_t eudyptula_write(struct file *, const char *, size_t, loff_t *);
 
-fgngvp pbafg fgehpg svyr_bcrengvbaf rhqlcghyn_sbcf = {
-	.bjare = GUVF_ZBQHYR,
-	.jevgr = rhqlcghyn_jevgr
+static const struct file_operations eudyptula_fops = {
+	.owner = THIS_MODULE,
+	.write = eudyptula_write
 };
 
-fgngvp fgehpg zvfpqrivpr rhqlcghyn_qri = {
-	.zvabe = ZVFP_QLANZVP_ZVABE,
-	.anzr = "rhqlcghyn",
-	.sbcf = &rhqlcghyn_sbcf,
-	.zbqr = F_VJHTB
+static struct miscdevice eudyptula_dev = {
+	.minor = MISC_DYNAMIC_MINOR,
+	.name = "eudyptula",
+	.fops = &eudyptula_fops,
+	.mode = S_IWUGO
 };
 
-fgngvp ffvmr_g rhqlcghyn_jevgr(fgehpg svyr *s, pbafg pune *ohs, fvmr_g pbhag,
-	ybss_g *bssfrg)
+static ssize_t eudyptula_write(struct file *f, const char *buf, size_t count,
+	loff_t *offset)
 {
-	pune zft[16] = {0};
-	vag erg;
+	char msg[16] = {0};
+	int ret;
 
-	erg = fvzcyr_jevgr_gb_ohssre(zft, fvmrbs(zft), bssfrg, ohs, pbhag);
-	vs (erg < 0)
-		erghea erg;
+	ret = simple_write_to_buffer(msg, sizeof(msg), offset, buf, count);
+	if (ret < 0)
+		return ret;
 
-	vs (!fgeapzc(zft, rhqlcghyn_vq, fgeyra(rhqlcghyn_vq))
-		&& pbhag - 1 == fgeyra(rhqlcghyn_vq))
-		erghea pbhag;
+	if (!strncmp(msg, eudyptula_id, strlen(eudyptula_id))
+		&& count - 1 == strlen(eudyptula_id))
+		return count;
 
-	erghea -RVAINY;
+	return -EINVAL;
 }
 
-fgngvp vag znva_guernq(ibvq *hahfrq)
+static int main_thread(void *unused)
 {
-	juvyr (1) {
+	while (1) {
 
-	vs (jnvg_rirag_vagreehcgvoyr(jrr_jnvg, xguernq_fubhyq_fgbc()))
-		erghea -RERFGNEGFLF;
+	if (wait_event_interruptible(wee_wait, kthread_should_stop()))
+		return -ERESTARTSYS;
 
-	vs (xguernq_fubhyq_fgbc())
-		oernx;
+	if (kthread_should_stop())
+		break;
 	}
 
-	erghea 0;
+	return 0;
 }
 
-vag vavg_zbqhyr(ibvq)
+int init_module(void)
 {
-	vag erg;
+	int ret;
 
-	guernq = xguernq_perngr(&znva_guernq, AHYY, "rhqlcghyn");
+	thread = kthread_create(&main_thread, NULL, "eudyptula");
 
-	vs (VF_REE(guernq))
-		ce_qroht("rhqlcghyn guernq perngvba snvyrq");
-	ryfr
-		ce_qroht("rhqlcghyn guernq perngrq fhpprffshyyl");
+	if (IS_ERR(thread))
+		pr_debug("eudyptula thread creation failed");
+	else
+		pr_debug("eudyptula thread created successfully");
 
-	erg = zvfp_ertvfgre(&rhqlcghyn_qri);
-	vs (erg)
-		ce_qroht("Hanoyr gb ertvfgre rhqlcghyn zvfp qrivpr.");
+	ret = misc_register(&eudyptula_dev);
+	if (ret)
+		pr_debug("Unable to register eudyptula misc device.");
 
-	erghea erg;
+	return ret;
 }
 
-ibvq pyrnahc_zbqhyr(ibvq)
+void cleanup_module(void)
 {
-	zvfp_qrertvfgre(&rhqlcghyn_qri);
-	xguernq_fgbc(guernq);
+	misc_deregister(&eudyptula_dev);
+	kthread_stop(thread);
 }
 
-ZBQHYR_YVPRAFR("TCY");
-ZBQHYR_NHGUBE("Qnivq Jvggzna");
-ZBQHYR_QRFPEVCGVBA("Perngrf n xreary guernq naq hfrf n jnvg dhrhr");
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("David Wittman");
+MODULE_DESCRIPTION("Creates a kernel thread and uses a wait queue");

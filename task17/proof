@@ -1,8 +1,8 @@
-ebbg@wrffvr:~# vafzbq /intenag/gnfx17.xb 
-ebbg@wrffvr:~# yf -y /qri/rhqlcghyn 
-p-j--j--j- 1 ebbg ebbg 10, 59 Frc 11 03:38 /qri/rhqlcghyn
-ebbg@wrffvr:~# cf -rs | terc rhqlcghy[n]
-ebbg      5475     2  0 03:38 ?        00:00:00 [rhqlcghyn]
-ebbg@wrffvr:~# ezzbq gnfx17
-ebbg@wrffvr:~# cf -rs | terc rhqlcghy[n]
-ebbg@wrffvr:~# 
+root@jessie:~# insmod /vagrant/task17.ko 
+root@jessie:~# ls -l /dev/eudyptula 
+c-w--w--w- 1 root root 10, 59 Sep 11 03:38 /dev/eudyptula
+root@jessie:~# ps -ef | grep eudyptul[a]
+root      5475     2  0 03:38 ?        00:00:00 [eudyptula]
+root@jessie:~# rmmod task17
+root@jessie:~# ps -ef | grep eudyptul[a]
+root@jessie:~# 

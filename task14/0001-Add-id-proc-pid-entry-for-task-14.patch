@@ -1,74 +1,74 @@
-Sebz po86nn1q65np48118ssn05p4rnr9o36r40835ns6 Zba Frc 17 00:00:00 2001
-Sebz: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
-Qngr: Fha, 26 Sro 2017 23:51:28 +0000
-Fhowrpg: [CNGPU] Nqq `vq` /cebp/cvq ragel sbe gnfx 14
+From cb86aa1d65ac48118ffa05c4eae9b36e40835af6 Mon Sep 17 00:00:00 2001
+From: David Wittman <dwittman@gmail.com>
+Date: Sun, 26 Feb 2017 23:51:28 +0000
+Subject: [PATCH] Add `id` /proc/pid entry for task 14
 
 ---
- sf/cebp/onfr.p        | 9 +++++++++
- vapyhqr/yvahk/fpurq.u | 2 ++
- xreary/sbex.p         | 2 ++
- 3 svyrf punatrq, 13 vafregvbaf(+)
+ fs/proc/base.c        | 9 +++++++++
+ include/linux/sched.h | 2 ++
+ kernel/fork.c         | 2 ++
+ 3 files changed, 13 insertions(+)
 
-qvss --tvg n/sf/cebp/onfr.p o/sf/cebp/onfr.p
-vaqrk 944p6or..1444522 100644
---- n/sf/cebp/onfr.p
-+++ o/sf/cebp/onfr.p
-@@ -2588,6 +2588,13 @@ fgngvp vag cebp_cvq_crefbanyvgl(fgehpg frd_svyr *z, fgehpg cvq_anzrfcnpr *af,
- 	erghea ree;
+diff --git a/fs/proc/base.c b/fs/proc/base.c
+index 944c6be..1444522 100644
+--- a/fs/proc/base.c
++++ b/fs/proc/base.c
+@@ -2588,6 +2588,13 @@ static int proc_pid_personality(struct seq_file *m, struct pid_namespace *ns,
+ 	return err;
  }
  
-+fgngvp vag cebp_cvq_vq(fgehpg frd_svyr *z, fgehpg cvq_anzrfcnpr *af,
-+		       fgehpg cvq *cvq, fgehpg gnfx_fgehpg *gnfx)
++static int proc_pid_id(struct seq_file *m, struct pid_namespace *ns,
++		       struct pid *pid, struct task_struct *task)
 +{
-+	frd_cevags(z, "%yyh\a", gnfx->vq++);
-+	erghea 0;
++	seq_printf(m, "%llu\n", task->id++);
++	return 0;
 +}
 +
  /*
-  * Guernq tebhcf
+  * Thread groups
   */
-@@ -2688,6 +2695,7 @@ fgngvp pbafg fgehpg cvq_ragel gtvq_onfr_fghss[] = {
- #vsqrs PBASVT_PURPXCBVAG_ERFGBER
- 	ERT("gvzref",	  F_VEHTB, cebp_gvzref_bcrengvbaf),
- #raqvs
-+	BAR("vq", F_VEHTB, cebp_cvq_vq),
+@@ -2688,6 +2695,7 @@ static const struct pid_entry tgid_base_stuff[] = {
+ #ifdef CONFIG_CHECKPOINT_RESTORE
+ 	REG("timers",	  S_IRUGO, proc_timers_operations),
+ #endif
++	ONE("id", S_IRUGO, proc_pid_id),
  };
  
- fgngvp vag cebp_gtvq_onfr_ernqqve(fgehpg svyr *svyr, fgehpg qve_pbagrkg *pgk)
-@@ -3021,6 +3029,7 @@ fgngvp pbafg fgehpg cvq_ragel gvq_onfr_fghss[] = {
- 	ERT("cebwvq_znc", F_VEHTB|F_VJHFE, cebp_cebwvq_znc_bcrengvbaf),
- 	ERT("frgtebhcf",  F_VEHTB|F_VJHFE, cebp_frgtebhcf_bcrengvbaf),
- #raqvs
-+	BAR("vq", F_VEHTB, cebp_cvq_vq),
+ static int proc_tgid_base_readdir(struct file *file, struct dir_context *ctx)
+@@ -3021,6 +3029,7 @@ static const struct pid_entry tid_base_stuff[] = {
+ 	REG("projid_map", S_IRUGO|S_IWUSR, proc_projid_map_operations),
+ 	REG("setgroups",  S_IRUGO|S_IWUSR, proc_setgroups_operations),
+ #endif
++	ONE("id", S_IRUGO, proc_pid_id),
  };
  
- fgngvp vag cebp_gvq_onfr_ernqqve(fgehpg svyr *svyr, fgehpg qve_pbagrkg *pgk)
-qvss --tvg n/vapyhqr/yvahk/fpurq.u o/vapyhqr/yvahk/fpurq.u
-vaqrk p783490..695s679 100644
---- n/vapyhqr/yvahk/fpurq.u
-+++ o/vapyhqr/yvahk/fpurq.u
-@@ -1668,6 +1668,8 @@ fgehpg gnfx_fgehpg {
- 	hafvtarq vag	frdhragvny_vb;
- 	hafvtarq vag	frdhragvny_vb_nit;
- #raqvs
-+	/* Sbe Rhqlcghyn Gnfx 14 */
-+	h64 vq;
+ static int proc_tid_base_readdir(struct file *file, struct dir_context *ctx)
+diff --git a/include/linux/sched.h b/include/linux/sched.h
+index c783490..695f679 100644
+--- a/include/linux/sched.h
++++ b/include/linux/sched.h
+@@ -1668,6 +1668,8 @@ struct task_struct {
+ 	unsigned int	sequential_io;
+ 	unsigned int	sequential_io_avg;
+ #endif
++	/* For Eudyptula Task 14 */
++	u64 id;
  };
  
- /* Shgher-fnsr npprffbe sbe fgehpg gnfx_fgehpg'f pchf_nyybjrq. */
-qvss --tvg n/xreary/sbex.p o/xreary/sbex.p
-vaqrk 43s707r..r533s29 100644
---- n/xreary/sbex.p
-+++ o/xreary/sbex.p
-@@ -1618,6 +1618,8 @@ ybat qb_sbex(hafvtarq ybat pybar_syntf,
- 		fgehpg pbzcyrgvba isbex;
- 		fgehpg cvq *cvq;
+ /* Future-safe accessor for struct task_struct's cpus_allowed. */
+diff --git a/kernel/fork.c b/kernel/fork.c
+index 43f707e..e533f29 100644
+--- a/kernel/fork.c
++++ b/kernel/fork.c
+@@ -1618,6 +1618,8 @@ long do_fork(unsigned long clone_flags,
+ 		struct completion vfork;
+ 		struct pid *pid;
  
-+		c->vq = 0k5q658q788pp9;
++		p->id = 0x5d658d788cc9;
 +
- 		genpr_fpurq_cebprff_sbex(pheerag, c);
+ 		trace_sched_process_fork(current, p);
  
- 		cvq = trg_gnfx_cvq(c, CVQGLCR_CVQ);
+ 		pid = get_task_pid(p, PIDTYPE_PID);
 -- 
 2.1.4
 

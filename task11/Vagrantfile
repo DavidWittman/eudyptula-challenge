@@ -1,33 +1,33 @@
-# -*- zbqr: ehol -*-
-# iv: frg sg=ehol :
-Intenag.pbasvther(2) qb |pbasvt|
-  pbasvt.iz.obk = "qrovna/wrffvr64"
-  pbasvt.iz.cebivqre "iveghnyobk" qb |i|
-    i.zrzbel = 1024
-    i.pchf = 4
-    # V'z tbvat gb or zbqvslvat gur qevire sbe gur EGY 8187
-    # Pbasvther IveghnyObk gb svygre guvf qrivpr guebhtu gb gur IZ
-    i.phfgbzvmr ["zbqvsliz", :vq, "--hfo", "ba"]
-    i.phfgbzvmr ["zbqvsliz", :vq, "--hforupv", "ba"]
-    i.phfgbzvmr ["hfosvygre", "nqq", "0", 
-                 "--gnetrg", :vq, 
-                 "--anzr", "Znahsnpghere_Ernygrx_EGY8187_ EGY8187_Jveryrff [0100]",
-                 "--znahsnpghere", "Znahsnpghere_Ernygrx_EGY8187_",
-                 "--cebqhpg", "EGY8187_Jveryrff"]
-  raq
-  pbasvt.iz.cebivfvba "furyy", cevivyrtrq: gehr, vayvar: <<-FURYY
-    XREARY_IREFVBA=3.16
-    ncg-trg vafgnyy -l tpp znxr tvg yvahk-fbhepr yvahk-urnqref-nzq64 ivz
-    gne -P /hfe/fep/ -ks /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}.*
-    pq /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}
-    cngpu -c1 < /intenag/0001-Nqq-rhqlcghyn-vq-nggevohgr-gb-egy8187-qevire.cngpu
-    ya -f /hfe/fep/yvahk-fbhepr-${XREARY_IREFVBA}/qeviref /hfe/fep/yvahk-urnqref-$(hanzr -e)/
-    cevags "\a\a" | znxr byqpbasvt
-    znxr zbqhyrf_cercner 
-    pq qeviref/arg/jveryrff/egy818k/egy8187
-    znxr -P /yvo/zbqhyrf/$(hanzr -e)/ohvyq Z=$(cjq)
-    ezzbq egy8187
-    vafzbq ./egy8187.xb
-    /intenag/grfgf.fu
-  FURYY
-raq
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure(2) do |config|
+  config.vm.box = "debian/jessie64"
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 1024
+    v.cpus = 4
+    # I'm going to be modifying the driver for the RTL 8187
+    # Configure VirtualBox to filter this device through to the VM
+    v.customize ["modifyvm", :id, "--usb", "on"]
+    v.customize ["modifyvm", :id, "--usbehci", "on"]
+    v.customize ["usbfilter", "add", "0", 
+                 "--target", :id, 
+                 "--name", "Manufacturer_Realtek_RTL8187_ RTL8187_Wireless [0100]",
+                 "--manufacturer", "Manufacturer_Realtek_RTL8187_",
+                 "--product", "RTL8187_Wireless"]
+  end
+  config.vm.provision "shell", privileged: true, inline: <<-SHELL
+    KERNEL_VERSION=3.16
+    apt-get install -y gcc make git linux-source linux-headers-amd64 vim
+    tar -C /usr/src/ -xf /usr/src/linux-source-${KERNEL_VERSION}.*
+    cd /usr/src/linux-source-${KERNEL_VERSION}
+    patch -p1 < /vagrant/0001-Add-eudyptula-id-attribute-to-rtl8187-driver.patch
+    ln -s /usr/src/linux-source-${KERNEL_VERSION}/drivers /usr/src/linux-headers-$(uname -r)/
+    printf "\n\n" | make oldconfig
+    make modules_prepare 
+    cd drivers/net/wireless/rtl818x/rtl8187
+    make -C /lib/modules/$(uname -r)/build M=$(pwd)
+    rmmod rtl8187
+    insmod ./rtl8187.ko
+    /vagrant/tests.sh
+  SHELL
+end

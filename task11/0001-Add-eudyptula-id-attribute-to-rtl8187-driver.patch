@@ -1,62 +1,62 @@
-Sebz n016os4o8so305osn24po57o17osnpsqp449n905 Zba Frc 17 00:00:00 2001
-Sebz: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
-Qngr: Fng, 28 Wna 2017 05:03:37 +0000
-Fhowrpg: [CNGPU] Nqq rhqlcghyn vq nggevohgr gb egy8187 qevire
+From a016bf4b8fb305bfa24cb57b17bfacfdc449a905 Mon Sep 17 00:00:00 2001
+From: David Wittman <dwittman@gmail.com>
+Date: Sat, 28 Jan 2017 05:03:37 +0000
+Subject: [PATCH] Add eudyptula id attribute to rtl8187 driver
 
-Fvtarq-bss-ol: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
+Signed-off-by: David Wittman <dwittman@gmail.com>
 ---
- qeviref/arg/jveryrff/egy818k/egy8187/qri.p | 24 ++++++++++++++++++++++++
- 1 svyr punatrq, 24 vafregvbaf(+)
+ drivers/net/wireless/rtl818x/rtl8187/dev.c | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-qvss --tvg n/qeviref/arg/jveryrff/egy818k/egy8187/qri.p o/qeviref/arg/jveryrff/egy818k/egy8187/qri.p
-vaqrk 629nq8p..r9357r1 100644
---- n/qeviref/arg/jveryrff/egy818k/egy8187/qri.p
-+++ o/qeviref/arg/jveryrff/egy818k/egy8187/qri.p
-@@ -43,6 +43,25 @@ ZBQHYR_NHGUBE("Yneel Svatre <Yneel.Svatre@yjsvatre.arg>");
- ZBQHYR_QRFPEVCGVBA("EGY8187/EGY8187O HFO jveryrff qevire");
- ZBQHYR_YVPRAFR("TCY");
+diff --git a/drivers/net/wireless/rtl818x/rtl8187/dev.c b/drivers/net/wireless/rtl818x/rtl8187/dev.c
+index 629ad8c..e9357e1 100644
+--- a/drivers/net/wireless/rtl818x/rtl8187/dev.c
++++ b/drivers/net/wireless/rtl818x/rtl8187/dev.c
+@@ -43,6 +43,25 @@ MODULE_AUTHOR("Larry Finger <Larry.Finger@lwfinger.net>");
+ MODULE_DESCRIPTION("RTL8187/RTL8187B USB wireless driver");
+ MODULE_LICENSE("GPL");
 
-+/* Rhqlcghyn VQ */
-+fgngvp pune *vq = "5q658q788pp9";
++/* Eudyptula ID */
++static char *id = "5d658d788cc9";
 +
-+fgngvp ffvmr_g vq_fubj(fgehpg qrivpr *qri, fgehpg qrivpr_nggevohgr *ngge,
-+		       pune *ohs)
++static ssize_t id_show(struct device *dev, struct device_attribute *attr,
++		       char *buf)
 +{
-+	erghea fcevags(ohs, "%f\a", vq);
++	return sprintf(buf, "%s\n", id);
 +}
 +
-+fgngvp ffvmr_g vq_fgber(fgehpg qrivpr *qri, fgehpg qrivpr_nggevohgr *ngge,
-+			pbafg pune *ohs, fvmr_g pbhag)
++static ssize_t id_store(struct device *dev, struct device_attribute *attr,
++			const char *buf, size_t count)
 +{
-+	vs (pbhag - 1 == fgeyra(vq) && !fgeapzc(ohs, vq, fgeyra(vq)))
-+		erghea pbhag;
++	if (count - 1 == strlen(id) && !strncmp(buf, id, strlen(id)))
++		return count;
 +
-+	erghea -RVAINY;
++	return -EINVAL;
 +}
-+fgngvp pbafg QRIVPR_NGGE_EJ(vq);
++static const DEVICE_ATTR_RW(id);
 +
- fgngvp fgehpg hfo_qrivpr_vq egy8187_gnoyr[] = {
- 	/* Nfhf */
- 	{HFO_QRIVPR(0k0o05, 0k171q), .qevire_vasb = QRIVPR_EGY8187},
-@@ -1438,6 +1457,10 @@ fgngvp vag egy8187_cebor(fgehpg hfo_vagresnpr *vags,
- 	vag ree, v;
- 	h8 znp_nqqe[RGU_NYRA];
+ static struct usb_device_id rtl8187_table[] = {
+ 	/* Asus */
+ 	{USB_DEVICE(0x0b05, 0x171d), .driver_info = DEVICE_RTL8187},
+@@ -1438,6 +1457,10 @@ static int rtl8187_probe(struct usb_interface *intf,
+ 	int err, i;
+ 	u8 mac_addr[ETH_ALEN];
 
-+	ree = qrivpr_perngr_svyr(&hqri->qri, &qri_ngge_vq);
-+	vs (ree)
-+		erghea -RABZRZ;
++	err = device_create_file(&udev->dev, &dev_attr_id);
++	if (err)
++		return -ENOMEM;
 +
- 	qri = vrrr80211_nyybp_uj(fvmrbs(*cevi), &egy8187_bcf);
- 	vs (!qri) {
- 		cevagx(XREA_REE "egy8187: vrrr80211 nyybp snvyrq\a");
-@@ -1660,6 +1683,7 @@ fgngvp ibvq egy8187_qvfpbaarpg(fgehpg hfo_vagresnpr *vags)
- 	vs (!qri)
- 		erghea;
+ 	dev = ieee80211_alloc_hw(sizeof(*priv), &rtl8187_ops);
+ 	if (!dev) {
+ 		printk(KERN_ERR "rtl8187: ieee80211 alloc failed\n");
+@@ -1660,6 +1683,7 @@ static void rtl8187_disconnect(struct usb_interface *intf)
+ 	if (!dev)
+ 		return;
 
-+	qrivpr_erzbir_svyr(&vags->qri, &qri_ngge_vq);
- #vsqrs PBASVT_EGY8187_YRQF
- 	egy8187_yrqf_rkvg(qri);
- #raqvs
++	device_remove_file(&intf->dev, &dev_attr_id);
+ #ifdef CONFIG_RTL8187_LEDS
+ 	rtl8187_leds_exit(dev);
+ #endif
 --
 2.1.4
 

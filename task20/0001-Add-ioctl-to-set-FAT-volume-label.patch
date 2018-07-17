@@ -1,199 +1,199 @@
-Sebz o9oq6452rp897r1r485s7797335q56n31n8qqr1p Zba Frc 17 00:00:00 2001
-Sebz: ebbg <ebbg@qrovna-wrffvr.intenaghc.pbz>
-Qngr: Fng, 14 Why 2018 22:53:20 +0000
-Fhowrpg: [CNGPU] Nqq vbpgy gb frg SNG ibyhzr ynory
+From b9bd6452ec897e1e485f7797335d56a31a8dde1c Mon Sep 17 00:00:00 2001
+From: root <root@debian-jessie.vagrantup.com>
+Date: Sat, 14 Jul 2018 22:53:20 +0000
+Subject: [PATCH] Add ioctl to set FAT volume label
 
-Fvtarq-bss-ol: Qnivq Jvggzna <qjvggzna@tznvy.pbz>
+Signed-off-by: David Wittman <dwittman@gmail.com>
 ---
- sf/sng/qve.p                  | 141 ++++++++++++++++++++++++++++++++++++++++++
- vapyhqr/hncv/yvahk/zfqbf_sf.u |   1 +
- 2 svyrf punatrq, 142 vafregvbaf(+)
+ fs/fat/dir.c                  | 141 ++++++++++++++++++++++++++++++++++++++++++
+ include/uapi/linux/msdos_fs.h |   1 +
+ 2 files changed, 142 insertions(+)
 
-qvss --tvg n/sf/sng/qve.p o/sf/sng/qve.p
-vaqrk 75os5r7..502r00r 100644
---- n/sf/sng/qve.p
-+++ o/sf/sng/qve.p
-@@ -460,6 +460,140 @@ fgngvp vag sng_cnefr_fubeg(fgehpg fhcre_oybpx *fo,
- 	erghea anzr_yra;
+diff --git a/fs/fat/dir.c b/fs/fat/dir.c
+index 75bf5e7..502e00e 100644
+--- a/fs/fat/dir.c
++++ b/fs/fat/dir.c
+@@ -460,6 +460,140 @@ static int fat_parse_short(struct super_block *sb,
+ 	return name_len;
  }
  
-+vag sng_fpna_ibyhzr_ynory(fgehpg vabqr *vabqr, fgehpg sng_fybg_vasb *fvasb)
++int fat_scan_volume_label(struct inode *inode, struct fat_slot_info *sinfo)
 +{
-+	fgehpg fhcre_oybpx *fo = vabqr->v_fo;
++	struct super_block *sb = inode->i_sb;
 +
-+	fvasb->fybg_bss = 0;
-+	fvasb->ou = AHYY;
-+	juvyr (sng_trg_ragel(vabqr, &fvasb->fybg_bss, &fvasb->ou,
-+				&fvasb->qr) >= 0) {
-+		/* ISNG ybat svyranzrf vapyhqr gur NGGE_IBYHZR synt, fb jr
-+		 * pnaabg whfg purpx sbe NGGE_IBYHZR urer
++	sinfo->slot_off = 0;
++	sinfo->bh = NULL;
++	while (fat_get_entry(inode, &sinfo->slot_off, &sinfo->bh,
++				&sinfo->de) >= 0) {
++		/* VFAT long filenames include the ATTR_VOLUME flag, so we
++		 * cannot just check for ATTR_VOLUME here
 +		 */
-+		vs (fvasb->qr->ngge != NGGE_RKG  && (fvasb->qr->ngge & NGGE_IBYHZR)) {
-+			fvasb->fybg_bss -= fvmrbs(*fvasb->qr);
-+			fvasb->ae_fybgf = 1;
-+			fvasb->v_cbf = sng_znxr_v_cbf(fo, fvasb->ou, fvasb->qr);
-+			erghea 0;
++		if (sinfo->de->attr != ATTR_EXT  && (sinfo->de->attr & ATTR_VOLUME)) {
++			sinfo->slot_off -= sizeof(*sinfo->de);
++			sinfo->nr_slots = 1;
++			sinfo->i_pos = fat_make_i_pos(sb, sinfo->bh, sinfo->de);
++			return 0;
 +		}
 +	}
-+	erghea -RABRAG;
++	return -ENOENT;
 +}
 +
-+fgngvp vag sng_vbpgy_frg_ibyhzr_ynory(fgehpg vabqr *vabqr,
-+				      hafvtarq ybat __hfre hfre_net)
++static int fat_ioctl_set_volume_label(struct inode *inode,
++				      unsigned long __user user_arg)
 +{
-+	fgehpg fhcre_oybpx *fo = vabqr->v_fo;
-+	fgehpg zfqbf_fo_vasb *fov = ZFQBF_FO(vabqr->v_fo);
-+	fgehpg sng_fybg_vasb fvasb;
-+	fgehpg zfqbf_qve_ragel qr;
-+	fgehpg ohssre_urnq *ou, *onpxhc_ou;
-+	fgehpg sng_obbg_frpgbe *o, *onpxhc_of;
-+	hafvtarq pune arj_ynory[ZFQBF_ANZR];
-+	fgehpg gvzrfcrp gf;
-+	fgehpg vabqr *yoy_v;
-+	__yr16 gvzr, qngr;
-+	vag arj_ynory_yra, ree;
++	struct super_block *sb = inode->i_sb;
++	struct msdos_sb_info *sbi = MSDOS_SB(inode->i_sb);
++	struct fat_slot_info sinfo;
++	struct msdos_dir_entry de;
++	struct buffer_head *bh, *backup_bh;
++	struct fat_boot_sector *b, *backup_bs;
++	unsigned char new_label[MSDOS_NAME];
++	struct timespec ts;
++	struct inode *lbl_i;
++	__le16 time, date;
++	int new_label_len, err;
 +
-+	arj_ynory_yra = fgeyra_hfre((pune *)hfre_net);
++	new_label_len = strlen_user((char *)user_arg);
 +
-+	vs (arj_ynory_yra > ZFQBF_ANZR) {
-+		sng_zft(fo, XREA_REE, "vyyrtny ibyhzr ynory yratgu");
-+		erghea -RVAINY;
++	if (new_label_len > MSDOS_NAME) {
++		fat_msg(sb, KERN_ERR, "illegal volume label length");
++		return -EINVAL;
 +	}
 +
-+	vs (pbcl_sebz_hfre(arj_ynory, (hafvtarq pune *)hfre_net, arj_ynory_yra))
-+		erghea -RSNHYG;
++	if (copy_from_user(new_label, (unsigned char *)user_arg, new_label_len))
++		return -EFAULT;
 +
-+	sng_gvzr_havk2sng(fov, &gf, &gvzr, &qngr, AHYY);
++	fat_time_unix2fat(sbi, &ts, &time, &date, NULL);
 +
-+	vs (!sng_fpna_ibyhzr_ynory(vabqr, &fvasb)) {
-+		/* Ynory rkvfgf, birejevgr vg */
-+		zhgrk_ybpx(&fov->f_ybpx);
-+		zrzpcl(&fvasb.qr->anzr, arj_ynory, arj_ynory_yra);
-+		yoy_v = sng_ohvyq_vabqr(fo, fvasb.qr, fvasb.v_cbf);
-+		yoy_v->v_ngvzr = gf;
-+		yoy_v->v_zgvzr = gf;
-+		znex_vabqr_qvegl(yoy_v);
-+		vchg(yoy_v);
-+		zhgrk_haybpx(&fov->f_ybpx);
-+	} ryfr {
-+		/* Perngr n arj qverpgbel ragel sbe gur ynory */
-+		zrzfrg(&qr, '\0', fvmrbs(qr));
-+		zrzpcl(qr.anzr, arj_ynory, arj_ynory_yra);
-+		qr.ngge = NGGE_IBYHZR;
-+		qr.ypnfr = 0;
-+		gf = pheerag_xreary_gvzr();
-+		qr.pqngr = qr.nqngr = 0;
-+		qr.pgvzr = 0;
-+		qr.pgvzr_pf = 0;
-+		qr.gvzr = gvzr;
-+		qr.qngr = qngr;
-+		sng_frg_fgneg(&qr, 0);
-+		qr.fvmr = 0;
++	if (!fat_scan_volume_label(inode, &sinfo)) {
++		/* Label exists, overwrite it */
++		mutex_lock(&sbi->s_lock);
++		memcpy(&sinfo.de->name, new_label, new_label_len);
++		lbl_i = fat_build_inode(sb, sinfo.de, sinfo.i_pos);
++		lbl_i->i_atime = ts;
++		lbl_i->i_mtime = ts;
++		mark_inode_dirty(lbl_i);
++		iput(lbl_i);
++		mutex_unlock(&sbi->s_lock);
++	} else {
++		/* Create a new directory entry for the label */
++		memset(&de, '\0', sizeof(de));
++		memcpy(de.name, new_label, new_label_len);
++		de.attr = ATTR_VOLUME;
++		de.lcase = 0;
++		ts = current_kernel_time();
++		de.cdate = de.adate = 0;
++		de.ctime = 0;
++		de.ctime_cs = 0;
++		de.time = time;
++		de.date = date;
++		fat_set_start(&de, 0);
++		de.size = 0;
 +
-+		zhgrk_ybpx(&fov->f_ybpx);
-+		ree = sng_nqq_ragevrf(vabqr, &qr, 1, &fvasb);
-+		zhgrk_haybpx(&fov->f_ybpx);
++		mutex_lock(&sbi->s_lock);
++		err = fat_add_entries(inode, &de, 1, &sinfo);
++		mutex_unlock(&sbi->s_lock);
 +
-+		vs (ree)
-+			erghea ree;
++		if (err)
++			return err;
 +	}
 +
-+	vabqr->v_pgvzr = gf;
-+	vabqr->v_zgvzr = gf;
-+	vabqr->v_irefvba++;
++	inode->i_ctime = ts;
++	inode->i_mtime = ts;
++	inode->i_version++;
 +
-+	vs (VF_QVEFLAP(vabqr))
-+		(ibvq)sng_flap_vabqr(vabqr);
-+	ryfr
-+		znex_vabqr_qvegl(vabqr);
++	if (IS_DIRSYNC(inode))
++		(void)fat_sync_inode(inode);
++	else
++		mark_inode_dirty(inode);
 +
-+	/* qb abg punatr nal guvat vs zbhagrq ernq bayl */
-+	vs ((fo->f_syntf & ZF_EQBAYL))
-+		erghea 0;
++	/* do not change any thing if mounted read only */
++	if ((sb->s_flags & MS_RDONLY))
++		return 0;
 +
-+	/* qb abg punatr vs sf jnf qvegl */
-+	vs (fov->qvegl)
-+		erghea -1;
++	/* do not change if fs was dirty */
++	if (sbi->dirty)
++		return -1;
 +
-+	ou = fo_oernq(fo, 0);
-+	vs (ou == AHYY) {
-+		sng_zft(fo, XREA_REE, "hanoyr gb ernq obbg frpgbe "
-+			"gb znex sf nf qvegl");
-+		erghea -1;
++	bh = sb_bread(sb, 0);
++	if (bh == NULL) {
++		fat_msg(sb, KERN_ERR, "unable to read boot sector "
++			"to mark fs as dirty");
++		return -1;
 +	}
 +
-+	o = (fgehpg sng_obbg_frpgbe *) ou->o_qngn;
++	b = (struct fat_boot_sector *) bh->b_data;
 +
-+	vs (fov->sng_ovgf == 32) {
-+		zrzpcl(o->sng32.iby_ynory, arj_ynory, arj_ynory_yra);
-+		o->sng32.iby_ynory[arj_ynory_yra] = '\0';
++	if (sbi->fat_bits == 32) {
++		memcpy(b->fat32.vol_label, new_label, new_label_len);
++		b->fat32.vol_label[new_label_len] = '\0';
 +
-+		onpxhc_ou = fo_oernq(fo, o->sng32.onpxhc_obbg);
-+		vs (onpxhc_ou) {
-+			onpxhc_of = (fgehpg sng_obbg_frpgbe *) onpxhc_ou->o_qngn;
-+			zrzpcl(onpxhc_of->sng32.iby_ynory, arj_ynory,
-+				arj_ynory_yra);
-+			onpxhc_of->sng32.iby_ynory[arj_ynory_yra] = '\0';
++		backup_bh = sb_bread(sb, b->fat32.backup_boot);
++		if (backup_bh) {
++			backup_bs = (struct fat_boot_sector *) backup_bh->b_data;
++			memcpy(backup_bs->fat32.vol_label, new_label,
++				new_label_len);
++			backup_bs->fat32.vol_label[new_label_len] = '\0';
 +
-+			znex_ohssre_qvegl(onpxhc_ou);
-+			flap_qvegl_ohssre(onpxhc_ou);
-+			oeryfr(onpxhc_ou);
++			mark_buffer_dirty(backup_bh);
++			sync_dirty_buffer(backup_bh);
++			brelse(backup_bh);
 +		}
-+	} ryfr {
-+		zrzpcl(o->sng16.iby_ynory, arj_ynory, arj_ynory_yra);
-+		o->sng16.iby_ynory[arj_ynory_yra] = '\0';
++	} else {
++		memcpy(b->fat16.vol_label, new_label, new_label_len);
++		b->fat16.vol_label[new_label_len] = '\0';
 +	}
 +
-+	znex_ohssre_qvegl(ou);
-+	flap_qvegl_ohssre(ou);
-+	oeryfr(ou);
++	mark_buffer_dirty(bh);
++	sync_dirty_buffer(bh);
++	brelse(bh);
 +
-+	erghea 0;
++	return 0;
 +}
 +
  /*
-  * Erghea inyhrf: artngvir -> reebe/abg sbhaq, 0 -> sbhaq.
+  * Return values: negative -> error/not found, 0 -> found.
   */
-@@ -802,6 +936,9 @@ fgngvp ybat sng_qve_vbpgy(fgehpg svyr *svyc, hafvtarq vag pzq,
- 		fubeg_bayl = 0;
- 		obgu = 1;
- 		oernx;
-+	pnfr SNG_VBPGY_FRG_IBYHZR_YNORY:
-+		erghea sng_vbpgy_frg_ibyhzr_ynory(vabqr->v_fo->f_ebbg->q_vabqr,
-+							net);
- 	qrsnhyg:
- 		erghea sng_trarevp_vbpgy(svyc, pzq, net);
+@@ -802,6 +936,9 @@ static long fat_dir_ioctl(struct file *filp, unsigned int cmd,
+ 		short_only = 0;
+ 		both = 1;
+ 		break;
++	case FAT_IOCTL_SET_VOLUME_LABEL:
++		return fat_ioctl_set_volume_label(inode->i_sb->s_root->d_inode,
++							arg);
+ 	default:
+ 		return fat_generic_ioctl(filp, cmd, arg);
  	}
-@@ -823,6 +960,7 @@ fgngvp ybat sng_qve_vbpgy(fgehpg svyr *svyc, hafvtarq vag pzq,
- #vsqrs PBASVT_PBZCNG
- #qrsvar	ISNG_VBPGY_ERNQQVE_OBGU32	_VBE('e', 1, fgehpg pbzcng_qverag[2])
- #qrsvar	ISNG_VBPGY_ERNQQVE_FUBEG32	_VBE('e', 2, fgehpg pbzcng_qverag[2])
-+#qrsvar SNG_VBPGY_FRG_IBYHZR_YNORY32	_VBJ('e', 0k14, pune *)
+@@ -823,6 +960,7 @@ static long fat_dir_ioctl(struct file *filp, unsigned int cmd,
+ #ifdef CONFIG_COMPAT
+ #define	VFAT_IOCTL_READDIR_BOTH32	_IOR('r', 1, struct compat_dirent[2])
+ #define	VFAT_IOCTL_READDIR_SHORT32	_IOR('r', 2, struct compat_dirent[2])
++#define FAT_IOCTL_SET_VOLUME_LABEL32	_IOW('r', 0x14, char *)
  
- SNG_VBPGY_SVYYQVE_SHAP(sng_pbzcng_vbpgy_svyyqve, pbzcng_qverag)
+ FAT_IOCTL_FILLDIR_FUNC(fat_compat_ioctl_filldir, compat_dirent)
  
-@@ -842,6 +980,9 @@ fgngvp ybat sng_pbzcng_qve_vbpgy(fgehpg svyr *svyc, hafvtarq pzq,
- 		fubeg_bayl = 0;
- 		obgu = 1;
- 		oernx;
-+	pnfr SNG_VBPGY_FRG_IBYHZR_YNORY32:
-+		erghea sng_vbpgy_frg_ibyhzr_ynory(vabqr->v_fo->f_ebbg->q_vabqr,
-+							(hafvtarq ybat) net);
- 	qrsnhyg:
- 		erghea sng_trarevp_vbpgy(svyc, pzq, (hafvtarq ybat)net);
+@@ -842,6 +980,9 @@ static long fat_compat_dir_ioctl(struct file *filp, unsigned cmd,
+ 		short_only = 0;
+ 		both = 1;
+ 		break;
++	case FAT_IOCTL_SET_VOLUME_LABEL32:
++		return fat_ioctl_set_volume_label(inode->i_sb->s_root->d_inode,
++							(unsigned long) arg);
+ 	default:
+ 		return fat_generic_ioctl(filp, cmd, (unsigned long)arg);
  	}
-qvss --tvg n/vapyhqr/hncv/yvahk/zfqbf_sf.u o/vapyhqr/hncv/yvahk/zfqbf_sf.u
-vaqrk r284ss9..s731066 100644
---- n/vapyhqr/hncv/yvahk/zfqbf_sf.u
-+++ o/vapyhqr/hncv/yvahk/zfqbf_sf.u
-@@ -106,6 +106,7 @@ fgehpg __sng_qverag {
- #qrsvar SNG_VBPGY_FRG_NGGEVOHGRF	_VBJ('e', 0k11, __h32)
- /*Naqebvq xreary unf hfrq 0k12, fb jr hfr 0k13*/
- #qrsvar SNG_VBPGY_TRG_IBYHZR_VQ		_VBE('e', 0k13, __h32)
-+#qrsvar SNG_VBPGY_FRG_IBYHZR_YNORY	_VBJ('e', 0k14, pune *)
+diff --git a/include/uapi/linux/msdos_fs.h b/include/uapi/linux/msdos_fs.h
+index e284ff9..f731066 100644
+--- a/include/uapi/linux/msdos_fs.h
++++ b/include/uapi/linux/msdos_fs.h
+@@ -106,6 +106,7 @@ struct __fat_dirent {
+ #define FAT_IOCTL_SET_ATTRIBUTES	_IOW('r', 0x11, __u32)
+ /*Android kernel has used 0x12, so we use 0x13*/
+ #define FAT_IOCTL_GET_VOLUME_ID		_IOR('r', 0x13, __u32)
++#define FAT_IOCTL_SET_VOLUME_LABEL	_IOW('r', 0x14, char *)
  
- fgehpg sng_obbg_frpgbe {
- 	__h8	vtaberq[3];	/* Obbg fgenc fubeg be arne whzc */
+ struct fat_boot_sector {
+ 	__u8	ignored[3];	/* Boot strap short or near jump */
 -- 
 2.1.4
 

@@ -1,20 +1,20 @@
-$ QRIVPR=/qri/rhqlcghyn
-$ fhqb vafzbq /intenag/gnfx18.xb
-$ [[ -p $QRIVPR ]] || rkvg 1
-$ rpub -a Nyvpr > $QRIVPR
-$ rpub -a Obo > $QRIVPR
-$ fyrrc 15
-$ rpub -a Qnir > $QRIVPR
-$ rpub -a Tran > $QRIVPR
-$ fhqb ezzbq gnfx18
-$ qzrft | gnvy
-[    9.459238] ECP: Ertvfgrerq gpc genafcbeg zbqhyr.
-[    9.459239] ECP: Ertvfgrerq gpc ASFi4.1 onpxpunaary genafcbeg zbqhyr.
-[    9.466479] SF-Pnpur: Ybnqrq
-[    9.481009] SF-Pnpur: Argsf 'asf' ertvfgrerq sbe pnpuvat
-[    9.504458] Vafgnyyvat xasfq (pbclevtug (P) 1996 bxve@zbanq.fjo.qr).
-[   12.091096] enaqbz: abaoybpxvat cbby vf vavgvnyvmrq
-[  996.250124] rhqlcghyn guernq perngrq fhpprffshyyl
-[ 1001.260905] Anzr: Obo, VQ: 1
-[ 1006.272874] Anzr: Nyvpr, VQ: 0
-[ 1016.268683] Anzr: Tran, VQ: 3
+$ DEVICE=/dev/eudyptula
+$ sudo insmod /vagrant/task18.ko
+$ [[ -c $DEVICE ]] || exit 1
+$ echo -n Alice > $DEVICE
+$ echo -n Bob > $DEVICE
+$ sleep 15
+$ echo -n Dave > $DEVICE
+$ echo -n Gena > $DEVICE
+$ sudo rmmod task18
+$ dmesg | tail
+[    9.459238] RPC: Registered tcp transport module.
+[    9.459239] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    9.466479] FS-Cache: Loaded
+[    9.481009] FS-Cache: Netfs 'nfs' registered for caching
+[    9.504458] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
+[   12.091096] random: nonblocking pool is initialized
+[  996.250124] eudyptula thread created successfully
+[ 1001.260905] Name: Bob, ID: 1
+[ 1006.272874] Name: Alice, ID: 0
+[ 1016.268683] Name: Gena, ID: 3

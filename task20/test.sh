@@ -1,18 +1,18 @@
-#!/ova/onfu
+#!/bin/bash
 
-frg -r
+set -e
 
-rpub "### Znxvat ybbconpx SNG svyrflfgrzf ####"
-fhqb /intenag/zxsng.fu
-tpp -b /gzc/gnfx20 /intenag/gnfx20.p
+echo "### Making loopback FAT filesystems ####"
+sudo /vagrant/mkfat.sh
+gcc -o /tmp/task20 /vagrant/task20.c
 
-rpub "### ORSBER ###"
-fhqb sngynory /qri/ybbc0
-fhqb sngynory /qri/ybbc1
+echo "### BEFORE ###"
+sudo fatlabel /dev/loop0
+sudo fatlabel /dev/loop1
 
-rpub "### EHAAVAT gnfx20 ###"
-fhqb /gzc/gnfx20
+echo "### RUNNING task20 ###"
+sudo /tmp/task20
 
-rpub "### NSGRE ###"
-fhqb sngynory /qri/ybbc0
-fhqb sngynory /qri/ybbc1
+echo "### AFTER ###"
+sudo fatlabel /dev/loop0
+sudo fatlabel /dev/loop1

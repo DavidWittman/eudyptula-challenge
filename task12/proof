@@ -1,9 +1,9 @@
-ebbg@qrovna-wrffvr:~# yfzbq | terc gnfx12
-ebbg@qrovna-wrffvr:~# vafzbq /intenag/gnfx12.xb 
-ebbg@qrovna-wrffvr:~# yfzbq | terc gnfx12
-gnfx12                 12469  0 
-ebbg@qrovna-wrffvr:~# qzrft | gnvy -2
-[  219.177265] vq 3 = Qnir
-[  219.177274] vq 42 abg sbhaq
-ebbg@qrovna-wrffvr:~# ezzbq gnfx12
-ebbg@qrovna-wrffvr:~# 
+root@debian-jessie:~# lsmod | grep task12
+root@debian-jessie:~# insmod /vagrant/task12.ko 
+root@debian-jessie:~# lsmod | grep task12
+task12                 12469  0 
+root@debian-jessie:~# dmesg | tail -2
+[  219.177265] id 3 = Dave
+[  219.177274] id 42 not found
+root@debian-jessie:~# rmmod task12
+root@debian-jessie:~# 

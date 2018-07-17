@@ -1,10 +1,10 @@
-bow-z += gnfx17.b
-PSYNTF_gnfx17.b := -QQROHT
+obj-m += task17.o
+CFLAGS_task17.o := -DDEBUG
 
-XQVE ?= /yvo/zbqhyrf/$(furyy hanzr -e)/ohvyq
+KDIR ?= /lib/modules/$(shell uname -r)/build
 
-nyy:
-	znxr -P $(XQVE) Z=$(CJQ) zbqhyrf
+all:
+	make -C $(KDIR) M=$(PWD) modules
 
-pyrna:
-	znxr -P $(XQVE) Z=$(CJQ) pyrna
+clean:
+	make -C $(KDIR) M=$(PWD) clean

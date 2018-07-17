@@ -1,11 +1,11 @@
-bow-z += gnfx12.b
-# Ranoyr QROHT zrffntrf fb jr pna frr bhgchg bs ce_qroht pnyy
-PSYNTF_gnfx12.b := -QQROHT
+obj-m += task12.o
+# Enable DEBUG messages so we can see output of pr_debug call
+CFLAGS_task12.o := -DDEBUG
 
-XQVE ?= /yvo/zbqhyrf/$(furyy hanzr -e)/ohvyq
+KDIR ?= /lib/modules/$(shell uname -r)/build
 
-nyy:
-	znxr -P $(XQVE) Z=$(CJQ) zbqhyrf
+all:
+	make -C $(KDIR) M=$(PWD) modules
 
-pyrna:
-	znxr -P $(XQVE) Z=$(CJQ) pyrna
+clean:
+	make -C $(KDIR) M=$(PWD) clean
